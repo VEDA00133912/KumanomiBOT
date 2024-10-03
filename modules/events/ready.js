@@ -3,6 +3,7 @@ const fs = require('fs').promises;
 const path = require('path');
 require('dotenv').config();
 const configPath = path.join(__dirname, '..', '..', 'data', 'settings', 'config.json');
+const snipePath = path.join(__dirname, '..', '..', 'data', 'settings', 'snipe.json');
 
 module.exports = {
   name: Events.ClientReady, 
@@ -12,7 +13,6 @@ module.exports = {
     try {
       config = JSON.parse(await fs.readFile(configPath, 'utf8')); 
     } catch (error) {
-      console.error('Error reading config file:', error.message);
       return;
     }
 
@@ -43,6 +43,21 @@ module.exports = {
       console.error('Failed to set bot status or activity:', error.message);
     }
 
-    console.log(`${client.user.tag} is ready!);
+    const now = Math.floor(Date.now() / 1000);
+    try {
+      const snipeData = JSON.parse(await fs.readFile(snipePath, 'utf8'));
+      for (const [key, value] of Object.entries(snipeData)) {
+        if (value.timestamp < now) {
+          delete snipeData[key]; 
+          console.log(`Deleted snipe entry with timestamp: ${value.timestamp}`);
+        }
+      }
+      await fs.writeFile(snipePath, JSON.stringify(snipeData, null, 2));
+      console.log('Snipe data cleaned up successfully.');
+    } catch (error) {
+      console.error('Error reading or writing snipe file:', error.message);
+    }
+
+    console.log(`${client.user.tag} is ready.`);
   },
 };
