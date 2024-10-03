@@ -7,7 +7,7 @@ const { generateTokens } = require('../../lib/gen-faketoken');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('fake')
-    .setDescription('フェイクリンクやトークンを生成する')
+    .setDescription('フェイクNitroやトークンの生成')
     .addSubcommand(subcommand =>
       subcommand
         .setName('nitro')
@@ -28,7 +28,7 @@ module.exports = {
     .addSubcommand(subcommand =>
       subcommand
         .setName('token')
-        .setDescription('フェイクTokenを生成')
+        .setDescription('フェイクのTokenを生成')
         .addIntegerOption(option =>
           option.setName('count')
             .setDescription('生成する数 (最大10)')
@@ -64,7 +64,7 @@ module.exports = {
   },
 
   async executeNitro(interaction) {
-    await this.sendLoadingEmbed(interaction, '#f47fff', '生成中...お待ちください。');
+    await this.sendLoadingEmbed(interaction, '#f47fff', '<a:boost:1282164483665428541> 生成中...');
 
     const quantity = interaction.options.getInteger('count');
     const type = interaction.options.getString('type');
@@ -80,7 +80,7 @@ module.exports = {
   },
 
   async executeToken(interaction) {
-    await this.sendLoadingEmbed(interaction, '#7289da', '生成中...お待ちください。');
+    await this.sendLoadingEmbed(interaction, '#7289da', '<a:loading:1259148838929961012> 生成中...');
 
     const quantity = interaction.options.getInteger('count');
     const tokens = generateTokens(interaction.guild.members.cache, quantity); 
