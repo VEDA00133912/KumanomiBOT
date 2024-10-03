@@ -1,5 +1,6 @@
 const { EmbedBuilder, Events } = require('discord.js');
 const { loadSnipeData } = require('../../lib/snipe'); 
+const textCommandError = require('../errors/textCommandError');
 
 module.exports = {
     name: Events.MessageCreate,
@@ -25,8 +26,7 @@ module.exports = {
                     await message.channel.send('このチャンネルには削除されたメッセージはありません。');
                 }
             } catch (error) {
-                console.error('エラーが発生しました:', error);
-                await message.channel.send('メッセージを取得する際にエラーが発生しました。');
+                textCommandError(client, message, error, __filename);
             }
         }
     }
