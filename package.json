@@ -1,1 +1,23 @@
-
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.0.6",
+    "axios": "^1.7.7",
+    "cheerio": "^1.0.0",
+    "discord.js": "^14.16.1",
+    "dotenv": "^16.4.5",
+    "form-data": "^4.0.0",
+    "node-schedule": "^2.1.1",
+    "sharp": "^0.33.5",
+    "yahoo-finance2": "^2.11.3"
+  }
+}
