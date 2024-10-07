@@ -1,3 +1,4 @@
+// fakenitro, faketoken
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
