@@ -1,3 +1,4 @@
+// viruscheck, extract, short
 const { SlashCommandBuilder, AttachmentBuilder, EmbedBuilder } = require('discord.js');
 const { config } = require('dotenv');
 const axios = require('axios');
