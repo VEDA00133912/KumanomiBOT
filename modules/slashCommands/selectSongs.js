@@ -1,6 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const cooldown = require('../events/cooldown');
-const slashCommandError = require('../errors/slashCommandError');
 const random = require('../../lib/selectSongs'); 
 
 module.exports = {
@@ -130,11 +129,7 @@ module.exports = {
     await interaction.reply({ embeds: [embedLoading] });
 
     setTimeout(async () => {
-      try {
-        await random.getRandomSongs(interaction, commandName, subcommand, option, count, embedColor);
-      } catch (error) {
-      slashCommandError(interaction.client, interaction, error);
-      }
+      await random.getRandomSongs(interaction, commandName, subcommand, option, count, embedColor);
     }, 1000); 
   },
 };

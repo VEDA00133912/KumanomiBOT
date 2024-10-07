@@ -1,4 +1,3 @@
-// userinfo, serverinfo
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
@@ -9,7 +8,7 @@ const { getBoostLevel } = require('../../lib/boost');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('info')
-    .setDescription('情報を表示します')
+    .setDescription('ユーザーまたはサーバーの情報を表示します')
     .addSubcommand(subcommand =>
       subcommand
         .setName('user')
