@@ -1,7 +1,8 @@
 const { SlashCommandBuilder } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
-const { validateContent, generateSuddenDeathText } = require('../../lib/totsu-shi');
+const { generateSuddenDeathText } = require('../../lib/totsu-shi');
+const { validateMessageContent } = require('../../lib/invalidContent'); 
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -22,14 +23,10 @@ module.exports = {
 
     try {
       await interaction.deferReply();
-
       const input = interaction.options.getString('content');
 
-      const validationError = validateContent(input);
-      if (validationError) {
-        await interaction.editReply(validationError);
-        return;
-      }
+      const hasError = await validateMessageContent(interaction, input);
+      if (hasError) return; 
 
       const generatedText = generateSuddenDeathText(input);
       await interaction.editReply(generatedText);
