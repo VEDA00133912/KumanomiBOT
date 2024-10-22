@@ -1,5 +1,5 @@
 {
-  "name": "emubot v4",
+  "name": "emubotv4",
   "version": "4.0.0",
   "description": "えむBOTのver.4.0です",
   "main": "index.js",
@@ -13,9 +13,11 @@
     "@types/node": "^18.0.6",
     "axios": "^1.7.7",
     "cheerio": "^1.0.0",
+    "cjp": "^2.3.1",
     "discord.js": "^14.16.1",
     "dotenv": "^16.4.5",
     "form-data": "^4.0.0",
+    "genhera": "^1.1.0",
     "node-schedule": "^2.1.1",
     "sharp": "^0.33.5",
     "yahoo-finance2": "^2.11.3"
