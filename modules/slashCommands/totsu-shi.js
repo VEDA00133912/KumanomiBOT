@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 const { generateSuddenDeathText } = require('../../lib/totsu-shi');
-const { validateMessageContent } = require('../../lib/invaildContent'); 
+const { validateMessageContent } = require('../../lib/invalidContent'); 
 
 module.exports = {
   data: new SlashCommandBuilder()
