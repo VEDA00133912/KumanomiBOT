@@ -2,7 +2,7 @@ const { SlashCommandBuilder, ChannelType } = require('discord.js');
 const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
 const { getWebhookClient } = require('../../lib/spoofing');
-const { validateMessageContent } = require('../../lib/invaildContent'); // 修正: invaildContent → invalidContent
+const { validateMessageContent } = require('../../lib/invaildContent'); 
 const { checkPermissions } = require('../../lib/permissions');
 
 module.exports = {
@@ -16,13 +16,17 @@ module.exports = {
     .addStringOption(option =>
       option.setName('message')
         .setDescription('送信するメッセージ')
-        .setRequired(true))
+        .setRequired(true)
+        .setMinLength(1)
+        .setMaxLength(100))
     .addAttachmentOption(option =>
       option.setName('attachment')
         .setDescription('送信する画像'))
     .addStringOption(option =>
       option.setName('nickname')
-        .setDescription('ニックネームを指定')),
+        .setDescription('ニックネームを指定')
+        .setMinLength(1)
+        .setMaxLength(20)),
 
   async execute(interaction) {
     try {
