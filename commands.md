@@ -4,16 +4,17 @@
 | ------------- | ------------- | ------------- | ------------- |
 |  5000choyen  | 5000兆円欲しい画像の生成  | - - | - - |
 | icon  | 指定した人のアイコンを表示  |- -|- -|
-|info|ユーザー、サーバーの情報を表示|info user, info server|- -|
+|info|ユーザー、サーバーの情報を表示|info user, server|- -|
 |ping|BOTのping値を表示|- -|- -|
 |spoofing|指定したユーザーになりすましをする| - - |ウェブフックの管理|
 |totsu-shi|突然の死ジェネレーター|- -|- -|
-|fake|偽Nitro,偽Tokenを生成|fake nitro, fake token|- -|
+|fake|偽Nitro,偽Tokenを生成|fake nitro, token|- -|
 |qr|URLをQRコードに変換|- -|- -|
 |select|音ゲーランダム選曲|select taiko, prsk, ongeki, maimai, chunithm|- -|
 |timer|指定時間後にメンションして知らせるタイマー|- -|- -|
-|vanitychack|discordのカスタムURLの生存確認| - -|- -|
+|vanitycheck|discordのカスタムURLの生存確認| - -|- -|
 |url|URLの危険性チェック、抽出、短縮|url viruscheck, extract, short|ファイルを添付|
+|create|ロール、チャンネル、パスワードを生成|create role, channel, password||
 
 【 **ContextMenus** 】
 | コマンド名  | コマンド内容 |コマンド種類|  必要権限 |
