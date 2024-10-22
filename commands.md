@@ -2,8 +2,8 @@
 【 **SlashCommands** 】
 | コマンド名  | コマンド内容 | サブコマンド | 必要権限 |
 | ------------- | ------------- | ------------- | ------------- |
-| Content Cell  | Content Cell  |||
-| Content Cell  | Content Cell  |||
+|  5000choyen  | 5000兆円欲しい画像の生成  | -- | -- |
+| icon  | 指定した人のアイコンを表示  |--|--|
 
 【 **ContextMenus** 】
 
