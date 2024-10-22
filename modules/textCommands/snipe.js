@@ -5,7 +5,7 @@ const textCommandError = require('../errors/textCommandError');
 module.exports = {
     name: Events.MessageCreate,
     async execute(message, client) {
-        if (message.content.startsWith('!snipe')) {
+        if (message.content.startsWith('^snipe')) {
             try {
                 const snipeData = loadSnipeData();
                 const channelId = message.channel.id;
