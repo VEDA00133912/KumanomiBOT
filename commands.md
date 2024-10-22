@@ -16,7 +16,7 @@
 |url|URLの危険性チェック、抽出、短縮|url viruscheck, extract, short|ファイルを添付|
 |create|ロール、チャンネル、パスワードを生成|create role, channel, password|ロールの管理, チャンネルの管理|
 
-【 **(;) ContextMenus** 】
+【 **ContextMenus** 】
 | コマンド名  | コマンド内容 |コマンド種類|  必要権限 |
 | ------------- | ------------- | ------------- | ------------- |
 |Make it a Quote(カラー)|miqの画像生成(カラー)|message|- -|
