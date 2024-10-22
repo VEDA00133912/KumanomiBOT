@@ -1,7 +1,9 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const path = require('path');
+const { convertText, typeNameMap } = require('../lib/convert');
+const { validateMessageContent } = require('../lib/invalidContent');
 const cooldown = require('../events/cooldown');
-const slashCommandError = require('../errors/slashCommandError');
-const { getInvalidReason, convertText, typeNameMap } = require('../../lib/convert');
+const slashCommandError = require('../error/slashCommandError');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -22,8 +24,10 @@ module.exports = {
         ))
     .addStringOption(option =>
       option.setName('text')
-        .setDescription('変換するテキストを入力してください。')
+        .setDescription('変換するテキストの長さ（1〜100文字）を入力してください。')
         .setRequired(true)
+        .setMinValue(1)  
+        .setMaxValue(100)
     ),
 
   async execute(interaction) {
@@ -31,15 +35,11 @@ module.exports = {
       const commandName = this.data.name;
       const isCooldown = cooldown(commandName, interaction);
       if (isCooldown) return;
-      
+
       const type = interaction.options.getString('type');
       const text = interaction.options.getString('text');
 
-      const invalidReason = getInvalidReason(text);
-      if (invalidReason) {
-        await interaction.reply({ content: invalidReason, ephemeral: true });
-        return;
-      }
+      if (await validateMessageContent(interaction, text)) return;
 
       await interaction.deferReply();
 
