@@ -2,7 +2,7 @@ const { SlashCommandBuilder, ChannelType } = require('discord.js');
 const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
 const { getWebhookClient } = require('../../lib/spoofing');
-const { validateMessageContent } = require('../../lib/invaildContent'); 
+const { validateMessageContent } = require('../../lib/invalidContent'); 
 const { checkPermissions } = require('../../lib/permissions');
 
 module.exports = {
