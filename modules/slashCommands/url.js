@@ -29,7 +29,7 @@ module.exports = {
                 .addAttachmentOption(option => 
                     option.setName('file').setDescription('URLを抽出するファイル')))
         .addSubcommand(subcommand =>
-            subcommand.setName('shorturl')
+            subcommand.setName('short')
                 .setDescription('URLを短縮します')
                 .addStringOption(option =>
                     option.setName('url')
@@ -45,7 +45,7 @@ module.exports = {
             await this.virusCheck(interaction);
         } else if (interaction.options.getSubcommand() === 'extract') {
             await this.extractUrls(interaction);
-        } else if (interaction.options.getSubcommand() === 'shorturl') {
+        } else if (interaction.options.getSubcommand() === 'short') {
             await this.shortUrl(interaction);
         }
     },
@@ -151,7 +151,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setDescription(`<:check:1282141869387550741> **短縮に成功しました！**\n\n**短縮URL: ${shortenedUrl}**`)
                     .setTimestamp()
-                    .setFooter({ text: 'Emubot | shorturl', iconURL: interaction.client.user.displayAvatarURL() })
+                    .setFooter({ text: 'Emubot | short', iconURL: interaction.client.user.displayAvatarURL() })
                     .setColor('#f8b4cb');
 
                 await interaction.editReply({ embeds: [embed] });
