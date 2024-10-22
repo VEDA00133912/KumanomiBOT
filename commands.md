@@ -9,6 +9,7 @@
 |spoofing|指定したユーザーになりすましをする| - - |ウェブフックの管理|
 |totsu-shi|突然の死ジェネレーター|- -|- -|
 |fake|偽Nitro,偽Tokenを生成|fake nitro, fake token|- -|
+
 【 **ContextMenus** 】
 
 【 **TextCommands** 】
