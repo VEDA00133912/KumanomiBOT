@@ -1,9 +1,9 @@
 const { SlashCommandBuilder, ChannelType } = require('discord.js');
-const slashCommandError = require('../error/slashCommandError');
+const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
-const { getWebhookClient } = require('../lib/spoofing');
-const { validateMessageContent } = require('../lib/invalidContent');
-const { checkPermissions } = require('../lib/permissions');
+const { getWebhookClient } = require('../../lib/spoofing');
+const { validateMessageContent } = require('../../lib/invaildContent'); // 修正: invaildContent → invalidContent
+const { checkPermissions } = require('../../lib/permissions');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -44,11 +44,13 @@ module.exports = {
       const message = interaction.options.getString('message');
       const attachment = interaction.options.getAttachment('attachment');
       const nickname = interaction.options.getString('nickname');
+      const member = interaction.guild.members.cache.get(targetUser.id); // メンバー情報を取得
       const hasError = await validateMessageContent(interaction, message);
       if (hasError) return;
 
       const webhookClient = await getWebhookClient(interaction.channel, targetUser);
-      const displayName = nickname || targetUser.username;
+      
+      const displayName = nickname || (member?.nickname || targetUser.displayName);
       const avatarURL = targetUser.displayAvatarURL({ format: null, size: 1024 });
 
       const options = {
