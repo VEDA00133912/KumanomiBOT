@@ -14,7 +14,7 @@
 |timer|指定時間後にメンションして知らせるタイマー|- -|- -|
 |vanitycheck|discordのカスタムURLの生存確認| - -|- -|
 |url|URLの危険性チェック、抽出、短縮|url viruscheck, extract, short|ファイルを添付|
-|create|ロール、チャンネル、パスワードを生成|create role, channel, password||
+|create|ロール、チャンネル、パスワードを生成|create role, channel, password|ロールの管理, チャンネルの管理|
 
 【 **ContextMenus** 】
 | コマンド名  | コマンド内容 |コマンド種類|  必要権限 |
