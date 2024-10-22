@@ -24,6 +24,7 @@ module.exports = {
           option.setName('count')
             .setDescription('生成する数 (最大10)')
             .setRequired(true)
+            .setMinValue(1)
             .setMaxValue(10)))
     .addSubcommand(subcommand =>
       subcommand
@@ -33,6 +34,7 @@ module.exports = {
           option.setName('count')
             .setDescription('生成する数 (最大10)')
             .setRequired(true)
+            .setMinValue(1)
             .setMaxValue(10))),
 
   async execute(interaction) {
