@@ -1,5 +1,6 @@
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const { loadCommands, loadTextCommands, loadAdminCommands, loadEvents } = require('./lib/loader');
+const setupGlobalErrorHandling = require('./modules/error/globalError');
 const path = require('path');
 const { config } = require('dotenv');
 config();
@@ -15,4 +16,5 @@ loadTextCommands(client, path.join(__dirname, 'modules/textCommands'));
 loadAdminCommands(client, path.join(__dirname, 'modules/adminCommands'));
 loadEvents(client, path.join(__dirname, 'modules/events'));
 
+setupGlobalErrorHandling(client);
 client.login(process.env.TOKEN);
