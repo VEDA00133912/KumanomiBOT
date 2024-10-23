@@ -1,18 +1,27 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, DiscordAPIError } = require('discord.js'); // DiscordAPIErrorをインポート
 const config = require('../../data/settings/config.json');
 
-module.exports = async function handlecontextMenuError(client, interaction, error) {
+module.exports = async function handleContextMenuError(client, interaction, error) {
     try {
-        if (interaction.deferred || interaction.replied) {
-            await interaction.followUp({
-                content: `<:error:1282141871539490816> **${interaction.commandName}** の実行中にエラーが発生しました。`,
-                ephemeral: true
+        const errorMessage = `<:error:1282141871539490816> **${interaction.commandName}** の実行中にエラーが発生しました。`;
+
+        if (error instanceof DiscordAPIError && error.code === 10062) {
+            const message = await interaction.channel.send({
+                content: errorMessage
             });
+            setTimeout(() => message.delete().catch(console.error), 5000); 
         } else {
-            await interaction.reply({
-                content: `<:error:1282141871539490816> **${interaction.commandName}** の実行中にエラーが発生しました。`,
-                ephemeral: true
-            });
+            if (interaction.deferred || interaction.replied) {
+                await interaction.followUp({
+                    content: errorMessage,
+                    ephemeral: true
+                });
+            } else {
+                await interaction.reply({
+                    content: errorMessage,
+                    ephemeral: true
+                });
+            }
         }
     } catch (followUpError) {
         console.error('followupメッセージの送信に失敗しました:', followUpError);
