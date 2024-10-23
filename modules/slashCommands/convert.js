@@ -1,9 +1,9 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const path = require('path');
-const { convertText, typeNameMap } = require('../lib/convert');
-const { validateMessageContent } = require('../lib/invalidContent');
+const { convertText, typeNameMap } = require('../../lib/convert');
+const { validateMessageContent } = require('../../lib/invalidContent');
 const cooldown = require('../events/cooldown');
-const slashCommandError = require('../error/slashCommandError');
+const slashCommandError = require('../errors/slashCommandError');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -26,8 +26,8 @@ module.exports = {
       option.setName('text')
         .setDescription('変換するテキストの長さ（1〜100文字）を入力してください。')
         .setRequired(true)
-        .setMinValue(1)  
-        .setMaxValue(100)
+        .setMinLength(1)  
+        .setMaxLength(100)
     ),
 
   async execute(interaction) {
