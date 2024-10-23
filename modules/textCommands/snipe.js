@@ -15,15 +15,21 @@ module.exports = {
 
                     const embed = new EmbedBuilder()
                         .setColor('#f8b4cb')
-                        .setTitle(`${snipe.author.displayName}のメッセージ`)
                         .setDescription(snipe.content || '内容はありません')
-                        .setThumbnail(snipe.author.avatarURL) 
+                        .setAuthor({ name: snipe.author.displayName, iconURL: snipe.author.avatarURL })
                         .setFooter({ text: 'Emubot | snipe', iconURL: client.user.displayAvatarURL() })
                         .setTimestamp(new Date(snipe.timestamp * 1000));
 
-                    await message.channel.send({ embeds: [embed] });
+                    await message.reply({ 
+                        embeds: [embed], allowedMentions: { repliedUser: false } 
+                    });
                 } else {
-                    await message.channel.send('このチャンネルには削除されたメッセージはありません。');
+                    const replyMessage = await message.reply({
+                        content: 'このチャンネルには削除されたメッセージはありません。', allowedMentions: { repliedUser: false } 
+                    });
+                    setTimeout(() => {
+                        replyMessage.delete().catch(console.error);
+                    }, 5000); 
                 }
             } catch (error) {
                 textCommandError(client, message, error, __filename);
