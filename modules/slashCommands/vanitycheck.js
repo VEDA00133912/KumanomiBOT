@@ -48,7 +48,7 @@ module.exports = {
         } catch (error) {
             if (error.code === 10006) { 
                 const errorEmbed = new EmbedBuilder()
-                    .setTitle('このバニティは使用されていません')
+                    .setTitle('<:verify:1298523085678448640> このバニティは使用されていません')
                     .setDescription(`このバニティ「${vanityURL}」は使用可能か、無効になっています。`)
                     .setColor('Green');
 

@@ -53,7 +53,7 @@ module.exports = {
 
       const completedEmbed = new EmbedBuilder()
         .setColor('Green') 
-        .setTitle('削除完了！ <:check:1282141869387550741>')
+        .setTitle('<:verify:1298523085678448640> 削除完了！')
         .setDescription(`削除したメッセージ数: ${deletedMessages.size}`)
         .setTimestamp()
         .setFooter({ text: 'Emubot | delete', iconURL: interaction.client.user.displayAvatarURL() });

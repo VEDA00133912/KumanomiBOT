@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
-const SETTINGS_FILE = path.join(__dirname, '..', '..', 'data', 'settings', 'msglink.json');
+const SETTINGS_FILE = path.join(__dirname, '..', '..', 'data', 'settings', 'expand.json');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 
@@ -14,8 +14,8 @@ module.exports = {
                 .setDescription('オンかオフを選択')
                 .setRequired(true)
                 .addChoices(
-                    { name: 'ON', value: 'true' },
-                    { name: 'OFF', value: 'false' },
+                    { name: '展開機能ON', value: 'true' },
+                    { name: '展開機能OFF', value: 'false' },
                 )),
     
     async execute(interaction) {
@@ -65,7 +65,7 @@ module.exports = {
             }
 
             const embed = new EmbedBuilder()
-                .setDescription(`<:check:1282141869387550741> **メッセージリンクの展開は ${status ? 'ON' : 'OFF'} になりました。**`)
+                .setDescription(`<:verify:1298523085678448640>**メッセージリンクの展開は ${status ? 'ON' : 'OFF'} になりました。**`)
                 .setColor(status ? 'Green' : 'Red')
                 .setTimestamp();
 

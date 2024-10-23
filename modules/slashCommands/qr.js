@@ -30,7 +30,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
         .setColor('#f8b4cb')
-        .setTitle('<:check:1282141869387550741> QRコードにしました！')
+        .setTitle('<:verify:1298523085678448640> QRコードにしました！')
         .addFields({ name: 'URL', value: url })
         .setTimestamp()
         .setFooter({ text: 'Emubot | qr', iconURL: interaction.client.user.displayAvatarURL() })

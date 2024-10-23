@@ -107,7 +107,7 @@ module.exports = {
 
                 const completeEmbed = new EmbedBuilder()
                     .setColor(roleColor || '#99AAB5') 
-                    .setTitle('<:check:1282141869387550741> 作成完了!')
+                    .setTitle('<:verify:1298523085678448640> 作成完了!')
                     .setTimestamp()
                     .setFooter({ text: 'Emubot | role create', iconURL: interaction.client.user.displayAvatarURL() })
                     .setDescription(`作成したロール: <@&${createdRole.id}>`);
@@ -142,7 +142,7 @@ module.exports = {
 
                 const completeEmbed = new EmbedBuilder()
                     .setColor('#99AAB5') 
-                    .setTitle('<:check:1282141869387550741> 作成完了!')
+                    .setTitle('<:verify:1298523085678448640> 作成完了!')
                     .setTimestamp()
                     .setFooter({ text: 'Emubot | channel create', iconURL: interaction.client.user.displayAvatarURL() })
                     .setDescription(`作成したチャンネル: <#${createdChannel.id}>`);

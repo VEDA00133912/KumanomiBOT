@@ -149,7 +149,7 @@ module.exports = {
                 const shortenedUrl = `<${Url}>`;
 
                 const embed = new EmbedBuilder()
-                    .setDescription(`<:check:1282141869387550741> **短縮に成功しました！**\n\n**短縮URL: ${shortenedUrl}**`)
+                    .setDescription(`<:verify:1298523085678448640> **短縮に成功しました！**\n\n**短縮URL: ${shortenedUrl}**`)
                     .setTimestamp()
                     .setFooter({ text: 'Emubot | short', iconURL: interaction.client.user.displayAvatarURL() })
                     .setColor('#f8b4cb');

@@ -66,7 +66,7 @@ module.exports = {
 
       await webhookClient.send(options);
 
-      await interaction.editReply('<:check:1282141869387550741> メッセージを送信しました。');
+      await interaction.editReply('<:verify:1298523085678448640> メッセージを送信しました。');
     } catch (error) {
       console.error('Error sending webhook message:', error);
       await slashCommandError(interaction.client, interaction, error);

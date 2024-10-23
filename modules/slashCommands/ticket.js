@@ -6,7 +6,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('ticket')
     .setDescription('チケットを作成します')
-    .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels),
+	　.setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels),
 
   async execute(interaction) {
     try {
