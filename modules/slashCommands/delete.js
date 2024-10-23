@@ -41,17 +41,14 @@ module.exports = {
 
       const messages = await channel.messages.fetch({ limit: count });
 
-      // 古いメッセージのフィルタリング
       const twoWeeksAgo = Date.now() - 1209600000;
       const oldMessages = messages.filter(m => m.createdTimestamp < twoWeeksAgo);
       
-      // 古いメッセージが含まれている場合
       if (oldMessages.size > 0) {
         await interaction.editReply({ embeds: [inProgressEmbed.setTitle('削除失敗').setDescription('<:error:1282141871539490816> 2週間以上前のメッセージが含まれているため削除できません。')] });
         return; 
       }
 
-      // messagesをそのままbulkDeleteに渡す
       const deletedMessages = await channel.bulkDelete(messages, true);
 
       const completedEmbed = new EmbedBuilder()
