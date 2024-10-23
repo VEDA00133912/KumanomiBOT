@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, DiscordAPIError } = require('discord.js');
 const config = require('../../data/settings/config.json');
 
 module.exports = async function handleSlashCommandError(client, interaction, error) {
