@@ -19,8 +19,8 @@ module.exports = {
           { name: 'ヒエログリフ', value: 'hieroglyphs' },
           { name: '逆読み', value: 'reverse' },
           { name: 'アナグラム', value: 'anagram' },
-          { name: 'ﾒﾝﾍﾗ文生成', value: 'genhera' },
-          { name: '怪しい日本語生成', value: 'cjp' },
+          { name: 'ﾒﾝﾍﾗ文', value: 'genhera' },
+          { name: '怪しい日本語', value: 'cjp' },
         ))
     .addStringOption(option =>
       option.setName('text')
