@@ -10,14 +10,14 @@ module.exports = {
       option.setName('top')
         .setDescription('上部文字列')
         .setRequired(true)
-        .setMinValue(1)  
-        .setMaxValue(30))
+        .setMinLength(1)  
+        .setMaxLength(30))
     .addStringOption(option =>
       option.setName('bottom')
         .setDescription('下部文字列')
         .setRequired(true)
-        .setMinValue(1)  
-        .setMaxValue(30)),
+        .setMinLength(1)  
+        .setMaxLength(30)),
 
   async execute(interaction) {
     try {
