@@ -1,5 +1,5 @@
-const { SlashCommandBuilder, EmbedBuilder, PermissionsBitField, ChannelType } = require('discord.js');
-const slashCommandError = require('../error/slashCommandError'); 
+const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits, ChannelType } = require('discord.js');
+const slashCommandError = require('../errors/slashCommandError'); 
 const cooldown = require('../events/cooldown');
 const { generatePasswords } = require('../../lib/gen-password'); 
 
@@ -14,11 +14,16 @@ module.exports = {
                 .addStringOption(option =>
                     option.setName('name')
                         .setDescription('作成するロールの名前')
-                        .setRequired(true))
+                        .setRequired(true) 
+                        .setMinLength(1)
+                        .setMaxLength(100))
                 .addStringOption(option =>
                     option.setName('color')
                         .setDescription('作成するロールの色（カラーコードで指定）')
-                        .setRequired(false)))
+                        .setRequired(false)
+                        .setMinLength(1)
+                        .setMaxLength(7)
+                    ))
         .addSubcommand(subcommand =>
             subcommand
                 .setName('channel')
@@ -34,10 +39,14 @@ module.exports = {
                 .addStringOption(option =>
                     option.setName('name')
                         .setDescription('作成するチャンネルの名前')
-                        .setRequired(true))
+                        .setRequired(true)
+                        .setMinLength(1)
+                        .setMaxLength(100))
                 .addStringOption(option =>
                     option.setName('description')
                         .setDescription('チャンネルの説明')
+                        .setMinLength(1)
+                        .setMaxLength(1024)
                         .setRequired(false)))
         .addSubcommand(subcommand =>
             subcommand
@@ -68,6 +77,14 @@ module.exports = {
                 const name = interaction.options.getString('name');
                 const color = interaction.options.getString('color');
                 const roleCount = interaction.guild.roles.cache.size;
+
+                if (!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) {
+                    return interaction.reply({ content: 'あなたにロール管理の権限がありません。', ephemeral: true });
+                }
+                                
+                if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageRoles)) {
+                    return interaction.reply({ content: 'BOTにロール管理の権限がありません。', ephemeral: true });
+                }
 
                 if (roleCount >= 250) {
                     return interaction.reply({ content: 'ロールの作成上限のため、実行できませんでした。', ephemeral: true });
@@ -100,6 +117,14 @@ module.exports = {
                 const name = interaction.options.getString('name');
                 const description = interaction.options.getString('description');
                 const type = interaction.options.getString('type');
+
+                if (!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) {
+                    return interaction.reply({ content: 'あなたにチャンネル管理権限がありません。', ephemeral: true });
+                }
+                                
+                if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageChannels)) {
+                    return interaction.reply({ content: 'BOTにチャンネル管理の権限がありません。', ephemeral: true });
+                }
 
                 const creatingEmbed = new EmbedBuilder()
                     .setColor('#f8b4cb')
