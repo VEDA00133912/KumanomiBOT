@@ -48,8 +48,8 @@ module.exports = {
       const message = interaction.options.getString('message');
       const attachment = interaction.options.getAttachment('attachment');
       const nickname = interaction.options.getString('nickname');
-      const member = interaction.guild.members.cache.get(targetUser.id); // メンバー情報を取得
-      const hasError = await validateMessageContent(interaction, message);
+      const member = interaction.guild.members.cache.get(targetUser.id); 
+      const hasError = await validateMessageContent(interaction, message, commandName);
       if (hasError) return;
 
       const webhookClient = await getWebhookClient(interaction.channel, targetUser);
