@@ -1,12 +1,12 @@
-const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, PermissionsBitField } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, PermissionFlagsBits } = require('discord.js');
 const cooldown = require('../events/cooldown');
-const slashCommandError = require('../error/slashCommandError');
+const slashCommandError = require('../errors/slashCommandError');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('ticket')
-    .setDescription('チケットを作成します'),
-	　.setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels);
+    .setDescription('チケットを作成します')
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels),
 
   async execute(interaction) {
     try {
@@ -14,12 +14,10 @@ module.exports = {
       const isCooldown = cooldown(commandName, interaction);
       if (isCooldown) return;
 
-      if (!member.permissions.has(PermissionsBitField.Flags.ManageChannels)) {
-          return await interaction.reply({
-            content: '<:error:1282141871539490816>　BOTにチャンネルを作成する権限がありません。',
-            ephemeral: true,   
-      });
-                
+      if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageChannels)) {
+        return interaction.reply({ content: 'BOTにチャンネル管理の権限がありません。', ephemeral: true });
+    }
+
       await interaction.deferReply();
       const create = new ButtonBuilder()
         .setCustomId('create')
