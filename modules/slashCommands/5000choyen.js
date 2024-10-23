@@ -9,15 +9,15 @@ module.exports = {
     .addStringOption(option =>
       option.setName('top')
         .setDescription('上部文字列')
-        .setRequired(true)
         .setMinLength(1)  
-        .setMaxLength(30))
+        .setMaxLength(30)
+        .setRequired(true))
     .addStringOption(option =>
       option.setName('bottom')
         .setDescription('下部文字列')
-        .setRequired(true)
         .setMinLength(1)  
-        .setMaxLength(30)),
+        .setMaxLength(30)
+        .setRequired(true)),
 
   async execute(interaction) {
     try {
