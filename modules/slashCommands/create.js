@@ -165,7 +165,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setColor('#febe69')
                     .setTitle('生成されたパスワード')
-                    .setFooter({ text: 'Kumanomi | create password', iconURL: interaction.client.user.displayAvatarURL() });
+                    .setFooter({ text: 'Kumanomi | create password', iconURL: interaction.client.user.displayAvatarURL() })
                     .setDescription(passwords.join('\n'));
 
                 await interaction.editReply({ embeds: [embed] });
