@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const path = require('path');
 const cooldown = require('../events/cooldown');
-const slashCommandError = require('../error/slashCommandError');
+const slashCommandError = require('../errors/slashCommandError');
 const { getRandomFortune, dailyFortunes, saveFortunes, specialFortune } = require('../lib/omikuji');
 
 module.exports = {
