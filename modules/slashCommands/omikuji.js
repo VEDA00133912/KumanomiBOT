@@ -1,7 +1,8 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const path = require('path');
 const cooldown = require('../events/cooldown');
-const slashCommandError = require('../errors/slashCommandError');
-const { getRandomFortune, dailyFortunes, saveFortunes, specialFortune } = require('../../lib/omikuji');
+const slashCommandError = require('../error/slashCommandError');
+const { getRandomFortune, dailyFortunes, saveFortunes, specialFortune } = require('../lib/omikuji');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -31,6 +32,8 @@ module.exports = {
 
       const result = getRandomFortune(userId);
 
+      const specialThumbnailPath = path.join(__dirname, '../../data/assets/special.png');
+
       const embed = new EmbedBuilder()
         .setTitle('おみくじ結果')
         .setDescription(`今日の<@${userId}>は **${result}** だよ！\nまた明日引いてね！`)
@@ -38,8 +41,16 @@ module.exports = {
         .setFooter({ text: 'Kumanomi | omikuji', iconURL: interaction.client.user.displayAvatarURL() })
         .setColor('#febe69');
 
+      if (result === specialFortune) {
+        embed.setThumbnail('attachment://special.png');
+      }
+
       await interaction.editReply({
-        embeds: [embed]
+        embeds: [embed],
+        files: result === specialFortune ? [{
+          attachment: specialThumbnailPath,
+          name: 'special.png'
+        }] : []
       });
 
       dailyFortunes[userId] = { result };
