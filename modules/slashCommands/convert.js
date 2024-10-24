@@ -46,7 +46,7 @@ module.exports = {
       const convertedText = convertText(type, text);
 
       const embed = new EmbedBuilder()
-        .setColor('#f8b4cb')
+        .setColor('#febe69')
         .setTitle(`${typeNameMap[type]}に変換完了！`)
         .setDescription(`\`\`\`${convertedText}\`\`\``)
         .setTimestamp()
