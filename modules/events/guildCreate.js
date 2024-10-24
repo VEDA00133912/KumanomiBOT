@@ -27,7 +27,7 @@ module.exports = {
     }
 
     const ownerEmbed = new EmbedBuilder()
-      .setTitle('えむBOTの導入ありがとうございます！')
+      .setTitle('くまのみBOTの導入ありがとうございます！')
       .setDescription(`**${guild.name}** に導入されました`)
       .addFields(
         { name: '使用方法', value: 'コマンド等の説明は **`/help`** をご覧ください' },
