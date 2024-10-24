@@ -46,7 +46,7 @@ module.exports = async function handleSlashCommandError(client, interaction, err
             { name: 'Channel', value: `${interaction.channel.name}`, inline: true }
         )
         .setTimestamp()
-        .setFooter({ text: `Emubot | slashCommandError`, iconURL: client.user.displayAvatarURL() });
+        .setFooter({ text: `Kumanomi | slashCommandError`, iconURL: client.user.displayAvatarURL() });
 
     const errorChannelId = config.errorLogChannelId;
     const errorChannel = client.channels.cache.get(errorChannelId);
