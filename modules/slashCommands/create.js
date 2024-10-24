@@ -94,7 +94,7 @@ module.exports = {
                     .setColor('#f8b4cb')
                     .setTitle('ロール作成中...')
                     .setDescription(`<a:loading:1259148838929961012> ロール **\`${name}\`**を作成しています...`)
-                    .setFooter({ text: 'Emubot | role creating...', iconURL: interaction.client.user.displayAvatarURL() });
+                    .setFooter({ text: 'Kumanomi | role creating...', iconURL: interaction.client.user.displayAvatarURL() });
 
                 await interaction.reply({ embeds: [creatingEmbed], ephemeral: true });
 
@@ -109,7 +109,7 @@ module.exports = {
                     .setColor(roleColor || '#99AAB5') 
                     .setTitle('<:verify:1298523085678448640> 作成完了!')
                     .setTimestamp()
-                    .setFooter({ text: 'Emubot | role create', iconURL: interaction.client.user.displayAvatarURL() })
+                    .setFooter({ text: 'Kumanomi | role create', iconURL: interaction.client.user.displayAvatarURL() })
                     .setDescription(`作成したロール: <@&${createdRole.id}>`);
 
                 await interaction.editReply({ embeds: [completeEmbed] });
@@ -130,7 +130,7 @@ module.exports = {
                     .setColor('#f8b4cb')
                     .setTitle('チャンネル作成中...')
                     .setDescription(`<a:loading:1259148838929961012> チャンネル **\`${name}\`**を作成しています...`)
-                    .setFooter({ text: 'Emubot | channel creating...', iconURL: interaction.client.user.displayAvatarURL() });
+                    .setFooter({ text: 'Kumanomi | channel creating...', iconURL: interaction.client.user.displayAvatarURL() });
 
                 await interaction.reply({ embeds: [creatingEmbed], ephemeral: true });
 
@@ -144,7 +144,7 @@ module.exports = {
                     .setColor('#99AAB5') 
                     .setTitle('<:verify:1298523085678448640> 作成完了!')
                     .setTimestamp()
-                    .setFooter({ text: 'Emubot | channel create', iconURL: interaction.client.user.displayAvatarURL() })
+                    .setFooter({ text: 'Kumanomi | channel create', iconURL: interaction.client.user.displayAvatarURL() })
                     .setDescription(`作成したチャンネル: <#${createdChannel.id}>`);
 
                 await interaction.editReply({ embeds: [completeEmbed] });
@@ -156,7 +156,7 @@ module.exports = {
                     .setColor('#f8b4cb')
                     .setTitle('パスワード生成中...')
                     .setDescription(`<a:loading:1259148838929961012> パスワードを生成しています...`)
-                    .setFooter({ text: 'Emubot | password generating...', iconURL: interaction.client.user.displayAvatarURL() });
+                    .setFooter({ text: 'Kumanomi | password generating...', iconURL: interaction.client.user.displayAvatarURL() });
 
                 await interaction.reply({ embeds: [creatingEmbed], ephemeral: true });
 
@@ -165,6 +165,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setColor('#0099ff')
                     .setTitle('生成されたパスワード')
+                    .setFooter({ text: 'Kumanomi | create password', iconURL: interaction.client.user.displayAvatarURL() });
                     .setDescription(passwords.join('\n'));
 
                 await interaction.editReply({ embeds: [embed] });
