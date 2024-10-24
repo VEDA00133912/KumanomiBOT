@@ -3,7 +3,6 @@ const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
 const { getWebhookClient } = require('../../lib/spoofing');
 const { validateMessageContent } = require('../../lib/invalidContent'); 
-const { checkPermissions } = require('../../lib/permissions');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -40,9 +39,9 @@ module.exports = {
         return interaction.editReply('<:error:1282141871539490816> スレッドではこのコマンドを実行できません。');
       }
 
-      if (!checkPermissions(interaction)) {
-        return interaction.editReply('<:error:1282141871539490816> botにWebhookの管理権限がありません。');
-      }
+    if (!interaction.guild.members.me.permissions.has(PermissionsBitField.Flags.ManageWebhooks)) {
+      return interaction.reply({ content: '<:error:1282141871539490816> BOTにウェブフックを管理する権限がありません。', ephemeral: true });
+    }
 
       const targetUser = interaction.options.getUser('target');
       const message = interaction.options.getString('message');
