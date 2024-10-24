@@ -1,4 +1,5 @@
-const { SlashCommandBuilder, EmbedBuilder, PermissionsBitField } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
+const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 
 module.exports = {
@@ -13,16 +14,20 @@ module.exports = {
         .setRequired(true)),
 
   async execute(interaction) {
-    if (!interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
+      const commandName = this.data.name;
+      const isCooldown = cooldown(commandName, interaction);
+      if (isCooldown) return;
+    
+    if (!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) {
       return interaction.reply({ content: '<:error:1282141871539490816> あなたにメッセージ削除権限が有りません。', ephemeral: true });
     }
-    if (!interaction.guild.members.me.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
+    if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageMessages)) {
       return interaction.reply({ content: '<:error:1282141871539490816> BOTにメッセージを管理する権限がありません。', ephemeral: true });
     }
-    if (!interaction.guild.members.me.permissions.has(PermissionsBitField.Flags.ReadMessageHistory)) {
+    if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ReadMessageHistory)) {
       return interaction.reply({ content: '<:error:1282141871539490816> BOTにメッセージ履歴を読む権限がありません。', ephemeral: true });
     }
-    if (!interaction.guild.members.me.permissions.has(PermissionsBitField.Flags.ViewChannel)) {
+    if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ViewChannel)) {
       return interaction.reply({ content: '<:error:1282141871539490816> BOTにチャンネルを見る権限がありません。', ephemeral: true });
     }
 
