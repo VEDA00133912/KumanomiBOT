@@ -38,7 +38,7 @@ module.exports = async function handleContextMenuError(client, interaction, erro
             { name: 'Channel', value: `${interaction.channel.name}`, inline: true }
         )
         .setTimestamp()
-        .setFooter({ text: `Emubot | contextMenuError`, iconURL: client.user.displayAvatarURL() });
+        .setFooter({ text: `Kumanomi | contextMenuError`, iconURL: client.user.displayAvatarURL() });
 
     const errorChannelId = config.errorLogChannelId;
     const errorChannel = client.channels.cache.get(errorChannelId);
