@@ -59,7 +59,7 @@ module.exports = {
           { name: 'ニックネーム変更', value: `変更結果: ${nicknameStatus}` }
         )
         .setThumbnail(serverIconUrl)
-        .setFooter({ text: 'Emubot | join', iconURL: client.user.displayAvatarURL() })
+        .setFooter({ text: 'Kumanomi | join', iconURL: client.user.displayAvatarURL() })
         .setTimestamp()
         .setColor(embedColor);
 
