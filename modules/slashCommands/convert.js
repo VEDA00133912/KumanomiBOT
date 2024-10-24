@@ -50,7 +50,7 @@ module.exports = {
         .setTitle(`${typeNameMap[type]}に変換完了！`)
         .setDescription(`\`\`\`${convertedText}\`\`\``)
         .setTimestamp()
-        .setFooter({ text: `Emubot | convert ${typeNameMap[type]}`, iconURL: interaction.client.user.displayAvatarURL() });
+        .setFooter({ text: `Kumanomi | convert ${typeNameMap[type]}`, iconURL: interaction.client.user.displayAvatarURL() });
 
       await interaction.editReply({ embeds: [embed] });
       
