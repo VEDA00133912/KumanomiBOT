@@ -24,7 +24,7 @@ module.exports = {
         .setDescription('**翻訳しました！**' + '\n' + '```\n' + `${translatedText}` + '\n```')
         .setTimestamp()
         .setFooter({ text: 'Kumanomi | translate', iconURL: interaction.client.user.displayAvatarURL() })
-        .setColor('#f8b4cb');
+        .setColor('#febe69');
 
       await interaction.editReply({ embeds: [embed] });  
     } catch (error) {
