@@ -26,7 +26,7 @@ module.exports = async function handletextCommandError(client, message, error, f
                 { name: 'channel', value: message.channel.name, inline: true }
             )
             .setTimestamp()
-            .setFooter({ text: 'Emubot | textCommandError', iconURL: client.user.displayAvatarURL() });
+            .setFooter({ text: 'Kumanomi | textCommandError', iconURL: client.user.displayAvatarURL() });
 
         const errorChannelId = config.errorLogChannelId;
         const errorChannel = client.channels.cache.get(errorChannelId);
