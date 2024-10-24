@@ -25,7 +25,7 @@ module.exports = {
         .setDescription('<a:ID:omikuji> おみくじを引いています...')
         .setTimestamp()
         .setFooter({ text: 'Kumanomi | omikuji', iconURL: interaction.client.user.displayAvatarURL() })
-        .setColor('#f8b4cb');
+        .setColor('#febe69');
       
       await interaction.reply({ embeds: [omikujiembed] });
 
@@ -36,7 +36,7 @@ module.exports = {
         .setDescription(`今日の<@${userId}>は **${result}** だよ！\nまた明日引いてね！`)
         .setTimestamp()
         .setFooter({ text: 'Kumanomi | omikuji', iconURL: interaction.client.user.displayAvatarURL() })
-        .setColor('#f8b4cb');
+        .setColor('#febe69');
 
       await interaction.editReply({
         embeds: [embed]
