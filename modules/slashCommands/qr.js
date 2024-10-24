@@ -29,7 +29,7 @@ module.exports = {
       const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(url)}&size=200x200`;
 
       const embed = new EmbedBuilder()
-        .setColor('#f8b4cb')
+        .setColor('#febe69')
         .setTitle('<:verify:1298523085678448640> QRコードにしました！')
         .addFields({ name: 'URL', value: url })
         .setTimestamp()
