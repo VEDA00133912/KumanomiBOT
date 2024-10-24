@@ -60,7 +60,7 @@ module.exports = {
       .setColor(color)
       .setDescription(description)
       .setTimestamp()
-      .setFooter({ text: 'Emubot | 生成中', iconURL: interaction.client.user.displayAvatarURL() });
+      .setFooter({ text: 'Kumanomi | 生成中', iconURL: interaction.client.user.displayAvatarURL() });
 
     await interaction.reply({ embeds: [loadingEmbed], ephemeral: true });
   },
@@ -75,7 +75,7 @@ module.exports = {
     const resultEmbed = new EmbedBuilder()
       .setColor('#f47fff')
       .setTimestamp()
-      .setFooter({ text: 'Emubot | fake nitro', iconURL: interaction.client.user.displayAvatarURL() })
+      .setFooter({ text: 'Kumanomi | fake nitro', iconURL: interaction.client.user.displayAvatarURL() })
       .setDescription(`<a:boost:1282164483665428541> **Fake ${type === 'nitro' ? 'Nitro Gift' : 'Promo Nitro'} Links** <a:boost:1282164483665428541>\n${type === 'nitro' ? 'Nitroギフトリンク' : 'プロモNitroリンク'}\n${nitroLinks.join('\n')}`);
 
     await interaction.editReply({ embeds: [resultEmbed] });
@@ -91,7 +91,7 @@ module.exports = {
       .setColor('#7289da')
       .setTitle('Token')
       .setTimestamp()
-      .setFooter({ text: 'Emubot | faketoken', iconURL: interaction.client.user.displayAvatarURL() })
+      .setFooter({ text: 'Kumanomi | faketoken', iconURL: interaction.client.user.displayAvatarURL() })
       .setDescription(tokens.join('\n'));
 
     await interaction.editReply({ embeds: [resultEmbed], ephemeral: true });
