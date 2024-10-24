@@ -96,7 +96,7 @@ module.exports = {
               { name: '全曲', value: 'all' },
               { name: 'オンゲキジャンル', value: 'ongeki' },
               { name: 'LUNATICのみ', value: 'lunatic' },
-              { name: 'ReMASTERのみ', value: 'remaster' },
+              { name: 'Re:MASTERのみ', value: 'remaster' },
             ))
         .addIntegerOption(option =>
           option.setName('count')
