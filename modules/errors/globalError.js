@@ -12,7 +12,7 @@ async function sendErrorLog(client, error, errorType) {
       { name: 'Type', value: errorType, inline: true },
       { name: 'Time', value: new Date().toLocaleString(), inline: true }
     )
-    .setFooter({ text: `Kumanomi | ${errorType}`, iconURL: client.user.displayAvatarURL() });
+    .setFooter({ text: `Kumanomi | ${errorType}`, iconURL: 'https://ul.h3z.jp/RbnGEYZV.png' });
 
   const errorChannel = client.channels.cache.get(channelId);
   if (errorChannel) {
