@@ -91,7 +91,7 @@ module.exports = {
 
             const embedResult = new EmbedBuilder()
                 .setTitle('URLチェック完了')
-                .setFooter({ text: 'Emubot | url-viruscheck', iconURL: interaction.client.user.displayAvatarURL() })
+                .setFooter({ text: 'Kumanomi | url viruscheck', iconURL: interaction.client.user.displayAvatarURL() })
                 .setDescription(`診断URL: ${url}\n${descriptionMessage}`)
                 .setColor(color);
 
@@ -151,7 +151,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setDescription(`<:verify:1298523085678448640> **短縮に成功しました！**\n\n**短縮URL: ${shortenedUrl}**`)
                     .setTimestamp()
-                    .setFooter({ text: 'Emubot | short', iconURL: interaction.client.user.displayAvatarURL() })
+                    .setFooter({ text: 'Kumanomi | url short', iconURL: interaction.client.user.displayAvatarURL() })
                     .setColor('#f8b4cb');
 
                 await interaction.editReply({ embeds: [embed] });
