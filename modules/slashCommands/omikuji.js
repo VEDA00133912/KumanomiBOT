@@ -1,5 +1,4 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const path = require('path');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 const { getRandomFortune, dailyFortunes, saveFortunes, specialFortune } = require('../../lib/omikuji');
@@ -31,23 +30,16 @@ module.exports = {
       await interaction.reply({ embeds: [omikujiembed] });
 
       const result = getRandomFortune(userId);
-      const thumbnailPath = path.join(__dirname, '../../data/assets/omikuji.png');
-      const specialThumbnailPath = path.join(__dirname, '../../data/assets/special.png');
 
       const embed = new EmbedBuilder()
         .setTitle('おみくじ結果')
         .setDescription(`今日の<@${userId}>は **${result}** だよ！\nまた明日引いてね！`)
         .setTimestamp()
         .setFooter({ text: 'Emubot | omikuji', iconURL: interaction.client.user.displayAvatarURL() })
-        .setThumbnail(`attachment://${result === specialFortune ? 'special.png' : 'omikuji.png'}`)
         .setColor('#f8b4cb');
 
       await interaction.editReply({
-        embeds: [embed],
-        files: [{
-          attachment: result === specialFortune ? specialThumbnailPath : thumbnailPath,
-          name: result === specialFortune ? 'special.png' : 'omikuji.png'
-        }]
+        embeds: [embed]
       });
 
       dailyFortunes[userId] = { result };
