@@ -78,7 +78,7 @@ module.exports = {
           .addFields(
             { name: '👑 鯖主', value: `<@${guild.ownerId}>`, inline: true },
             { name: '<:booster:1292651469002113067> ブースト', value: `${guild.premiumSubscriptionCount} Boosts (Level ${boostLevel})`, inline: true },
-            { name: '🚫 BANユーザー数, value: `${bannedCount} Users`, inline: true },
+            { name: '🚫 BANユーザー数', value: `${bannedCount} Users`, inline: true },
             { name: '<:discord:1282701795000320082> チャンネル&メンバー数', value: `Total: ${totalChannelsCount} | <:text:1282162750524756022> Text: ${textChannelsCount} | <:vc:1282162748884516955> Voice: ${voiceChannelsCount} | 🌲Categories: ${categoryCount}\n<:user:1292675664368898049> Members: ${memberCount}` },
             { name: '⚙ 作成日', value: `<t:${Math.floor(guild.createdTimestamp / 1000)}:R>`, inline: true },
             { name: '<:mod:1292676375429382155> 認証レベル', value: `${guild.verificationLevel}`, inline: true }
