@@ -42,15 +42,15 @@ module.exports = {
           .setTimestamp()
           .setFooter({ text: 'Emubot | userinfo', iconURL: interaction.client.user.displayAvatarURL() })
           .addFields(
-            { name: '🔥 Name', value: user.tag, inline: true },
+            { name: '🔥 名前', value: user.tag, inline: true },
             { name: '🆔 ID', value: `${user.id}`, inline: true },
-            { name: '✍️ NickName', value: displayName || 'なし', inline: true },
-            { name: '<:user:1292675664368898049> Account Created', value: createdAt, inline: true },
-            { name: '<:join:1292646851954085971> Server Joined', value: joinedAtFormatted, inline: true },
-            { name: '<:booster:1292651469002113067> ServerBoosting', value: isBoosting, inline: true },
-            { name: '🔗 RoleCount', value: `${roleCount}`, inline: true },
-            { name: '🎨 Name Color', value: nameColor.toUpperCase(), inline: true },
-            { name: '<:bot:1292648890708791429> AccountType', value: user.bot ? 'BOT' : 'USER', inline: true }
+            { name: '✍️ ニックネーム', value: displayName || 'なし', inline: true },
+            { name: '<:user:1292675664368898049> 作成日', value: createdAt, inline: true },
+            { name: '<:join:1292646851954085971> 参加日', value: joinedAtFormatted, inline: true },
+            { name: '<:booster:1292651469002113067> ブースト', value: isBoosting, inline: true },
+            { name: '🔗 ロール数', value: `${roleCount}`, inline: true },
+            { name: '🎨 名前の色', value: nameColor.toUpperCase(), inline: true },
+            { name: '<:bot:1292648890708791429> アカウント', value: user.bot ? 'BOT' : 'USER', inline: true }
           );
 
         await interaction.editReply({ embeds: [embed] });
@@ -76,12 +76,12 @@ module.exports = {
           .setFooter({ text: 'Emubot | serverinfo', iconURL: interaction.client.user.displayAvatarURL() })
           .setThumbnail(thumbnailUrl)
           .addFields(
-            { name: '👑 Owner', value: `<@${guild.ownerId}>`, inline: true },
-            { name: '<:booster:1292651469002113067> Boosts', value: `${guild.premiumSubscriptionCount} Boosts (Level ${boostLevel})`, inline: true },
-            { name: '🚫 Banned Users', value: `${bannedCount} Users`, inline: true },
-            { name: '<:discord:1282701795000320082> Channels & Members', value: `Total: ${totalChannelsCount} | <:text:1282162750524756022> Text: ${textChannelsCount} | <:vc:1282162748884516955> Voice: ${voiceChannelsCount} | 🌲Categories: ${categoryCount}\n<:user:1292675664368898049> Members: ${memberCount}` },
-            { name: '⚙ Server Created', value: `<t:${Math.floor(guild.createdTimestamp / 1000)}:R>`, inline: true },
-            { name: '<:mod:1292676375429382155> Verification Level', value: `${guild.verificationLevel}`, inline: true }
+            { name: '👑 鯖主', value: `<@${guild.ownerId}>`, inline: true },
+            { name: '<:booster:1292651469002113067> ブースト', value: `${guild.premiumSubscriptionCount} Boosts (Level ${boostLevel})`, inline: true },
+            { name: '🚫 BANユーザー数, value: `${bannedCount} Users`, inline: true },
+            { name: '<:discord:1282701795000320082> チャンネル&メンバー数', value: `Total: ${totalChannelsCount} | <:text:1282162750524756022> Text: ${textChannelsCount} | <:vc:1282162748884516955> Voice: ${voiceChannelsCount} | 🌲Categories: ${categoryCount}\n<:user:1292675664368898049> Members: ${memberCount}` },
+            { name: '⚙ 作成日', value: `<t:${Math.floor(guild.createdTimestamp / 1000)}:R>`, inline: true },
+            { name: '<:mod:1292676375429382155> 認証レベル', value: `${guild.verificationLevel}`, inline: true }
           );
 
         await interaction.editReply({ embeds: [embed] });
