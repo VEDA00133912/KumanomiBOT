@@ -33,7 +33,7 @@ module.exports = {
         .setDescription(`<@${targetUser.id}>**[のアイコン](${avatarURL})**`)
         .setImage(avatarURL)
         .setTimestamp()
-        .setFooter({ text: 'Emubot | icon', iconURL: interaction.client.user.displayAvatarURL() })
+        .setFooter({ text: 'Kumanomi | icon', iconURL: interaction.client.user.displayAvatarURL() })
         .setColor('#f8b4cb');
 
       await interaction.editReply({ embeds: [embed] });
