@@ -1,7 +1,8 @@
-const { Events, ActivityType, PresenceUpdateStatus } = require('discord.js');
+const { Events } = require('discord.js');
 const fs = require('fs').promises;
 const path = require('path');
 require('dotenv').config();
+const { setActivity } = require('../../lib/setActivity'); 
 const configPath = path.join(__dirname, '..', '..', 'data', 'settings', 'config.json');
 const snipePath = path.join(__dirname, '..', '..', 'data', 'settings', 'snipe.json');
 
@@ -32,16 +33,7 @@ module.exports = {
       console.warn('No nickname found in the config file.');
     }
 
-    try {
-      await client.user.setStatus(PresenceUpdateStatus.Online); 
-      await client.user.setActivity({ 
-        name: "/help || ping: 39ms", 
-        type: ActivityType.Custom 
-      });
-      console.log('Bot status and activity set successfully.');
-    } catch (error) {
-      console.error('Failed to set bot status or activity:', error.message);
-    }
+    await setActivity(client);
 
     const now = Math.floor(Date.now() / 1000);
     try {
