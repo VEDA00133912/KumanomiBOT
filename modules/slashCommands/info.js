@@ -40,7 +40,7 @@ module.exports = {
           .setDescription(`${user}'s user information`)
           .setThumbnail(avatarURL)
           .setTimestamp()
-          .setFooter({ text: 'Emubot | userinfo', iconURL: interaction.client.user.displayAvatarURL() })
+          .setFooter({ text: 'Kumanomi | userinfo', iconURL: interaction.client.user.displayAvatarURL() })
           .addFields(
             { name: '🔥 名前', value: user.tag, inline: true },
             { name: '🆔 ID', value: `${user.id}`, inline: true },
@@ -73,7 +73,7 @@ module.exports = {
           .setColor('#f8b4cb')
           .setTimestamp()
           .setDescription(`**Information for ${guild.name} (${guild.id})**`)
-          .setFooter({ text: 'Emubot | serverinfo', iconURL: interaction.client.user.displayAvatarURL() })
+          .setFooter({ text: 'Kumanomi | serverinfo', iconURL: interaction.client.user.displayAvatarURL() })
           .setThumbnail(thumbnailUrl)
           .addFields(
             { name: '👑 鯖主', value: `<@${guild.ownerId}>`, inline: true },
