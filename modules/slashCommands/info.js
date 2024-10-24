@@ -35,7 +35,7 @@ module.exports = {
         const { user, avatarURL, joinedAtFormatted, createdAt, displayName, isBoosting, roleCount, nameColor } = userData;
 
         const embed = new EmbedBuilder()
-          .setColor('#f8b4cb')
+          .setColor('#febe69')
           .setAuthor({ name: user.tag, iconURL: avatarURL })
           .setDescription(`${user}'s user information`)
           .setThumbnail(avatarURL)
@@ -70,7 +70,7 @@ module.exports = {
         const boostLevel = getBoostLevel(guild.premiumSubscriptionCount);
 
         const embed = new EmbedBuilder()
-          .setColor('#f8b4cb')
+          .setColor('#febe69')
           .setTimestamp()
           .setDescription(`**Information for ${guild.name} (${guild.id})**`)
           .setFooter({ text: 'Kumanomi | serverinfo', iconURL: interaction.client.user.displayAvatarURL() })
