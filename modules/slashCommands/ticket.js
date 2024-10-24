@@ -25,7 +25,7 @@ module.exports = {
         .setLabel('チケットを作成する');
 
       const embed1 = new EmbedBuilder()
-        .setColor('#f8b4cb')
+        .setColor('#febe69')
         .setTimestamp()
         .setFooter({ text:'Kumanomi | ticket create', iconURL: interaction.client.user.displayAvatarURL() })
         .setDescription('チケットを作成するには下のボタンを押してください');
