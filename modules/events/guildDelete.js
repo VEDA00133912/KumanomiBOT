@@ -19,7 +19,7 @@ module.exports = {
           .setTitle(`${guild.name} を脱退しました`)
           .setDescription(`現在 ${totalGuilds} サーバーに導入されています`)
           .setThumbnail(avatarURL) 
-          .setFooter({ text: 'Emubot | leave', iconURL: avatarURL })
+          .setFooter({ text: 'Kumanomi | leave', iconURL: avatarURL })
           .setTimestamp() 
           .setColor('Red'); 
 
