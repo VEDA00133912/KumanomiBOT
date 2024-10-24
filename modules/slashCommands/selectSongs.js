@@ -119,7 +119,7 @@ module.exports = {
                        subcommand === 'chunithm' ? '#fffc3c' : 
                        subcommand === 'prsk' ? '#34ccbc' : 
                        subcommand === 'ongeki' ? '#dccaf6' : 
-                       '#f8b4cb'; 
+                       '#febe69'; 
     const loadingMessage = '<a:loading:1259148838929961012> 選曲中...';
 
     const embedLoading = new EmbedBuilder()
