@@ -22,7 +22,7 @@ module.exports = {
             .setThumbnail(interaction.client.user.displayAvatarURL())
             .setFooter({ text: 'Kumanomi | help [1/7]', iconURL: interaction.client.user.displayAvatarURL() })
             .addFields(
-              { name: 'えむbotについて', value: '暇な音ゲーマーの作ってる多機能botです' },
+              { name: 'くまのみぼっとについて', value: '暇な音ゲーマーの作ってる多機能botです' },
               { name: 'helpの操作方法', value: 'ボタンを押すことでコマンド一覧等が見れます' },
               { name: 'Make it a Quote機能', value: 'メッセージの返信のときにBOTをメンションするとMake it a Quote画像を生成します' },
               { name: 'サイト', value: 'https://veda00133912.github.io/kumanomi-site/'},
