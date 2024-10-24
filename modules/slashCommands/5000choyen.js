@@ -31,7 +31,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
         .setColor('#f8b4cb')
-        .setFooter({ text:'Emubot | 5000choyen', iconURL: interaction.client.user.displayAvatarURL() })
+        .setFooter({ text:'Kumanomi | 5000choyen', iconURL: interaction.client.user.displayAvatarURL() })
         .setTimestamp()
         .setImage(`https://gsapi.cbrx.io/image?top=${encodeURIComponent(top)}&bottom=${encodeURIComponent(bottom)}&type=png`);
 
