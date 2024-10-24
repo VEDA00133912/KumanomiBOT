@@ -1,6 +1,7 @@
 const { EmbedBuilder, Events } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
+const { setActivity } = require('../../lib/setActivity'); 
 
 const configPath = path.join(__dirname, '..', '..', 'data', 'settings', 'config.json');
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
@@ -25,6 +26,8 @@ module.exports = {
     } catch {
       nicknameStatus = '失敗';
     }
+
+    await setActivity(client);
 
     const ownerEmbed = new EmbedBuilder()
       .setTitle('くまのみBOTの導入ありがとうございます！')
