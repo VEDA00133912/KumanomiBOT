@@ -28,7 +28,7 @@ module.exports = {
         .setColor('#f8b4cb')
         .setTitle('素数判定結果')
         .setTimestamp()
-        .setFooter({ text: 'Emubot | prime', iconURL: interaction.client.user.displayAvatarURL() })
+        .setFooter({ text: 'Kumanomi | prime', iconURL: interaction.client.user.displayAvatarURL() })
         .setFields(
           { name: '入力された数', value: number.toString() },
           { name: '結果', value: primeResult ? '素数です' : number === 57 ? '[グロタンディーク素数](<https://dic.nicovideo.jp/a/グロタンディーク素数>)です' : '素数ではありません' },
