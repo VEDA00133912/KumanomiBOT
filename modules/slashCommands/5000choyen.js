@@ -30,7 +30,7 @@ module.exports = {
       const bottom = interaction.options.getString('bottom');
 
       const embed = new EmbedBuilder()
-        .setColor('#f8b4cb')
+        .setColor('#febe69')
         .setFooter({ text:'Kumanomi | 5000choyen', iconURL: interaction.client.user.displayAvatarURL() })
         .setTimestamp()
         .setImage(`https://gsapi.cbrx.io/image?top=${encodeURIComponent(top)}&bottom=${encodeURIComponent(bottom)}&type=png`);
