@@ -14,7 +14,7 @@
     "axios": "^1.7.7",
     "cheerio": "^1.0.0",
     "cjp": "^2.3.1",
-    "discord.js": "^14.16.1",
+    "discord.js": "^14.16.3",
     "dotenv": "^16.4.5",
     "form-data": "^4.0.0",
     "genhera": "^1.1.0",
