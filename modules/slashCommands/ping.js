@@ -14,7 +14,7 @@ module.exports = {
 
         try {
             const embed = new EmbedBuilder()
-                .setColor('#f8b4cb')
+                .setColor('#febe69')
                 .setTitle('くまのみ｜Ping 🏓')
                 .setDescription('Ping値')
                 .setTimestamp()
