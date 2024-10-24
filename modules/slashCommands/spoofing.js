@@ -39,7 +39,7 @@ module.exports = {
         return interaction.editReply('<:error:1282141871539490816> スレッドではこのコマンドを実行できません。');
       }
 
-    if (!interaction.guild.members.me.permissions.has(PermissionsBitField.Flags.ManageWebhooks)) {
+    if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageWebhooks)) {
       return interaction.reply({ content: '<:error:1282141871539490816> BOTにウェブフックを管理する権限がありません。', ephemeral: true });
     }
 
