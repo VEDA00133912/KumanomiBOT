@@ -14,7 +14,7 @@ module.exports = {
         const isCooldown = cooldown(commandName, interaction);
         if (isCooldown) return;
 
-      if (!interaction.guild.members.me.permissions.has(PermissionGlagsBits.EmbedLinks)) {
+      if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.EmbedLinks)) {
         return interaction.editReply('<:error:1282141871539490816> botに埋め込みリンクの送信権限がありません。');
       }
       
