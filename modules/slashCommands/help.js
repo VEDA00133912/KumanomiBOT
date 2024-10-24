@@ -26,7 +26,7 @@ module.exports = {
               { name: 'helpの操作方法', value: 'ボタンを押すことでコマンド一覧等が見れます' },
               { name: 'Make it a Quote機能', value: 'メッセージの返信のときにBOTをメンションするとMake it a Quote画像を生成します' },
               { name: 'サイト', value: '[くまのみぼっと公式サイト](https://veda00133912.github.io/kumanomi-site/)' },
-              { name: 'サポート等', value: '<:twitter:1282701797353459799> [twitter](https://twitter.com/ryo_001339)  <:discord:1282701795000320082> [Discord](https://discord.gg/j2gM7d2Drp)  <:github:1282850416085827584> [Github](https://github.com/VEDA00133912/Emubot-v3)' },
+              { name: 'サポート等', value: '<:twitter:1282701797353459799> [twitter](https://twitter.com/ryo_001339)  <:discord:1282701795000320082> [Discord](https://discord.gg/j2gM7d2Drp)  <:github:1282850416085827584> [Github](https://github.com/VEDA00133912/KumanomiBOT)' },
               { name: '制作者', value: '<@1095869643106828289> (ryo_001339)' }
             );
 
