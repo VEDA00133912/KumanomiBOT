@@ -46,6 +46,7 @@ module.exports = {
                 { name: `</select chunithm:1298846149926715458>`, value: 'CHUNITHMランダム選曲コマンド(全曲、ORIGINAL、WE&ULTIMA)' },
                 { name: `</select maimai:1298846149926715458>`, value: 'maimaiランダム選曲コマンド(全曲、maimai、宴譜面)' },
                 { name: `</select ongeki:1298846149926715458>`, value: 'オンゲキランダム選曲コマンド(全曲、オンゲキ、LUNATIC、Re:MASTER)' },
+            )
             .setTimestamp()
             .setColor('#febe69');
 
