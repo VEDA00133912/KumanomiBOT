@@ -34,7 +34,7 @@ module.exports = {
         .setColor('Yellow') 
         .setTitle('削除中... <a:loading:1259148838929961012>')
         .setDescription(`メッセージを削除しています。しばらくお待ちください。`)
-        .setFooter({ text: 'Emubot | deleting...', iconURL: interaction.client.user.displayAvatarURL() })
+        .setFooter({ text: 'Kumanomi | deleting...', iconURL: interaction.client.user.displayAvatarURL() })
         .setTimestamp();
 
       await interaction.reply({ embeds: [inProgressEmbed], ephemeral: true });
@@ -56,7 +56,7 @@ module.exports = {
         .setTitle('<:verify:1298523085678448640> 削除完了！')
         .setDescription(`削除したメッセージ数: ${deletedMessages.size}`)
         .setTimestamp()
-        .setFooter({ text: 'Emubot | delete', iconURL: interaction.client.user.displayAvatarURL() });
+        .setFooter({ text: 'Kumanomi | delete', iconURL: interaction.client.user.displayAvatarURL() });
 
       await interaction.editReply({ embeds: [completedEmbed], ephemeral: true });
 
