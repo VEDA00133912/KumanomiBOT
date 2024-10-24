@@ -91,7 +91,7 @@ module.exports = {
                 }
 
                 const creatingEmbed = new EmbedBuilder()
-                    .setColor('#f8b4cb')
+                    .setColor('#febe69')
                     .setTitle('ロール作成中...')
                     .setDescription(`<a:loading:1259148838929961012> ロール **\`${name}\`**を作成しています...`)
                     .setFooter({ text: 'Kumanomi | role creating...', iconURL: interaction.client.user.displayAvatarURL() });
@@ -127,7 +127,7 @@ module.exports = {
                 }
 
                 const creatingEmbed = new EmbedBuilder()
-                    .setColor('#f8b4cb')
+                    .setColor('#febe69')
                     .setTitle('チャンネル作成中...')
                     .setDescription(`<a:loading:1259148838929961012> チャンネル **\`${name}\`**を作成しています...`)
                     .setFooter({ text: 'Kumanomi | channel creating...', iconURL: interaction.client.user.displayAvatarURL() });
@@ -153,7 +153,7 @@ module.exports = {
                 const count = interaction.options.getInteger('count');
 
                 const creatingEmbed = new EmbedBuilder()
-                    .setColor('#f8b4cb')
+                    .setColor('#febe69')
                     .setTitle('パスワード生成中...')
                     .setDescription(`<a:loading:1259148838929961012> パスワードを生成しています...`)
                     .setFooter({ text: 'Kumanomi | password generating...', iconURL: interaction.client.user.displayAvatarURL() });
@@ -163,7 +163,7 @@ module.exports = {
                 const passwords = generatePasswords(length, count);
               
                 const embed = new EmbedBuilder()
-                    .setColor('#0099ff')
+                    .setColor('#febe69')
                     .setTitle('生成されたパスワード')
                     .setFooter({ text: 'Kumanomi | create password', iconURL: interaction.client.user.displayAvatarURL() });
                     .setDescription(passwords.join('\n'));
