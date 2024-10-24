@@ -33,7 +33,7 @@ module.exports = {
         .setTitle('<:verify:1298523085678448640> QRコードにしました！')
         .addFields({ name: 'URL', value: url })
         .setTimestamp()
-        .setFooter({ text: 'Emubot | qr', iconURL: interaction.client.user.displayAvatarURL() })
+        .setFooter({ text: 'Kumanomi | qr', iconURL: interaction.client.user.displayAvatarURL() })
         .setImage(qrApiUrl);
 
       await interaction.editReply({ embeds: [embed], ephemeral: true });
