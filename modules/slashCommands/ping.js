@@ -15,10 +15,10 @@ module.exports = {
         try {
             const embed = new EmbedBuilder()
                 .setColor('#f8b4cb')
-                .setTitle('Emubot｜Ping 🏓')
+                .setTitle('くまのみ｜Ping 🏓')
                 .setDescription('Ping値')
                 .setTimestamp()
-                .setFooter({ text: 'Emubot | Ping', iconURL: interaction.client.user.displayAvatarURL() })
+                .setFooter({ text: 'Kumanomi | Ping', iconURL: interaction.client.user.displayAvatarURL() })
                 .setFields(
                     { name: 'WebSocket Ping', value: `${interaction.client.ws.ping}ms`, inline: true },
                     { name: 'API-Endpoint Ping', value: `${Date.now() - interaction.createdTimestamp}ms`, inline: true }
