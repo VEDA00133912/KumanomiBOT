@@ -25,7 +25,7 @@ module.exports = {
       const primeResult = isPrime(number);
 
       const embed = new EmbedBuilder()
-        .setColor('#f8b4cb')
+        .setColor('#febe69')
         .setTitle('素数判定結果')
         .setTimestamp()
         .setFooter({ text: 'Kumanomi | prime', iconURL: interaction.client.user.displayAvatarURL() })
