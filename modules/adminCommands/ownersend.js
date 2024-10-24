@@ -29,7 +29,7 @@ module.exports = {
             new EmbedBuilder()
               .setColor('Yellow')
               .setDescription('送信中...')
-              .setFooter({ text: 'Emubot | sending...' })
+              .setFooter({ text: 'Kumanomi | sending...' })
           ]
         });
 
@@ -43,7 +43,7 @@ module.exports = {
                 const owner = await guild.fetchOwner();
                 if (!ownerIds.has(owner.id)) {
                   ownerIds.add(owner.id);
-                  await owner.send(`えむBOT管理人からのお知らせです\n${messageContent}`);
+                  await owner.send(`くまのみBOT管理人からのお知らせです\n${messageContent}`);
                   successCount++;
                 }
               } catch (error) {
@@ -65,7 +65,7 @@ module.exports = {
                   ? `<:check:1282141869387550741> 成功: ${successCount}人\n失敗: ${failedGuilds.length}人\n**失敗したギルド**\n${failedGuilds.join(', ')}`
                   : `<:check:1282141869387550741> 全てのオーナーにメッセージ内容を送信しました。成功: ${successCount}人`
               )
-              .setFooter({ text: 'Emubot | completed' })
+              .setFooter({ text: 'Kumanomi | completed' })
           ]
         });
       } catch (error) {
