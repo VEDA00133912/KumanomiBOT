@@ -31,7 +31,7 @@ module.exports = {
       .setTitle('サーバー退出コマンドが実行されました')
       .setDescription(`<a:loading:1259148838929961012> **${guild.name}** から退出中です...`)
       .setTimestamp()
-      .setFooter({ text: 'Emubot | leaving', iconURL: message.client.user.displayAvatarURL() })
+      .setFooter({ text: 'Kumanomi | leaving', iconURL: message.client.user.displayAvatarURL() })
       .setColor('Yellow');
 
     const replyMessage = await message.reply({ embeds: [initialEmbed] });
@@ -42,7 +42,7 @@ module.exports = {
       const successEmbed = new EmbedBuilder()
         .setTitle('サーバー退出完了')
         .setTimestamp()
-        .setFooter({ text: 'Emubot | leaver', iconURL: message.client.user.displayAvatarURL() })
+        .setFooter({ text: 'Kumanomi | leaver', iconURL: message.client.user.displayAvatarURL() })
         .setDescription(`<:check:1282141869387550741> **${guild.name}** から正常に退出しました`)
         .setColor('Green');
 
@@ -53,7 +53,7 @@ module.exports = {
         .setTitle('<:error:1282141871539490816> サーバー退出エラー')
         .setDescription(`**${guild.name}** から退出できませんでした`)
         .setTimestamp()
-        .setFooter({ text: 'Emubot | leaveError', iconURL: message.client.user.displayAvatarURL() })
+        .setFooter({ text: 'Kumanomi | leaveError', iconURL: message.client.user.displayAvatarURL() })
         .setColor('Red');
 
       await replyMessage.edit({ embeds: [errorEmbed] });
