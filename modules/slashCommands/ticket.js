@@ -6,7 +6,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('ticket')
     .setDescription('チケットを作成します')
-	　.setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels),
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels),
 
   async execute(interaction) {
     try {
@@ -27,7 +27,7 @@ module.exports = {
       const embed1 = new EmbedBuilder()
         .setColor('#f8b4cb')
         .setTimestamp()
-        .setFooter({ text:'Emubot | ticket create', iconURL: interaction.client.user.displayAvatarURL() })
+        .setFooter({ text:'Kumanomi | ticket create', iconURL: interaction.client.user.displayAvatarURL() })
         .setDescription('チケットを作成するには下のボタンを押してください');
 
       await interaction.editReply({
