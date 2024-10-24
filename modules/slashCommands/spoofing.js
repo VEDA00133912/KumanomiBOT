@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ChannelType } = require('discord.js');
+const { SlashCommandBuilder, ChannelType, PermissionFlagsBits } = require('discord.js');
 const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
 const { getWebhookClient } = require('../../lib/spoofing');
