@@ -24,7 +24,7 @@ module.exports = {
       const omikujiembed = new EmbedBuilder()
         .setDescription('<a:ID:omikuji> おみくじを引いています...')
         .setTimestamp()
-        .setFooter({ text: 'Emubot | omikuji', iconURL: interaction.client.user.displayAvatarURL() })
+        .setFooter({ text: 'Kumanomi | omikuji', iconURL: interaction.client.user.displayAvatarURL() })
         .setColor('#f8b4cb');
       
       await interaction.reply({ embeds: [omikujiembed] });
@@ -35,7 +35,7 @@ module.exports = {
         .setTitle('おみくじ結果')
         .setDescription(`今日の<@${userId}>は **${result}** だよ！\nまた明日引いてね！`)
         .setTimestamp()
-        .setFooter({ text: 'Emubot | omikuji', iconURL: interaction.client.user.displayAvatarURL() })
+        .setFooter({ text: 'Kumanomi | omikuji', iconURL: interaction.client.user.displayAvatarURL() })
         .setColor('#f8b4cb');
 
       await interaction.editReply({
