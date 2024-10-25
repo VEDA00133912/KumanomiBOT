@@ -6,9 +6,10 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('delete')
     .setDescription('メッセージを削除します')
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
     .addIntegerOption(option =>
       option.setName('count')
-        .setDescription('削除したいメッセージの数(100以下)')
+        .setDescription('削除したいメッセージの数')
         .setMinValue(1)
         .setMaxValue(100)
         .setRequired(true)),
@@ -18,9 +19,6 @@ module.exports = {
       const isCooldown = cooldown(commandName, interaction);
       if (isCooldown) return;
     
-    if (!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) {
-      return interaction.reply({ content: '<:error:1282141871539490816> あなたにメッセージ削除権限が有りません。', ephemeral: true });
-    }
     if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageMessages)) {
       return interaction.reply({ content: '<:error:1282141871539490816> BOTにメッセージを管理する権限がありません。', ephemeral: true });
     }
