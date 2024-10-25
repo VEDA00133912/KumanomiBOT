@@ -6,7 +6,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('delete')
     .setDescription('メッセージを削除します')
-    .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
     .addIntegerOption(option =>
       option.setName('count')
         .setDescription('削除したいメッセージの数')

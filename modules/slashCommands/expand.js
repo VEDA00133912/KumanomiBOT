@@ -9,7 +9,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('expand-settings')
         .setDescription('メッセージリンクの展開をオンまたはオフにします。')
-        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addStringOption(option =>
             option.setName('on-off')
                 .setDescription('オンかオフを選択')
@@ -47,6 +47,7 @@ module.exports = {
                     .setTitle('設定変更')
                     .setDescription(`<:error:1282141871539490816> すでに${status ? 'ON' : 'OFF'}になっています。`)
                     .setColor(status ? 'Green' : 'Red')
+                    .setFooter({ text: 'Kumanomi | expand', iconURL: interaction.client.user.displayAvatarURL() })
                     .setTimestamp();
 
                 return interaction.followUp({ embeds: [embed] });
