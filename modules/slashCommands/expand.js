@@ -9,6 +9,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('expand-settings')
         .setDescription('メッセージリンクの展開をオンまたはオフにします。')
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
         .addStringOption(option =>
             option.setName('on-off')
                 .setDescription('オンかオフを選択')
@@ -22,10 +23,6 @@ module.exports = {
         const commandName = this.data.name;
         const isCooldown = cooldown(commandName, interaction);
         if (isCooldown) return;
-
-        if (!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) {
-            return interaction.reply({ content: 'あなたに管理者権限がありません。', ephemeral: true });
-        }
 
         const status = interaction.options.getString('on-off') === 'true';
         let settings = {};
