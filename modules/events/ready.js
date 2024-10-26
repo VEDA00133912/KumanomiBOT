@@ -35,23 +35,22 @@ module.exports = {
 
     await setActivity(client);
 
-    const now = Math.floor(Date.now() / 1000);
-    const oneDayAgo = now - 86400; 
+const now = Math.floor(Date.now() / 1000);
+const oneDayAgo = now - 86400; 
 
-    try {
-      const snipeData = JSON.parse(await fs.readFile(snipePath, 'utf8'));
- 
-      for (const [key, value] of Object.entries(snipeData)) {
-        if (value.timestamp < oneDayAgo) {  
-          delete snipeData[key]; 
-          console.log(`Deleted snipe entry with timestamp: ${value.timestamp}`);
-        }
-      }
-      await fs.writeFile(snipePath, JSON.stringify(snipeData, null, 2));
-      console.log('Snipe data cleaned up successfully.');
-    } catch (error) {
-      console.error('Error reading or writing snipe file:', error.message);
+try {
+  const snipeData = JSON.parse(await fs.readFile(snipePath, 'utf8'));
+  for (const [key, value] of Object.entries(snipeData)) {
+    if (value.timestamp < oneDayAgo) {  
+      delete snipeData[key]; 
+      console.log(`Deleted snipe entry with timestamp: ${value.timestamp}`);
     }
+  }
+  await fs.writeFile(snipePath, JSON.stringify(snipeData, null, 2));
+  console.log('Snipe data cleaned up successfully.');
+} catch (error) {
+  console.error('Error reading or writing snipe file:', error.message);
+}
 
     console.log(`${client.user.tag} is ready.`);
   },
