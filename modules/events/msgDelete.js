@@ -1,5 +1,6 @@
 const { Events } = require('discord.js');
 const { loadSnipeData, saveSnipeData } = require('../../lib/snipe');
+const { removeInvisibleCharacters } = require('../../lib/invisibleRegex');
 
 module.exports = {
     name: Events.MessageDelete,
@@ -15,20 +16,32 @@ module.exports = {
             return; 
         }
 
+        const cleanContent = removeInvisibleCharacters(message.content);
+
+        if (cleanContent.trim() === '') {
+            return; 
+        }
+
         const snipeData = loadSnipeData();
         const channelId = message.channel.id;
 
-        if (message.content.trim() !== '') {
-            snipeData[channelId] = {
-                content: message.content, 
-                author: {
-                    displayName: message.member ? message.member.displayName : message.author.username,
-                    avatarURL: message.author.displayAvatarURL({ size: 1024 })
-                },
-                timestamp: Math.floor(Date.now() / 1000)
-            };
+        snipeData[channelId] = {
+            content: cleanContent,
+            author: {
+                displayName: message.member ? message.member.displayName : message.author.username,
+                avatarURL: message.author.displayAvatarURL({ size: 1024 })
+            },
+            timestamp: Math.floor(Date.now() / 1000)
+        };
 
-            await saveSnipeData(snipeData);
+        await saveSnipeData(snipeData);
+
+        for (const [channel, data] of Object.entries(snipeData)) {
+            if (removeInvisibleCharacters(data.content).trim() === '') {
+                delete snipeData[channel];
+            }
         }
+
+        await saveSnipeData(snipeData);
     }
 };
