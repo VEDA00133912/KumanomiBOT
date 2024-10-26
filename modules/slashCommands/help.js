@@ -119,7 +119,10 @@ module.exports = {
                 getCommandField('ticket', 'チケットコマンド(プライベートチャンネルの作成)'),
                 getCommandField('vanitycheck', 'バニティ生存確認コマンド(サーバーカスタムURL)'),
                 getCommandField('expand-settings', 'メッセージリンクの自動展開のオンオフを設定するコマンド')
-            )
+                getCommandField('ban', 'ユーザーをBANするコマンド')
+                getCommandField('unban', 'BAN解除コマンド')
+                getCommandField('kick', 'ユーザーをキックするコマンド')
+        )
             .setTimestamp()
             .setColor('#febe69');
                     
