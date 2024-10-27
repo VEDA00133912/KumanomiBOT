@@ -3,6 +3,11 @@ const cooldowns = new Map();
 module.exports = (commandName, interaction, cooldownTime = 5000) => { 
     const userId = interaction.user.id;
 
+    const extendedCooldownCommands = ['info', 'dice', 'spoofing', 'translate', 'hiroyuki'];
+    if (extendedCooldownCommands.includes(commandName)) {
+        cooldownTime = 10000;
+    }
+
     if (!cooldowns.has(commandName)) {
         cooldowns.set(commandName, new Map());
     }
@@ -17,6 +22,7 @@ module.exports = (commandName, interaction, cooldownTime = 5000) => {
 
         if (now < expirationTime) {
             const timeLeft = ((expirationTime - now) / 1000).toFixed(1);
+
             return interaction.reply({ 
                 content: `<:error:1282141871539490816> </${interaction.commandName}:${commandId}> はクールダウン中です。あと ${timeLeft} 秒後に実行できます。`, 
                 ephemeral: true 
