@@ -3,7 +3,7 @@ const config = require('../../data/settings/config.json');
 
 module.exports = async function handleContextMenuError(client, interaction, error) {
     try {
-        const errorMessage = `<:error:1282141871539490816> **${interaction.commandName}** の実行中にエラーが発生しました。`;
+        const errorMessage = `<:error:1299263288797827185> **${interaction.commandName}** の実行中にエラーが発生しました。`;
 
         if (error instanceof DiscordAPIError && error.code === 10062) {
             const message = await interaction.channel.send({

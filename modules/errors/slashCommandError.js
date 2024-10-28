@@ -7,18 +7,18 @@ module.exports = async function handleSlashCommandError(client, interaction, err
 
         if (error instanceof DiscordAPIError && error.code === 10062) {
             const errorMessage = await interaction.channel.send({
-                content: `<:error:1282141871539490816> </${interaction.commandName}:${commandId}> の実行中にエラーが発生しました。`
+                content: `<:error:1299263288797827185> </${interaction.commandName}:${commandId}> の実行中にエラーが発生しました。`
             });
             setTimeout(() => errorMessage.delete().catch(console.error), 5000);
         } else {
             if (interaction.deferred || interaction.replied) {
                 await interaction.followUp({
-                    content: `<:error:1282141871539490816> </${interaction.commandName}:${commandId}> の実行中にエラーが発生しました。`,
+                    content: `<:error:1299263288797827185> </${interaction.commandName}:${commandId}> の実行中にエラーが発生しました。`,
                     ephemeral: true
                 });
             } else {
                 await interaction.reply({
-                    content: `<:error:1282141871539490816> </${interaction.commandName}:${commandId}> の実行中にエラーが発生しました。`,
+                    content: `<:error:1299263288797827185> </${interaction.commandName}:${commandId}> の実行中にエラーが発生しました。`,
                     ephemeral: true
                 });
             }
@@ -27,7 +27,7 @@ module.exports = async function handleSlashCommandError(client, interaction, err
         console.error('followupメッセージの送信に失敗しました:', followUpError);
         try {
             const errorMessage = await interaction.channel.send({
-                content: `<:error:1282141871539490816> ${interaction.commandName} コマンドの実行中にエラーが発生しました。`
+                content: `<:error:1299263288797827185> ${interaction.commandName} コマンドの実行中にエラーが発生しました。`
             });
             setTimeout(() => errorMessage.delete().catch(console.error), 5000);
         } catch (sendError) {
