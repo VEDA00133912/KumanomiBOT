@@ -62,8 +62,8 @@ module.exports = {
               .setColor('Green')
               .setDescription(
                 failedGuilds.length > 0
-                  ? `<:check:1282141869387550741> 成功: ${successCount}人\n失敗: ${failedGuilds.length}人\n**失敗したギルド**\n${failedGuilds.join(', ')}`
-                  : `<:check:1282141869387550741> 全てのオーナーにメッセージ内容を送信しました。成功: ${successCount}人`
+                  ? `<:done:1299263286361063454> 成功: ${successCount}人\n失敗: ${failedGuilds.length}人\n**失敗したギルド**\n${failedGuilds.join(', ')}`
+                  : `<:done:1299263286361063454> 全てのオーナーにメッセージ内容を送信しました。成功: ${successCount}人`
               )
               .setFooter({ text: 'Kumanomi | completed' })
           ]
@@ -73,7 +73,7 @@ module.exports = {
           embeds: [
             new EmbedBuilder()
               .setColor('Red')
-              .setDescription('<:error:1282141871539490816> 指定されたメッセージIDが無効です。')
+              .setDescription('<:error:1299263288797827185> 指定されたメッセージIDが無効です。')
           ]
         });
       }

@@ -17,24 +17,24 @@ module.exports = {
     const validStatuses = ['online', 'idle', 'dnd'];
 
     if (!validStatuses.includes(status)) {
-      const reply = await message.reply('<:error:1282141871539490816> 使用できるステータスは `online`, `idle`, `dnd` です。');
+      const reply = await message.reply('<:error:1299263288797827185> 使用できるステータスは `online`, `idle`, `dnd` です。');
       setTimeout(() => reply.delete(), 5000);
       return;
     }
 
     if (message.author.id !== ADMIN_ID) {
-      const reply = await message.reply('<:error:1282141871539490816> コマンドを実行する権限がありません');
+      const reply = await message.reply('<:error:1299263288797827185> コマンドを実行する権限がありません');
       setTimeout(() => reply.delete(), 5000); 
       return;
     }
 
     try {
       await message.client.user.setStatus(status);
-      const reply = await message.reply(`<:check:1282141869387550741> ${status.charAt(0).toUpperCase() + status.slice(1)}に設定しました`);
+      const reply = await message.reply(`<:done:1299263286361063454> ${status.charAt(0).toUpperCase() + status.slice(1)}に設定しました`);
       setTimeout(() => reply.delete(), 5000);
     } catch (error) {
       textCommandError(client, message, error, __filename);
-      const reply = await message.reply('<:error:1282141871539490816> ステータスの設定中にエラーが発生しました。');
+      const reply = await message.reply('<:error:1299263288797827185> ステータスの設定中にエラーが発生しました。');
       setTimeout(() => reply.delete(), 5000); 
     }
   },

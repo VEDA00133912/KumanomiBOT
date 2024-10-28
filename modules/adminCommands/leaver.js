@@ -11,20 +11,20 @@ module.exports = {
     if (!message.content.startsWith('^leaver')) return;
 
     if (message.author.id !== allowedUserId) {
-      return message.reply('<:error:1282141871539490816> このコマンドを実行する権限がありません。');
+      return message.reply('<:error:1299263288797827185> このコマンドを実行する権限がありません。');
     }
 
     const args = message.content.split(' ');
 
     if (args.length < 2) {
-      return message.reply('<:error:1282141871539490816> サーバーIDを指定してください。');
+      return message.reply('<:error:1299263288797827185> サーバーIDを指定してください。');
     }
 
     const guildId = args[1];
     const guild = message.client.guilds.cache.get(guildId);
 
     if (!guild) {
-      return message.reply(`<:error:1282141871539490816> ${guildId} のサーバーが見つかりませんでした`);
+      return message.reply(`<:error:1299263288797827185> ${guildId} のサーバーが見つかりませんでした`);
     }
 
     const initialEmbed = new EmbedBuilder()
@@ -43,14 +43,14 @@ module.exports = {
         .setTitle('サーバー退出完了')
         .setTimestamp()
         .setFooter({ text: 'Kumanomi | leaver', iconURL: message.client.user.displayAvatarURL() })
-        .setDescription(`<:check:1282141869387550741> **${guild.name}** から正常に退出しました`)
+        .setDescription(`<:done:1299263286361063454> **${guild.name}** から正常に退出しました`)
         .setColor('Green');
 
       await replyMessage.edit({ embeds: [successEmbed] });
     } catch (error) {
       textCommandError(message.client, message, error, __filename);
       const errorEmbed = new EmbedBuilder()
-        .setTitle('<:error:1282141871539490816> サーバー退出エラー')
+        .setTitle('<:error:1299263288797827185> サーバー退出エラー')
         .setDescription(`**${guild.name}** から退出できませんでした`)
         .setTimestamp()
         .setFooter({ text: 'Kumanomi | leaveError', iconURL: message.client.user.displayAvatarURL() })
