@@ -15,7 +15,7 @@ module.exports = {
       if (isCooldown) return;
 
       if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageChannels)) {
-        return interaction.reply({ content: 'BOTにチャンネル管理の権限がありません。', ephemeral: true });
+        return interaction.reply({ content: '<:error:1299263288797827185> BOTにチャンネル管理の権限がありません。', ephemeral: true });
     }
 
       await interaction.deferReply();

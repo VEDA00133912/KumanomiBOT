@@ -22,7 +22,7 @@ module.exports = {
       const url = interaction.options.getString('url');
 
       if (!url) {
-        await interaction.editReply('<:error:1282141871539490816>　QRコードに変換したいURLを入力してください。');
+        await interaction.editReply('<:error:1299263288797827185>　QRコードに変換したいURLを入力してください。');
         return;
       }
 
@@ -30,7 +30,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
         .setColor('#febe69')
-        .setTitle('<:verify:1298523085678448640> QRコードにしました！')
+        .setTitle('<:done:1299263286361063454> QRコードにしました！')
         .addFields({ name: 'URL', value: url })
         .setTimestamp()
         .setFooter({ text: 'Kumanomi | qr', iconURL: interaction.client.user.displayAvatarURL() })

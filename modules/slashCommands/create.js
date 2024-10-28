@@ -79,15 +79,15 @@ module.exports = {
                 const roleCount = interaction.guild.roles.cache.size;
 
                 if (!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) {
-                    return interaction.reply({ content: 'あなたにロール管理の権限がありません。', ephemeral: true });
+                    return interaction.reply({ content: '<error:1299263288797827185> あなたにロール管理の権限がありません。', ephemeral: true });
                 }
                                 
                 if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageRoles)) {
-                    return interaction.reply({ content: 'BOTにロール管理の権限がありません。', ephemeral: true });
+                    return interaction.reply({ content: '<error:1299263288797827185> BOTにロール管理の権限がありません。', ephemeral: true });
                 }
 
                 if (roleCount >= 250) {
-                    return interaction.reply({ content: 'ロールの作成上限のため、実行できませんでした。', ephemeral: true });
+                    return interaction.reply({ content: '<error:1299263288797827185> ロールの作成上限のため、実行できませんでした。', ephemeral: true });
                 }
 
                 const creatingEmbed = new EmbedBuilder()
@@ -107,7 +107,7 @@ module.exports = {
 
                 const completeEmbed = new EmbedBuilder()
                     .setColor(roleColor || '#99AAB5') 
-                    .setTitle('<:verify:1298523085678448640> 作成完了!')
+                    .setTitle('<:done:1299263286361063454> 作成完了!')
                     .setTimestamp()
                     .setFooter({ text: 'Kumanomi | role create', iconURL: interaction.client.user.displayAvatarURL() })
                     .setDescription(`作成したロール: <@&${createdRole.id}>`);
@@ -119,11 +119,11 @@ module.exports = {
                 const type = interaction.options.getString('type');
 
                 if (!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) {
-                    return interaction.reply({ content: 'あなたにチャンネル管理権限がありません。', ephemeral: true });
+                    return interaction.reply({ content: '<error:1299263288797827185> あなたにチャンネル管理権限がありません。', ephemeral: true });
                 }
                                 
                 if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageChannels)) {
-                    return interaction.reply({ content: 'BOTにチャンネル管理の権限がありません。', ephemeral: true });
+                    return interaction.reply({ content: '<error:1299263288797827185> BOTにチャンネル管理の権限がありません。', ephemeral: true });
                 }
 
                 const creatingEmbed = new EmbedBuilder()
@@ -142,7 +142,7 @@ module.exports = {
 
                 const completeEmbed = new EmbedBuilder()
                     .setColor('#99AAB5') 
-                    .setTitle('<:verify:1298523085678448640> 作成完了!')
+                    .setTitle('<:done:1299263286361063454> 作成完了!')
                     .setTimestamp()
                     .setFooter({ text: 'Kumanomi | channel create', iconURL: interaction.client.user.displayAvatarURL() })
                     .setDescription(`作成したチャンネル: <#${createdChannel.id}>`);
@@ -164,7 +164,7 @@ module.exports = {
               
                 const embed = new EmbedBuilder()
                     .setColor('#febe69')
-                    .setTitle('生成されたパスワード')
+                    .setTitle('<:done:1299263286361063454> 生成完了！')
                     .setFooter({ text: 'Kumanomi | create password', iconURL: interaction.client.user.displayAvatarURL() })
                     .setDescription(passwords.join('\n'));
 

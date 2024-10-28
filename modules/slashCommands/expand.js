@@ -35,7 +35,7 @@ module.exports = {
                     const data = fs.readFileSync(SETTINGS_FILE, 'utf8');
                     settings = JSON.parse(data);
                 } catch (error) {
-                    await interaction.followUp({ content: '<:error:1282141871539490816> 設定ファイルの読み込み中にエラーが発生しました。', ephemeral: true });
+                    await interaction.followUp({ content: '<:error:1299263288797827185> 設定ファイルの読み込み中にエラーが発生しました。', ephemeral: true });
                     slashCommandError(interaction.client, interaction, error);
                 }
             }
@@ -45,7 +45,7 @@ module.exports = {
             if (currentStatus === status) {
                 const embed = new EmbedBuilder()
                     .setTitle('設定変更')
-                    .setDescription(`<:error:1282141871539490816> すでに${status ? 'ON' : 'OFF'}になっています。`)
+                    .setDescription(`<:error:1299263288797827185> すでに${status ? 'ON' : 'OFF'}になっています。`)
                     .setColor(status ? 'Green' : 'Red')
                     .setFooter({ text: 'Kumanomi | expand', iconURL: interaction.client.user.displayAvatarURL() })
                     .setTimestamp();
@@ -58,12 +58,12 @@ module.exports = {
             try {
                 fs.writeFileSync(SETTINGS_FILE, JSON.stringify(settings, null, 2), 'utf8');
             } catch (error) {
-                await interaction.followUp({ content: '<:error:1282141871539490816> 設定の保存中にエラーが発生しました。', ephemeral: true });
+                await interaction.followUp({ content: '<:error:1299263288797827185> 設定の保存中にエラーが発生しました。', ephemeral: true });
                 await sendErrorLog(interaction.client, error, interaction.commandName, __filename);
             }
 
             const embed = new EmbedBuilder()
-                .setDescription(`<:verify:1298523085678448640>**メッセージリンクの展開は ${status ? 'ON' : 'OFF'} になりました。**`)
+                .setDescription(`<:done:1299263286361063454> **メッセージリンクの展開は ${status ? 'ON' : 'OFF'} になりました。**`)
                 .setColor(status ? 'Green' : 'Red')
                 .setTimestamp();
 

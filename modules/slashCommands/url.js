@@ -54,7 +54,7 @@ module.exports = {
         const url = interaction.options.getString('url');
 
         if (!isValidUrl(url)) {
-            return interaction.reply('<:error:1282141871539490816> 無効なURLが入力されました。有効なURLを入力してください。');
+            return interaction.reply('<:error:1299263288797827185> 無効なURLが入力されました。有効なURLを入力してください。');
         }
 
         const apiKey = process.env.VIRUSTOTAL_API_KEY;
@@ -80,7 +80,7 @@ module.exports = {
             let color = 'Green'; 
 
             if (detected.length === 0) {
-                descriptionMessage = 'このURLは安全です <:check:1282141869387550741>';
+                descriptionMessage = 'このURLは安全です <:done:1299263286361063454>';
             } else if (detected.length <= 2) {
                 descriptionMessage = 'このURLは危険な可能性があります <:warn:1282877367110340670>';
                 color = 'Yellow'; 
@@ -124,7 +124,7 @@ module.exports = {
             fs.writeFileSync(filePath, urls.join('\n'), 'utf8');
             const fileUpload = new AttachmentBuilder(filePath);
 
-            await interaction.editReply({ content: "抽出完了！", files: [fileUpload], ephemeral: true });
+            await interaction.editReply({ content: '<:done:1299263286361063454> 抽出完了！', files: [fileUpload], ephemeral: true });
             fs.unlinkSync(filePath);
         } else {
             slashCommandError(interaction.client, interaction, new Error('URLが見つかりませんでした'));
@@ -149,7 +149,7 @@ module.exports = {
                 const shortenedUrl = `<${Url}>`;
 
                 const embed = new EmbedBuilder()
-                    .setDescription(`<:verify:1298523085678448640> **短縮に成功しました！**\n\n**短縮URL: ${shortenedUrl}**`)
+                    .setDescription(`<:done:1299263286361063454> **短縮に成功しました！**\n\n**短縮URL: ${shortenedUrl}**`)
                     .setTimestamp()
                     .setFooter({ text: 'Kumanomi | url short', iconURL: interaction.client.user.displayAvatarURL() })
                     .setColor('#febe69');

@@ -15,7 +15,7 @@ module.exports = {
         if (isCooldown) return;
 
       if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.EmbedLinks)) {
-        return interaction.editReply('<:error:1282141871539490816> botに埋め込みリンクの送信権限がありません。');
+        return interaction.editReply('<:error:1299263288797827185> botに埋め込みリンクの送信権限がありません。');
       }
       
       await interaction.deferReply();

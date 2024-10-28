@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const cooldown = require('../events/cooldown');
-const moderateUsers = require('../lib/moderate');
+const moderateUsers = require('../../lib/moderate');
 const slashCommandError = require('../errors/slashCommandError');
 
 module.exports = {
@@ -20,6 +20,10 @@ module.exports = {
         const isCooldown = cooldown(commandName, interaction);
         if (isCooldown) return;
 
+        if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.BanMembers)) {
+          return interaction.reply({ content: '<:error:1299263288797827185> BOTにBAN権限がありません。', ephemeral: true });
+        }
+        
         const reason = interaction.options.getString('reason') || '理由なし';
         const users = ['user1', 'user2', 'user3']
             .map(optionName => interaction.options.getUser(optionName))

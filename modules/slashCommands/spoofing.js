@@ -36,11 +36,11 @@ module.exports = {
       await interaction.reply({ content: '<a:loading:1259148838929961012> メッセージ送信準備中...', ephemeral: true });
 
       if (interaction.channel.type === ChannelType.PublicThread || interaction.channel.type === ChannelType.PrivateThread) {
-        return interaction.editReply('<:error:1282141871539490816> スレッドではこのコマンドを実行できません。');
+        return interaction.editReply('<:error:1299263288797827185> スレッドではこのコマンドを実行できません。');
       }
 
     if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageWebhooks)) {
-      return interaction.reply({ content: '<:error:1282141871539490816> BOTにウェブフックを管理する権限がありません。', ephemeral: true });
+      return interaction.reply({ content: '<:error:1299263288797827185> BOTにウェブフックを管理する権限がありません。', ephemeral: true });
     }
 
       const targetUser = interaction.options.getUser('target');
@@ -65,7 +65,7 @@ module.exports = {
 
       await webhookClient.send(options);
 
-      await interaction.editReply('<:verify:1298523085678448640> メッセージを送信しました。');
+      await interaction.editReply('<:done:1299263286361063454> メッセージを送信しました。');
     } catch (error) {
       console.error('Error sending webhook message:', error);
       await slashCommandError(interaction.client, interaction, error);

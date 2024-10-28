@@ -20,13 +20,13 @@ module.exports = {
       if (isCooldown) return;
     
     if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageMessages)) {
-      return interaction.reply({ content: '<:error:1282141871539490816> BOTにメッセージを管理する権限がありません。', ephemeral: true });
+      return interaction.reply({ content: '<:error:1299263288797827185> BOTにメッセージを管理する権限がありません。', ephemeral: true });
     }
     if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ReadMessageHistory)) {
-      return interaction.reply({ content: '<:error:1282141871539490816> BOTにメッセージ履歴を読む権限がありません。', ephemeral: true });
+      return interaction.reply({ content: '<:error:1299263288797827185> BOTにメッセージ履歴を読む権限がありません。', ephemeral: true });
     }
     if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ViewChannel)) {
-      return interaction.reply({ content: '<:error:1282141871539490816> BOTにチャンネルを見る権限がありません。', ephemeral: true });
+      return interaction.reply({ content: '<:error:1299263288797827185> BOTにチャンネルを見る権限がありません。', ephemeral: true });
     }
 
     const count = interaction.options.getInteger('count');
@@ -48,7 +48,7 @@ module.exports = {
       const oldMessages = messages.filter(m => m.createdTimestamp < twoWeeksAgo);
       
       if (oldMessages.size > 0) {
-        await interaction.editReply({ embeds: [inProgressEmbed.setTitle('削除失敗').setDescription('<:error:1282141871539490816> 2週間以上前のメッセージが含まれているため削除できません。')] });
+        await interaction.editReply({ embeds: [inProgressEmbed.setTitle('削除失敗').setDescription('<:error:1299263288797827185> 2週間以上前のメッセージが含まれているため削除できません。')] });
         return; 
       }
 
@@ -56,7 +56,7 @@ module.exports = {
 
       const completedEmbed = new EmbedBuilder()
         .setColor('Green') 
-        .setTitle('<:verify:1298523085678448640> 削除完了！')
+        .setTitle('<:done:1299263286361063454> 削除完了！')
         .setDescription(`削除したメッセージ数: ${deletedMessages.size}`)
         .setTimestamp()
         .setFooter({ text: 'Kumanomi | delete', iconURL: interaction.client.user.displayAvatarURL() });
