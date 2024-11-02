@@ -2,6 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const crypto = require('crypto');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
+const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -24,11 +25,8 @@ module.exports = {
       const text = interaction.options.getString('text');
       const hash = crypto.createHash('sha256').update(text).digest('hex');
 
-      const embed = new EmbedBuilder()
-        .setDescription(`ハッシュ化しました！\n\`\`\`${hash}\`\`\``)
-        .setColor('#febe69')
-        .setFooter({ text: 'Kumanomi | hash', iconURL: interaction.client.user.displayAvatarURL() })
-        .setTimestamp();
+      const creatingEmbed = createEmbed(interaction)
+        .setDescription(`ハッシュ化しました！\n\`\`\`${hash}\`\`\``);
 
       await interaction.editReply({ embeds: [embed] });
     } catch (error) {
