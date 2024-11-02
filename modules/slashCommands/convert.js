@@ -4,6 +4,7 @@ const { convertText, typeNameMap } = require('../../lib/convert');
 const { validateMessageContent } = require('../../lib/invalidContent');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
+const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -45,12 +46,9 @@ module.exports = {
 
       const convertedText = convertText(type, text);
 
-      const embed = new EmbedBuilder()
-        .setColor('#febe69')
+      const embed = createEmbed(interaction)
         .setTitle(`${typeNameMap[type]}に変換完了！`)
-        .setDescription(`\`\`\`${convertedText}\`\`\``)
-        .setTimestamp()
-        .setFooter({ text: `Kumanomi | convert ${typeNameMap[type]}`, iconURL: interaction.client.user.displayAvatarURL() });
+        .setDescription(`\`\`\`${convertedText}\`\`\``);
 
       await interaction.editReply({ embeds: [embed] });
       
