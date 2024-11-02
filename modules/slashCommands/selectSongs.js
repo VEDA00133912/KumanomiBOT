@@ -120,10 +120,13 @@ module.exports = {
                        subcommand === 'prsk' ? '#34ccbc' : 
                        subcommand === 'ongeki' ? '#dccaf6' : 
                        '#febe69'; 
-    const loadingMessage = '<a:loading:1259148838929961012> 選曲中...';
+    
+    const loadingMessage = '<a:loading:1302169108888162334> 選曲中...';
 
     const embedLoading = new EmbedBuilder()
       .setDescription(loadingMessage)
+      .setTimestamp()
+      .setFooter({ text: `Kumanomi | select ${subcommand}`, iconURL: interaction.client.user.displayAvatarURL() })
       .setColor(embedColor);
 
     await interaction.reply({ embeds: [embedLoading] });
