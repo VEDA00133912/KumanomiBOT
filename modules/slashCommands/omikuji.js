@@ -3,6 +3,7 @@ const path = require('path');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 const { getRandomFortune, dailyFortunes, saveFortunes, specialFortune } = require('../../lib/omikuji');
+const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -22,11 +23,8 @@ module.exports = {
     }
 
     try {
-      const omikujiembed = new EmbedBuilder()
-        .setDescription('<a:ID:omikuji> おみくじを引いています...')
-        .setTimestamp()
-        .setFooter({ text: 'Kumanomi | omikuji', iconURL: interaction.client.user.displayAvatarURL() })
-        .setColor('#febe69');
+      const omikujiembed = createEmbed(interaction)
+        .setDescription('<a:omikuji:1302169074083823646> おみくじを引いています...');
       
       await interaction.reply({ embeds: [omikujiembed] });
 
@@ -34,12 +32,9 @@ module.exports = {
 
       const specialThumbnailPath = path.join(__dirname, '../../data/assets/special.png');
 
-      const embed = new EmbedBuilder()
+      const embed = createEmbed(interaction)
         .setTitle('おみくじ結果')
-        .setDescription(`今日の<@${userId}>は **${result}** だよ！\nまた明日引いてね！`)
-        .setTimestamp()
-        .setFooter({ text: 'Kumanomi | omikuji', iconURL: interaction.client.user.displayAvatarURL() })
-        .setColor('#febe69');
+        .setDescription(`今日の<@${userId}>は **${result}** だよ！\nまた明日引いてね！`);
 
       if (result === specialFortune) {
         embed.setThumbnail('attachment://special.png');
