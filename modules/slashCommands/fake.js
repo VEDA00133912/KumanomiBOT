@@ -60,13 +60,13 @@ module.exports = {
       .setColor(color)
       .setDescription(description)
       .setTimestamp()
-      .setFooter({ text: 'Kumanomi | 生成中', iconURL: interaction.client.user.displayAvatarURL() });
+      .setFooter({ text: 'Kumanomi | generating...', iconURL: interaction.client.user.displayAvatarURL() });
 
     await interaction.reply({ embeds: [loadingEmbed], ephemeral: true });
   },
 
   async executeNitro(interaction) {
-    await this.sendLoadingEmbed(interaction, '#f47fff', '<a:boost:1282164483665428541> 生成中...');
+    await this.sendLoadingEmbed(interaction, '#f47fff', '<a:loading:1302169108888162334> 生成中...');
 
     const quantity = interaction.options.getInteger('count');
     const type = interaction.options.getString('type');
@@ -76,13 +76,13 @@ module.exports = {
       .setColor('#f47fff')
       .setTimestamp()
       .setFooter({ text: 'Kumanomi | fake nitro', iconURL: interaction.client.user.displayAvatarURL() })
-      .setDescription(`<a:boost:1282164483665428541> **Fake ${type === 'nitro' ? 'Nitro Gift' : 'Promo Nitro'} Links** <a:boost:1282164483665428541>\n${type === 'nitro' ? 'Nitroギフトリンク' : 'プロモNitroリンク'}\n${nitroLinks.join('\n')}`);
+      .setDescription(`<a:boost:1302168991015506003> **Fake ${type === 'nitro' ? 'Nitro Gift' : 'Promo Nitro'} Links** <a:boost:1302168991015506003>\n${type === 'nitro' ? 'Nitroギフトリンク' : 'プロモNitroリンク'}\n${nitroLinks.join('\n')}`);
 
     await interaction.editReply({ embeds: [resultEmbed] });
   },
 
   async executeToken(interaction) {
-    await this.sendLoadingEmbed(interaction, '#7289da', '<a:loading:1259148838929961012> 生成中...');
+    await this.sendLoadingEmbed(interaction, '#7289da', '<a:loading:1302169108888162334> 生成中...');
 
     const quantity = interaction.options.getInteger('count');
     const tokens = generateTokens(interaction.guild.members.cache, quantity); 
@@ -91,7 +91,7 @@ module.exports = {
       .setColor('#7289da')
       .setTitle('Token')
       .setTimestamp()
-      .setFooter({ text: 'Kumanomi | faketoken', iconURL: interaction.client.user.displayAvatarURL() })
+      .setFooter({ text: 'Kumanomi | fake token', iconURL: interaction.client.user.displayAvatarURL() })
       .setDescription(tokens.join('\n'));
 
     await interaction.editReply({ embeds: [resultEmbed], ephemeral: true });
