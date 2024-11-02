@@ -4,11 +4,13 @@ const cooldown = require('../events/cooldown');
 const { getUserData } = require('../../lib/infouser');
 const { getServerInfo } = require('../../lib/infoserver');
 const { getBoostLevel } = require('../../lib/boost');
+const { getSystemInfo } = require('../../lib/systeminfo');
+const { createEmbed } = require('../../lib/embed'); 
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('info')
-    .setDescription('ユーザーまたはサーバーの情報を表示します')
+    .setDescription('情報を表示します')
     .addSubcommand(subcommand =>
       subcommand
         .setName('user')
@@ -17,7 +19,11 @@ module.exports = {
     .addSubcommand(subcommand =>
       subcommand
         .setName('server')
-        .setDescription('サーバー情報を表示します')),
+        .setDescription('サーバー情報を表示します'))
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('system')
+        .setDescription('システム情報を表示します')),
 
   async execute(interaction) {
     const commandName = this.data.name;
@@ -32,15 +38,12 @@ module.exports = {
       if (subcommand === 'user') {
         const targetUser = interaction.options.getUser('target');
         const userData = await getUserData(interaction, targetUser);
-        const { user, avatarURL, joinedAtFormatted, createdAt, displayName, isBoosting, roleCount, nameColor, status, bannerURL} = userData;
+        const { user, avatarURL, joinedAtFormatted, createdAt, displayName, isBoosting, roleCount, nameColor, status, bannerURL } = userData;
 
-        const embed = new EmbedBuilder()
-          .setColor('#febe69')
+        const embed = createEmbed(interaction)
           .setAuthor({ name: displayName, iconURL: avatarURL })
           .setDescription(`${user}'s user information`)
           .setThumbnail(avatarURL)
-          .setTimestamp()
-          .setFooter({ text: 'Kumanomi | userinfo', iconURL: interaction.client.user.displayAvatarURL() })
           .addFields(
             { name: '🔥 名前', value: user.tag, inline: true },
             { name: '🆔 ID', value: `${user.id}`, inline: true },
@@ -52,17 +55,13 @@ module.exports = {
             { name: '🎨 名前の色', value: nameColor.toUpperCase(), inline: true },
             { name: '<:bot:1292648890708791429> アカウント', value: user.bot ? 'BOT' : 'USER', inline: true }
           );
-        
+
         if (bannerURL) {
-            embed.setImage(bannerURL);
+          embed.setImage(bannerURL);
         }
-        
+
         await interaction.editReply({ embeds: [embed] });
       } else if (subcommand === 'server') {
-        const commandName = this.data.name;
-        const isCooldown = cooldown(commandName, interaction);
-        if (isCooldown) return;
-        
         const guild = interaction.guild;
         const serverIconUrl = guild.iconURL({ size: 1024 });
         const defaultIconUrl = `https://cdn.discordapp.com/embed/avatars/1.png`;
@@ -74,26 +73,18 @@ module.exports = {
         }
 
         const { textChannelsCount, voiceChannelsCount, categoryCount, memberCount, bannedCount, emojiCount, bannerURL, roleCount, userCount, botCount, onlineCount, dndCount, idleCount, offlineCount, createdAt } = serverInfo;
-
         const totalChannelsCount = textChannelsCount + voiceChannelsCount + categoryCount; 
         const boostLevel = getBoostLevel(guild.premiumSubscriptionCount);
 
-        const embed = new EmbedBuilder()
-          .setColor('#febe69')
-          .setTimestamp()
+        const embed = createEmbed(interaction)
           .setDescription(`**Information for ${guild.name} (${guild.id})**`)
-          .setFooter({ text: 'Kumanomi | serverinfo', iconURL: interaction.client.user.displayAvatarURL() })
           .setThumbnail(thumbnailUrl)
           .addFields(
-            { name: '👑 鯖主', value: `<@${guild.ownerId}>`},
-            { name: '<:booster:1292651469002113067> ブースト', value: `${guild.premiumSubscriptionCount} Boosts (Level ${boostLevel})`},
-            { name: '🚫 BANユーザー数', value: `${bannedCount} Users`},
+            { name: '👑 鯖主', value: `<@${guild.ownerId}>` },
+            { name: '<:booster:1292651469002113067> ブースト', value: `${guild.premiumSubscriptionCount} Boosts (Level ${boostLevel})` },
+            { name: '🚫 BANユーザー数', value: `${bannedCount} Users` },
             { name: '<:discord:1282701795000320082> チャンネル数', value: `Total: ${totalChannelsCount}\n<:text:1282162750524756022> Text: ${textChannelsCount} | <:vc:1282162748884516955> Voice: ${voiceChannelsCount} | 🌲Categories: ${categoryCount}`, inline: false },
-            {
-              name: '<:user:1292675664368898049> メンバー情報',
-              value: `Total: ${memberCount} (User: ${userCount} | BOT: ${botCount})\n<:online:1282208120113987634> : ${onlineCount} | <:dnd:1282208118486601778> : ${dndCount} | <:idle:1282208116783710259> : ${idleCount} | <:offline:1282208115214782476> : ${offlineCount}`,
-              inline: false
-            },
+            { name: '<:user:1292675664368898049> メンバー情報', value: `Total: ${memberCount} (User: ${userCount} | BOT: ${botCount})\n<:online:1282208120113987634> : ${onlineCount} | <:dnd:1282208118486601778> : ${dndCount} | <:idle:1282208116783710259> : ${idleCount} | <:offline:1282208115214782476> : ${offlineCount}`, inline: false },
             { name: '🔗 ロール数', value: `${roleCount} Roles`, inline: true },
             { name: '😎 絵文字数', value: `${emojiCount} Emojis`, inline: true },
             { name: '⚙ 作成日', value: `${createdAt} <t:${Math.floor(guild.createdTimestamp / 1000)}:R>`, inline: true }
@@ -102,6 +93,19 @@ module.exports = {
         if (bannerURL) {
           embed.setImage(bannerURL);
         }
+
+        await interaction.editReply({ embeds: [embed] });
+      } else if (subcommand === 'system') {
+        const { uptime, freemem, totalmem, cpus } = getSystemInfo();
+
+        const embed = createEmbed(interaction)
+          .setTitle('サーバーのシステム情報')
+          .addFields(
+            { name: 'Uptime', value: `${Math.floor(uptime / 60)} 分`, inline: true },
+            { name: 'CPU', value: `${cpus[0].model}`, inline: true },
+            { name: 'Core', value: `${cpus.length}`, inline: true },
+            { name: 'RAM', value: `${(freemem / (1024 ** 3)).toFixed(2)} GB / ${(totalmem / (1024 ** 3)).toFixed(2)} GB`, inline: false },
+          );
 
         await interaction.editReply({ embeds: [embed] });
       }
