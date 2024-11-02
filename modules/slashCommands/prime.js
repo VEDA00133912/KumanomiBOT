@@ -2,6 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 const { isPrime } = require('../../lib/prime'); 
+const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -13,6 +14,7 @@ module.exports = {
         .setRequired(true)
         .setMinValue(1)       
         .setMaxValue(9000000000000000)),  
+  
   async execute(interaction) {
     try {
       const commandName = this.data.name;
@@ -24,11 +26,8 @@ module.exports = {
 
       const primeResult = isPrime(number);
 
-      const embed = new EmbedBuilder()
-        .setColor('#febe69')
+      const embed = createEmbed(interaction)
         .setTitle('素数判定結果')
-        .setTimestamp()
-        .setFooter({ text: 'Kumanomi | prime', iconURL: interaction.client.user.displayAvatarURL() })
         .setFields(
           { name: '入力された数', value: number.toString() },
           { name: '結果', value: primeResult ? '素数です' : number === 57 ? '[グロタンディーク素数](<https://dic.nicovideo.jp/a/グロタンディーク素数>)です' : '素数ではありません' },
