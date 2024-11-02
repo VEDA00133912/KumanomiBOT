@@ -5,6 +5,7 @@ const fs = require('fs');
 const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
 const path = require('path');
+const { createEmbed } = require('../../lib/embed');
 const { isValidUrl, processVirusCheckResults } = require('../../lib/url');
 config();
 
@@ -54,7 +55,7 @@ module.exports = {
         const url = interaction.options.getString('url');
 
         if (!isValidUrl(url)) {
-            return interaction.reply('<:error:1299263288797827185> 無効なURLが入力されました。有効なURLを入力してください。');
+            return interaction.reply('<:error:1302169165905526805> 無効なURLが入力されました。有効なURLを入力してください。');
         }
 
         const apiKey = process.env.VIRUSTOTAL_API_KEY;
@@ -63,7 +64,7 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle('URL Check')
-            .setDescription(`Checking the URL: ${url} <a:loading:1259148838929961012>`)
+            .setDescription(`Checking the URL: ${url} <a:loading:1302169108888162334>`)
             .setColor('Yellow');
 
         await interaction.editReply({ embeds: [embed], ephemeral: true });
@@ -80,12 +81,12 @@ module.exports = {
             let color = 'Green'; 
 
             if (detected.length === 0) {
-                descriptionMessage = 'このURLは安全です <:done:1299263286361063454>';
+                descriptionMessage = '<:check:1302169183110565958> このURLは安全です <:check:1302169183110565958>';
             } else if (detected.length <= 2) {
-                descriptionMessage = 'このURLは危険な可能性があります <:warn:1282877367110340670>';
+                descriptionMessage = '<:warn:1302169126873206794> このURLは危険な可能性があります <:warn:1302169126873206794>';
                 color = 'Yellow'; 
             } else {
-                descriptionMessage = 'このURLは危険である可能性が非常に高いです <:danger:1282877371682263101>';
+                descriptionMessage = '<:danger:1302169143365341244> このURLは危険である可能性が非常に高いです <:danger:1302169143365341244>';
                 color = 'Red'; 
             }
 
@@ -124,7 +125,7 @@ module.exports = {
             fs.writeFileSync(filePath, urls.join('\n'), 'utf8');
             const fileUpload = new AttachmentBuilder(filePath);
 
-            await interaction.editReply({ content: '<:done:1299263286361063454> 抽出完了！', files: [fileUpload], ephemeral: true });
+            await interaction.editReply({ content: '<:check:1302169183110565958> 抽出完了！', files: [fileUpload], ephemeral: true });
             fs.unlinkSync(filePath);
         } else {
             slashCommandError(interaction.client, interaction, new Error('URLが見つかりませんでした'));
@@ -138,7 +139,7 @@ module.exports = {
         await interaction.deferReply({ ephemeral: true });
 
         if (!isValidUrl(urlToShorten)) {
-            return interaction.editReply('<:error:1282141871539490816> 無効なURLが入力されました。有効なURLを入力してください。');
+            return interaction.editReply('<:error:1302169165905526805> 無効なURLが入力されました。有効なURLを入力してください。');
         }
 
         try {
@@ -148,11 +149,8 @@ module.exports = {
                 const Url = response.data.shorturl;
                 const shortenedUrl = `<${Url}>`;
 
-                const embed = new EmbedBuilder()
-                    .setDescription(`<:done:1299263286361063454> **短縮に成功しました！**\n\n**短縮URL: ${shortenedUrl}**`)
-                    .setTimestamp()
-                    .setFooter({ text: 'Kumanomi | url short', iconURL: interaction.client.user.displayAvatarURL() })
-                    .setColor('#febe69');
+                const embed = createEmbed(interaction)
+                    .setDescription(`<:check:1302169183110565958> **短縮に成功しました！**\n\n**短縮URL: ${shortenedUrl}**`);
 
                 await interaction.editReply({ embeds: [embed] });
             }
