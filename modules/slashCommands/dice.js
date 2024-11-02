@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
+const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,14 +11,12 @@ module.exports = {
             option.setName('count')
                 .setDescription('振る個数を指定してください')
                 .setMinValue(1)
-                .setMaxValue(100)
-        )
+                .setMaxValue(100))
         .addIntegerOption(option =>
             option.setName('max')
                 .setDescription('サイコロの最大値を指定してください')
                 .setMinValue(1)
-                .setMaxValue(1000)
-        ),
+                .setMaxValue(1000)),
 
     async execute(interaction) {
         try {
@@ -38,12 +37,9 @@ module.exports = {
 
             const resultsString = results.join(', ');
 
-            const embed = new EmbedBuilder()
-                .setColor('#febe69')
+            const creatingEmbed = createEmbed(interaction)
                 .setTitle(`🎲 ${count}d${max} Results`)
-                .setDescription(`**${resultsString}**`)
-                .setFooter({ text: 'Kumanomi | dice', iconURL: interaction.client.user.displayAvatarURL() })
-                .setTimestamp();
+                .setDescription(`**${resultsString}**`);
 
             await interaction.editReply({ embeds: [embed] });
         } catch (error) {
