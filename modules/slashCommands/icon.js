@@ -1,6 +1,7 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
+const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -29,12 +30,9 @@ module.exports = {
         size: 1024,
       });
 
-      const embed = new EmbedBuilder()
+      const embed = createEmbed(interaction, 'icon')
         .setDescription(`<@${targetUser.id}>**[のアイコン](${avatarURL})**`)
-        .setImage(avatarURL)
-        .setTimestamp()
-        .setFooter({ text: 'Kumanomi | icon', iconURL: interaction.client.user.displayAvatarURL() })
-        .setColor('#febe69');
+        .setImage(avatarURL);
 
       await interaction.editReply({ embeds: [embed] });
     } catch (error) {
