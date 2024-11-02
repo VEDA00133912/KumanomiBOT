@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
 const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
+const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -32,7 +33,7 @@ module.exports = {
         if (isCooldown) return;
 
         if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageChannels)) {
-            return interaction.reply({ content: '<:error:1299263288797827185> BOTにチャンネルを管理する権限がありません。', ephemeral: true });
+            return interaction.reply({ content: '<:error:1302169165905526805> BOTにチャンネルを管理する権限がありません。', ephemeral: true });
         }
 
         const duration = interaction.options.getInteger('時間');
@@ -41,11 +42,10 @@ module.exports = {
             await interaction.deferReply({ ephemeral: true });
 
             await interaction.channel.setRateLimitPerUser(duration);
-            const successEmbed = new EmbedBuilder()
-                .setColor('Green')
-                .setTimestamp()
-                .setFooter({ text: 'Kumanomi | slowmode', iconURL: interaction.client.user.displayAvatarURL() })
+            
+            const successEmbed = createEmbed(interaction)
                 .setDescription(`低速を${duration}秒に設定しました。`);
+            
             await interaction.editReply({ embeds: [successEmbed] });
         } catch (error) {
             slashCommandError(interaction.client, interaction, error);
