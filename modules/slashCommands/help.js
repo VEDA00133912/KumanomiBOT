@@ -58,7 +58,7 @@ module.exports = {
                        getCommandField('timer', 'タイマーコマンド')
                    );
 
-                     const embed4 = createEmbed(interaction)
+              const embed4 = createEmbed(interaction)
                    .setDescription('**くまのみぼっと | help [スラッシュコマンド一覧 3]**')
                    .setThumbnail(interaction.client.user.displayAvatarURL())
                    .addFields(
@@ -70,7 +70,7 @@ module.exports = {
                        getCommandField('icon', '指定したユーザーのアイコン画像を表示するコマンド'),
                    );
 
-                   const embed5 = createEmbed(interaction)
+              const embed5 = createEmbed(interaction)
                    .setDescription('**くまのみぼっと | help [スラッシュコマンド一覧 4]**')
                    .setThumbnail(interaction.client.user.displayAvatarURL())
                    .addFields(
@@ -82,7 +82,7 @@ module.exports = {
                        getCommandField('delete', 'メッセージ削除コマンド') 
                    );
 
-                     const embed6 = createEmbed(interaction)
+              const embed6 = createEmbed(interaction)
                    .setDescription('**くまのみぼっと | help [スラッシュコマンド一覧 5]**')
                    .setThumbnail(interaction.client.user.displayAvatarURL())
                    .addFields(
@@ -93,8 +93,8 @@ module.exports = {
                        getCommandField('translate', 'Google翻訳コマンド(日本語→英語、韓国語、中国語、ロシア語)'),
                        getCommandField('yahoonews', 'yahooニュースリンクを取得するコマンド')
                    );
-
-                     const embed7 = createEmbed(interaction)
+                   
+              const embed7 = createEmbed(interaction)
                    .setDescription('**くまのみぼっと | help [スラッシュコマンド一覧 6]**')
                    .setThumbnail(interaction.client.user.displayAvatarURL())
                    .addFields(
@@ -105,8 +105,8 @@ module.exports = {
                        getCommandField('unban', 'BAN解除コマンド'),
                        getCommandField('kick', 'ユーザーをキックするコマンド')
                    );
-
-                     const embed8 = createEmbed(interaction)
+                     
+              const embed8 = createEmbed(interaction)
                    .setDescription('**くまのみぼっと | help [スラッシュコマンド一覧 7]**')
                    .setThumbnail(interaction.client.user.displayAvatarURL())
                    .addFields(
@@ -116,10 +116,9 @@ module.exports = {
                        getCommandField('password', 'パスワード生成コマンド')
                    );
 
-
-                   const embed9 = new EmbedBuilder()
+               const embed9 = new EmbedBuilder()
                    .setDescription('**くまのみぼっと | help [コンテキストメニューコマンド一覧**')
-                   .setFooter({ text: 'Kumanomi | help [9/10]', iconURL: interaction.client.user.displayAvatarURL() })
+                   .setFooter({ text: 'Kumanomi | help', iconURL: interaction.client.user.displayAvatarURL() })
                    .setThumbnail(interaction.client.user.displayAvatarURL())
                    .addFields(
                     { name: '**アイコン表示**', value: 'アイコンを表示するuserコンテキストメニューコマンド' },
@@ -133,9 +132,9 @@ module.exports = {
                 .setColor('Green');
 
 
-                const embed10 = new EmbedBuilder()
+              const embed10 = new EmbedBuilder()
                 .setDescription('**くまのみぼっと | help [テキストコマンド一覧]**')
-                .setFooter({ text: 'Kumanomi | help [10/10]', iconURL: interaction.client.user.displayAvatarURL() })
+                .setFooter({ text: 'Kumanomi | help', iconURL: interaction.client.user.displayAvatarURL() })
                 .setThumbnail(interaction.client.user.displayAvatarURL())
                 .addFields(
                     { name: '**^snipe**', value: 'そのチャンネルで削除された最新のメッセージを表示' },
