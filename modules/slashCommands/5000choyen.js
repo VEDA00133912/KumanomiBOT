@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
+const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -29,10 +30,7 @@ module.exports = {
       const top = interaction.options.getString('top');
       const bottom = interaction.options.getString('bottom');
 
-      const embed = new EmbedBuilder()
-        .setColor('#febe69')
-        .setFooter({ text:'Kumanomi | 5000choyen', iconURL: interaction.client.user.displayAvatarURL() })
-        .setTimestamp()
+      const embed = createEmbed(interaction)
         .setImage(`https://gsapi.cbrx.io/image?top=${encodeURIComponent(top)}&bottom=${encodeURIComponent(bottom)}&type=png`);
 
       await interaction.editReply({ embeds: [embed] });
