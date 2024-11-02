@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, PermissionFlagsBits } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
+const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -15,7 +16,7 @@ module.exports = {
       if (isCooldown) return;
 
       if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageChannels)) {
-        return interaction.reply({ content: '<:error:1299263288797827185> BOTにチャンネル管理の権限がありません。', ephemeral: true });
+        return interaction.reply({ content: '<:error:1302169165905526805> BOTにチャンネル管理の権限がありません。', ephemeral: true });
     }
 
       await interaction.deferReply();
@@ -24,10 +25,7 @@ module.exports = {
         .setStyle(ButtonStyle.Primary)
         .setLabel('チケットを作成する');
 
-      const embed1 = new EmbedBuilder()
-        .setColor('#febe69')
-        .setTimestamp()
-        .setFooter({ text:'Kumanomi | ticket create', iconURL: interaction.client.user.displayAvatarURL() })
+      const embed1 = createEmbed(interaction)
         .setDescription('チケットを作成するには下のボタンを押してください');
 
       await interaction.editReply({
