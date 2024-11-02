@@ -1,6 +1,8 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
+const { isValidUrl } = require('../../lib/url');
+const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -21,19 +23,16 @@ module.exports = {
     try {
       const url = interaction.options.getString('url');
 
-      if (!url) {
-        await interaction.editReply('<:error:1299263288797827185>　QRコードに変換したいURLを入力してください。');
+      if (!url || !isValidUrl(url)) {
+        await interaction.editReply('<:error:1302169165905526805>　無効なURLが入力されました。正しいURLを入力してください。');
         return;
       }
 
       const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(url)}&size=200x200`;
 
-      const embed = new EmbedBuilder()
-        .setColor('#febe69')
-        .setTitle('<:done:1299263286361063454> QRコードにしました！')
+      const embed = createEmbed(interaction)
+        .setTitle('<:check:1302169183110565958> QRコードにしました！')
         .addFields({ name: 'URL', value: url })
-        .setTimestamp()
-        .setFooter({ text: 'Kumanomi | qr', iconURL: interaction.client.user.displayAvatarURL() })
         .setImage(qrApiUrl);
 
       await interaction.editReply({ embeds: [embed], ephemeral: true });
