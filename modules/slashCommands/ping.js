@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
+const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -13,12 +14,9 @@ module.exports = {
         if (isCooldown) return;
 
         try {
-            const embed = new EmbedBuilder()
-                .setColor('#febe69')
+            const embed = createEmbed(interaction)
                 .setTitle('くまのみ｜Ping 🏓')
                 .setDescription('Ping値')
-                .setTimestamp()
-                .setFooter({ text: 'Kumanomi | Ping', iconURL: interaction.client.user.displayAvatarURL() })
                 .setFields(
                     { name: 'WebSocket Ping', value: `${interaction.client.ws.ping}ms`, inline: true },
                     { name: 'API-Endpoint Ping', value: `${Date.now() - interaction.createdTimestamp}ms`, inline: true }
