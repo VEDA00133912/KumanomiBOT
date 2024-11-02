@@ -20,13 +20,13 @@ module.exports = {
       if (isCooldown) return;
     
     if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageMessages)) {
-      return interaction.reply({ content: '<:error:1299263288797827185> BOTにメッセージを管理する権限がありません。', ephemeral: true });
+      return interaction.reply({ content: '<:error:1302169165905526805> BOTにメッセージを管理する権限がありません。', ephemeral: true });
     }
     if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ReadMessageHistory)) {
-      return interaction.reply({ content: '<:error:1299263288797827185> BOTにメッセージ履歴を読む権限がありません。', ephemeral: true });
+      return interaction.reply({ content: '<:error:1302169165905526805> BOTにメッセージ履歴を読む権限がありません。', ephemeral: true });
     }
     if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ViewChannel)) {
-      return interaction.reply({ content: '<:error:1299263288797827185> BOTにチャンネルを見る権限がありません。', ephemeral: true });
+      return interaction.reply({ content: '<:error:1302169165905526805> BOTにチャンネルを見る権限がありません。', ephemeral: true });
     }
 
     const count = interaction.options.getInteger('count');
@@ -35,8 +35,7 @@ module.exports = {
     try {
       const inProgressEmbed = new EmbedBuilder()
         .setColor('Yellow') 
-        .setTitle('削除中... <a:loading:1259148838929961012>')
-        .setDescription(`メッセージを削除しています。しばらくお待ちください。`)
+        .setDescription(`<a:loading:1302169108888162334> 削除中...`)
         .setFooter({ text: 'Kumanomi | deleting...', iconURL: interaction.client.user.displayAvatarURL() })
         .setTimestamp();
 
@@ -56,10 +55,9 @@ module.exports = {
 
       const completedEmbed = new EmbedBuilder()
         .setColor('Green') 
-        .setTitle('<:done:1299263286361063454> 削除完了！')
-        .setDescription(`削除したメッセージ数: ${deletedMessages.size}`)
+        .setDescription(`<:check:1302169183110565958> 削除したメッセージ数: ${deletedMessages.size}`)
         .setTimestamp()
-        .setFooter({ text: 'Kumanomi | delete', iconURL: interaction.client.user.displayAvatarURL() });
+        .setFooter({ text: 'Kumanomi | deleted', iconURL: interaction.client.user.displayAvatarURL() });
 
       await interaction.editReply({ embeds: [completedEmbed], ephemeral: true });
 
