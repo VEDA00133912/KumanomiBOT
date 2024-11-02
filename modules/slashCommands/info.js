@@ -107,12 +107,11 @@ module.exports = {
                   { name: '<:cpu:1302165536754372649> CPU', value: `${cpus[0].model}`, inline: true },
                   { name: '<:cpu:1302165536754372649> Core', value: `${cpus.length} core`, inline: true },
                   { name: '<:arch:1302165524846739487> architecture', value: arch, inline: true},
-                  { name: '<:ram:1302165546724360223> RAM', value: `${(freemem / (1024 ** 3)).toFixed(2)} GB / ${(totalmem / (1024 ** 3)).toFixed(2)} GB`, inline: true },
+                  { name: '<:ram:1302165546724360223> RAM', value: `${(freemem / (1024 ** 3)).toFixed(2)} GB / ${(totalmem / (1024 ** 3)).toFixed(2)} GB`, inline: true }
         );
 
           await interaction.editReply({ embeds: [embed] });
       }
-
     } catch (error) {
       slashCommandError(interaction.client, interaction, error);
     }
