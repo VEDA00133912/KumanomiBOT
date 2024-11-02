@@ -9,11 +9,11 @@ module.exports = {
         .setDescription('Minecraftサーバーのステータスを表示します')
         .addStringOption(option => 
             option.setName('ip')
-                .setDescription('MinecraftサーバーのIPアドレス')
+                .setDescription('サーバーのIPアドレス')
                 .setRequired(true))
         .addStringOption(option => 
             option.setName('port')
-                .setDescription('Minecraftサーバーのポート番号（省略時は25565）')
+                .setDescription('サーバーのポート番号（省略時は25565）')
                 .setRequired(false)),
 
     async execute(interaction) {
@@ -28,7 +28,7 @@ module.exports = {
         const loadingEmbed = new EmbedBuilder()
             .setColor('#508030')
             .setTitle('サーバーステータスを取得中...')
-            .setDescription(`サーバーIP: ${mcServerIp}\nポート: ${mcServerPort}`)
+            .setDescription(`<a:mc:1302169091414687774> サーバーIP: ${mcServerIp}\nポート: ${mcServerPort}`)
             .setFooter({ text: 'Kumanomi | mcstatus', iconURL: interaction.client.user.displayAvatarURL() })
             .setTimestamp();
 
@@ -46,7 +46,7 @@ module.exports = {
 
             const resultEmbed = new EmbedBuilder()
                 .setColor('#508030')
-                .setTitle(`${mcServerIp}:${mcServerPort} のステータス`)
+                .setTitle(`<a:mc:1302169091414687774> ${mcServerIp}:${mcServerPort} のステータス <a:mc:1302169091414687774>`)
                 .addFields(
                     { name: 'ステータス', value: status, inline: true },
                     { name: 'オンライン', value: online, inline: true },
