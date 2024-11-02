@@ -37,7 +37,7 @@ module.exports = {
 
             const resultsString = results.join(', ');
 
-            const creatingEmbed = createEmbed(interaction)
+            const embed = createEmbed(interaction)
                 .setTitle(`🎲 ${count}d${max} Results`)
                 .setDescription(`**${resultsString}**`);
 
