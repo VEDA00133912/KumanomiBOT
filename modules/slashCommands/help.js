@@ -1,26 +1,24 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-       const buttonPages = require("../../lib/pagination");
-       const cooldown = require('../events/cooldown');
+const buttonPages = require("../../lib/pagination");
+const cooldown = require('../events/cooldown');
+const { createEmbed } = require('../../lib/embed');
 
-       module.exports = {
-           data: new SlashCommandBuilder()
-               .setName('help')
-               .setDescription('くまのみぼっとのヘルプを表示します。'),
+module.exports = {
+       data: new SlashCommandBuilder()
+              .setName('help')
+              .setDescription('くまのみぼっとのヘルプを表示します。'),
 
-           async execute(interaction) {
-               const commandName = this.data.name;
-               const isCooldown = cooldown(commandName, interaction);
-               if (isCooldown) return;
+       async execute(interaction) {
+              const commandName = this.data.name;
+              const isCooldown = cooldown(commandName, interaction);
+              if (isCooldown) return;
 
-               const commands = await interaction.client.application.commands.fetch();
-               const commandMap = new Map(commands.map(cmd => [cmd.name, cmd.id]));
+              const commands = await interaction.client.application.commands.fetch();
+              const commandMap = new Map(commands.map(cmd => [cmd.name, cmd.id]));
 
-               const embed1 = new EmbedBuilder()
-                   .setColor('#febe69')
-                   .setTimestamp()
+               const embed1 = createEmbed(interaction)
                    .setDescription('**くまのみぼっと｜help**')
                    .setThumbnail(interaction.client.user.displayAvatarURL())
-                   .setFooter({ text: 'Kumanomi | help [1/10]', iconURL: interaction.client.user.displayAvatarURL() })
                    .addFields(
                      { name: 'くまのみぼっとについて', value: '暇な音ゲーマーの作ってる多機能botです' },
                      { name: '新機能のおしらせチャンネルについて', value: 'サポートサーバーのアナウンスチャンネルをフォローすることでおしらせを受け取れます' },
@@ -36,9 +34,8 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
                    return { name: `</${name}:${commandId}>`, value: description };
                };
 
-               const embed2 = new EmbedBuilder()
+               const embed2 = createEmbed(interaction)
                    .setDescription('**くまのみぼっと | help [スラッシュコマンド一覧 1]**')
-                   .setFooter({ text: 'Kumanomi | help [2/10]', iconURL: interaction.client.user.displayAvatarURL() })
                    .setThumbnail(interaction.client.user.displayAvatarURL())
                    .addFields(
                        getCommandField('help', 'helpメッセージを表示するコマンド'),
@@ -47,13 +44,10 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
                        { name: `</select chunithm:1298846149926715458>`, value: 'CHUNITHMランダム選曲コマンド(全曲、ORIGINAL、WE&ULTIMA)' },
                        { name: `</select maimai:1298846149926715458>`, value: 'maimaiランダム選曲コマンド(全曲、maimai、宴譜面)' },
                        { name: `</select ongeki:1298846149926715458>`, value: 'オンゲキランダム選曲コマンド(全曲、オンゲキ、LUNATIC、Re:MASTER)' },
-                   )
-                   .setTimestamp()
-                   .setColor('#febe69');
+                   );
 
-               const embed3 = new EmbedBuilder()
+               const embed3 = createEmbed(interaction)
                    .setDescription('**くまのみぼっと | help [スラッシュコマンド一覧 2]**')
-                   .setFooter({ text: 'Kumanomi | help [3/10]', iconURL: interaction.client.user.displayAvatarURL() })
                    .setThumbnail(interaction.client.user.displayAvatarURL())
                    .addFields(
                        { name: `</info server:1298846149486182519>`, value: 'サーバー情報を表示するコマンド' },
@@ -62,13 +56,10 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
                        getCommandField('5000choyen', '5000兆円欲しい！画像生成コマンド'),
                        getCommandField('omikuji', 'おみくじを引けるコマンド'),
                        getCommandField('timer', 'タイマーコマンド')
-                   )
-                   .setTimestamp()
-                   .setColor('#febe69');
+                   );
 
-                     const embed4 = new EmbedBuilder()
+                     const embed4 = createEmbed(interaction)
                    .setDescription('**くまのみぼっと | help [スラッシュコマンド一覧 3]**')
-                   .setFooter({ text: 'Kumanomi | help [4/10]', iconURL: interaction.client.user.displayAvatarURL() })
                    .setThumbnail(interaction.client.user.displayAvatarURL())
                    .addFields(
                        { name: `</create role:1298846149486182514>`, value: 'ロール作成コマンド' },                
@@ -77,13 +68,10 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
                        getCommandField('timer', 'タイマーコマンド'),
                        getCommandField('totsu-shi', '突然の死ジェネレーターコマンド'),
                        getCommandField('icon', '指定したユーザーのアイコン画像を表示するコマンド'),
-                   )
-                   .setTimestamp()
-                   .setColor('#febe69');
+                   );
 
-                   const embed5 = new EmbedBuilder()
+                   const embed5 = createEmbed(interaction)
                    .setDescription('**くまのみぼっと | help [スラッシュコマンド一覧 4]**')
-                   .setFooter({ text: 'Kumanomi | help [5/10]', iconURL: interaction.client.user.displayAvatarURL() })
                    .setThumbnail(interaction.client.user.displayAvatarURL())
                    .addFields(
                        { name: `</fake nitro:1298846149486182517>`, value: '偽Nitro生成コマンド(Gift, Promo)' },                
@@ -92,13 +80,10 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
                        getCommandField('qr', 'URLをQRコードに変換するコマンド'),
                        getCommandField('ping', 'BOTのping値を表示するコマンド'),
                        getCommandField('delete', 'メッセージ削除コマンド') 
-                   )
-                   .setTimestamp()
-                   .setColor('#febe69');
+                   );
 
-                     const embed6 = new EmbedBuilder()
+                     const embed6 = createEmbed(interaction)
                    .setDescription('**くまのみぼっと | help [スラッシュコマンド一覧 5]**')
-                   .setFooter({ text: 'Kumanomi | help [6/10]', iconURL: interaction.client.user.displayAvatarURL() })
                    .setThumbnail(interaction.client.user.displayAvatarURL())
                    .addFields(
                        { name: `</url short:1298846150069190697>`, value: 'URL短縮コマンド' }, 
@@ -107,13 +92,10 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
                        getCommandField('prime', '素数判定を行うコマンド'),
                        getCommandField('translate', 'Google翻訳コマンド(日本語→英語、韓国語、中国語、ロシア語)'),
                        getCommandField('yahoonews', 'yahooニュースリンクを取得するコマンド')
-                   )
-                   .setTimestamp()
-                   .setColor('#febe69');
+                   );
 
-                     const embed7 = new EmbedBuilder()
+                     const embed7 = createEmbed(interaction)
                    .setDescription('**くまのみぼっと | help [スラッシュコマンド一覧 6]**')
-                   .setFooter({ text: 'Kumanomi | help [7/10]', iconURL: interaction.client.user.displayAvatarURL() })
                    .setThumbnail(interaction.client.user.displayAvatarURL())
                    .addFields(
                        getCommandField('ticket', 'チケットコマンド(プライベートチャンネルの作成)'),
@@ -122,20 +104,17 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
                        getCommandField('ban', 'ユーザーをBANするコマンド'),
                        getCommandField('unban', 'BAN解除コマンド'),
                        getCommandField('kick', 'ユーザーをキックするコマンド')
-               )
-                   .setTimestamp()
-                   .setColor('#febe69');
+                   );
 
-                     const embed8 = new EmbedBuilder()
+                     const embed8 = createEmbed(interaction)
                    .setDescription('**くまのみぼっと | help [スラッシュコマンド一覧 7]**')
-                   .setFooter({ text: 'Kumanomi | help [8/10]', iconURL: interaction.client.user.displayAvatarURL() })
                    .setThumbnail(interaction.client.user.displayAvatarURL())
                    .addFields(
                        getCommandField('hiroyuki', 'ひろゆきボイスのmp3に変換'),
                        getCommandField('slowmode', '低速モードの設定')
-               )
-                   .setTimestamp()
-                   .setColor('#febe69');
+                       getCommandField('hash', 'ハッシュ化コマンド')
+                       getCommandField('password', 'パスワード生成コマンド')
+                   );
 
 
                    const embed9 = new EmbedBuilder()
