@@ -21,7 +21,7 @@ module.exports = {
         if (isCooldown) return;
 
         if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.KickMembers)) {
-          return interaction.reply({ content: '<:error:1299263288797827185> BOTにKick権限がありません。', ephemeral: true });
+          return interaction.reply({ content: '<:error:1302169165905526805> BOTにKick権限がありません。', ephemeral: true });
         }
         
         const reason = interaction.options.getString('reason') || '理由なし';
