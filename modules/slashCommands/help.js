@@ -111,8 +111,8 @@ module.exports = {
                    .setThumbnail(interaction.client.user.displayAvatarURL())
                    .addFields(
                        getCommandField('hiroyuki', 'ひろゆきボイスのmp3に変換'),
-                       getCommandField('slowmode', '低速モードの設定')
-                       getCommandField('hash', 'ハッシュ化コマンド')
+                       getCommandField('slowmode', '低速モードの設定'),
+                       getCommandField('hash', 'ハッシュ化コマンド'),
                        getCommandField('password', 'パスワード生成コマンド')
                    );
 
