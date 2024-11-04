@@ -1,7 +1,7 @@
 {
-  "name": "emubotv4",
-  "version": "4.0.0",
-  "description": "えむBOTのver.4.0です",
+  "name": "Kumanomi",
+  "version": "2.0.0",
+  "description": "くまのみBOTのver.2.0.0です",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^18.0.6",
     "axios": "^1.7.7",
     "cheerio": "^1.0.0",
     "cjp": "^2.3.1",
@@ -19,7 +18,6 @@
     "form-data": "^4.0.0",
     "genhera": "^1.1.0",
     "node-schedule": "^2.1.1",
-    "sharp": "^0.33.5",
     "yahoo-finance2": "^2.11.3"
   }
 }
