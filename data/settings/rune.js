@@ -1,4 +1,3 @@
-
 module.exports = {
   "A": "ᚪ",
   "B": "ᛒ",
