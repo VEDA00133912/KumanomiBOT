@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
-const { generatePasswords } = require('../../lib/password');
+const generatePasswords = require('../../lib/password');
 const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
@@ -40,7 +40,7 @@ module.exports = {
 
             const resultEmbed = createEmbed(interaction)
                 .setTitle('生成されたパスワード')
-                .setDescription(passwords.join('\n'));
+           　　 .setDescription(passwords.map(password => `\`\`\`${password}\`\`\``).join('\n'));
 
             await interaction.editReply({ embeds: [resultEmbed] });
         } catch (error) {
