@@ -2,6 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits, ChannelType } = 
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 const { createEmbed } = require('../../lib/embed');
+const createEmoji = require('../../lib/createEmoji'); 
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -48,8 +49,23 @@ module.exports = {
                         .setMinLength(1)
                         .setMaxLength(1024)
                         .setRequired(false))
-        ),
-
+        )
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('emoji')
+                .setDescription('新しい絵文字を作成します。')
+                .addStringOption(option =>
+                    option.setName('name')
+                        .setDescription('絵文字の名前')
+                        .setRequired(true)
+                        .setMinLength(1)
+                        .setMaxLength(30))
+                .addAttachmentOption(option =>
+                    option.setName('image')
+                        .setDescription('絵文字にする画像ファイル')
+                        .setRequired(true)
+                )),
+    
     async execute(interaction) {
         const commandName = this.data.name;
         const isCooldown = cooldown(commandName, interaction);
@@ -64,20 +80,20 @@ module.exports = {
                 const roleCount = interaction.guild.roles.cache.size;
 
                 if (!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) {
-                    return interaction.reply({ content: '<error:1302169165905526805> あなたにロール管理の権限がありません。', ephemeral: true });
+                    return interaction.reply({ content: '<error:1299263288797827185> あなたにロール管理の権限がありません。', ephemeral: true });
                 }
 
                 if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageRoles)) {
-                    return interaction.reply({ content: '<error:1302169165905526805> BOTにロール管理の権限がありません。', ephemeral: true });
+                    return interaction.reply({ content: '<error:1299263288797827185> BOTにロール管理の権限がありません。', ephemeral: true });
                 }
 
                 if (roleCount >= 250) {
-                    return interaction.reply({ content: '<error:1302169165905526805> ロールの作成上限のため、実行できませんでした。', ephemeral: true });
+                    return interaction.reply({ content: '<error:1299263288797827185> ロールの作成上限のため、実行できませんでした。', ephemeral: true });
                 }
 
                 const creatingEmbed = createEmbed(interaction)
                     .setTitle('ロール作成中...')
-                    .setDescription(`<a:loading:1302169108888162334> **\`${name}\`**を作成しています...`);
+                    .setDescription(`<a:loading:1259148838929961012> ロール **\`${name}\`**を作成しています...`);
 
                 await interaction.reply({ embeds: [creatingEmbed], ephemeral: true });
 
@@ -87,11 +103,11 @@ module.exports = {
                 });
 
                 const completeEmbed = new EmbedBuilder()
-                    .setColor(roleColor || '#99AAB5') 
-                    .setTitle('<:check:1302169183110565958> 作成完了!')
-                    .setTimestamp()
-                    .setFooter({ text: 'Kumanomi | role create', iconURL: interaction.client.user.displayAvatarURL() })
-                    .setDescription(`作成したロール: <@&${createdRole.id}>`);
+                .setColor(color ? color.toUpperCase() : '#99AAB5') 
+                .setTitle('<:done:1299263286361063454> 作成完了!')
+                .setTimestamp()
+                .setFooter({ text: 'Kumanomi | role create', iconURL: interaction.client.user.displayAvatarURL() })
+                .setDescription(`作成したロール: <@&${createdRole.id}>`);
 
                 await interaction.editReply({ embeds: [completeEmbed] });
 
@@ -101,16 +117,16 @@ module.exports = {
                 const type = interaction.options.getString('type');
 
                 if (!interaction.member.permissions.has(PermissionFlagsBits.ManageRoles)) {
-                    return interaction.reply({ content: '<error:1302169165905526805> あなたにチャンネル管理権限がありません。', ephemeral: true });
+                    return interaction.reply({ content: '<error:1299263288797827185> あなたにチャンネル管理権限がありません。', ephemeral: true });
                 }
 
                 if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageChannels)) {
-                    return interaction.reply({ content: '<error:1302169165905526805> BOTにチャンネル管理の権限がありません。', ephemeral: true });
+                    return interaction.reply({ content: '<error:1299263288797827185> BOTにチャンネル管理の権限がありません。', ephemeral: true });
                 }
 
                 const creatingEmbed = createEmbed(interaction)
                     .setTitle('チャンネル作成中...')
-                    .setDescription(`<a:loading:1302169108888162334> チャンネル **\`${name}\`**を作成しています...`);
+                    .setDescription(`<a:loading:1259148838929961012> チャンネル **\`${name}\`**を作成しています...`);
 
                 await interaction.reply({ embeds: [creatingEmbed], ephemeral: true });
 
@@ -121,8 +137,37 @@ module.exports = {
                 });
 
                 const completeEmbed = createEmbed(interaction)
-                    .setTitle('<:check:1302169183110565958> 作成完了!')
+                    .setTitle('<:done:1299263286361063454> 作成完了!')
                     .setDescription(`作成したチャンネル: <#${createdChannel.id}>`);
+
+                await interaction.editReply({ embeds: [completeEmbed] });
+            } else if (subcommand === 'emoji') {
+                const name = interaction.options.getString('name');
+                const attachment = interaction.options.getAttachment('image');
+
+                if (!interaction.member.permissions.has(PermissionFlagsBits.CreateGuildExpressions)) {
+                    return interaction.reply({ content: '<error:1299263288797827185> あなたに絵文字作成権限がありません。', ephemeral: true });
+                }
+
+                if (!interaction.member.permissions.has(PermissionFlagsBits.ManageGuildExpressions)) {
+                    return interaction.reply({ content: '<error:1299263288797827185> あなたに絵文字管理権限がありません。', ephemeral: true });
+                }
+                
+                if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.CreateGuildExpressions)) {
+                    return interaction.reply({ content: '<error:1299263288797827185> BOTに絵文字作成権限がありません。', ephemeral: true });
+                }
+
+                const creatingEmbed = createEmbed(interaction)
+                    .setTitle('絵文字作成中...')
+                    .setDescription(`<a:loading:1259148838929961012> 絵文字 **\`${name}\`**を作成しています...`);
+
+                await interaction.reply({ embeds: [creatingEmbed], ephemeral: true });
+
+                const createdEmoji = await createEmoji(interaction.guild, name, attachment);
+
+                const completeEmbed = createEmbed(interaction)
+                    .setTitle('<:done:1299263286361063454> 作成完了!')
+                    .setDescription(`作成した絵文字: <:${createdEmoji.name}:${createdEmoji.id}>`);
 
                 await interaction.editReply({ embeds: [completeEmbed] });
             }
