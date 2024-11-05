@@ -14,7 +14,7 @@ module.exports = {
         .setDescription('変換するテキストを入力してください(ひらがな、カタカナ、アルファベット対応)')
         .setRequired(true)
         .setMinLength(1)
-        .setMaxLength(400)),
+        .setMaxLength(100)),
 
   async execute(interaction) {
     try {

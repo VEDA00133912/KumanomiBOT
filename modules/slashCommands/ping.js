@@ -15,8 +15,7 @@ module.exports = {
 
         try {
             const embed = createEmbed(interaction)
-                .setTitle('くまのみ｜Ping 🏓')
-                .setDescription('Ping値')
+                .setDescription('Pong！🏓')
                 .setFields(
                     { name: 'WebSocket Ping', value: `${interaction.client.ws.ping}ms`, inline: true },
                     { name: 'API-Endpoint Ping', value: `${Date.now() - interaction.createdTimestamp}ms`, inline: true }

@@ -15,7 +15,7 @@ module.exports = {
       subcommand
         .setName('user')
         .setDescription('ユーザー情報を表示します')
-        .addUserOption(option => option.setName('target').setDescription('表示するユーザーを選択')))
+        .addUserOption(option => option.setName('target').setDescription('表示するユーザーを選択').setRequired(true)))
     .addSubcommand(subcommand =>
       subcommand
         .setName('server')
