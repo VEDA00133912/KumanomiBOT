@@ -18,7 +18,7 @@
     "form-data": "^4.0.0",
     "genhera": "^1.1.0",
     "node-schedule": "^2.1.1",
-    "uuid"; "^11.0.2",
+    "uuid": "^11.0.2",
     "yahoo-finance2": "^2.11.3"
   }
 }
