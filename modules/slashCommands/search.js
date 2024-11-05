@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const axios = require('axios');
-const googleSearch = require('../lib/google');
+const googleSearch = require('../../lib/google');
 const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
 const { createEmbed } = require('../../lib/embed');
