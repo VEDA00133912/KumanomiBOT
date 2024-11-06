@@ -9,6 +9,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('cjp')
     .setDescription('文字列を怪レい日本语に変換します。')
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1)
     .addStringOption(option =>
       option.setName('text')
         .setDescription('変換するテキストを入力してください。')

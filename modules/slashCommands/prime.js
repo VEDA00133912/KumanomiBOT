@@ -8,6 +8,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('prime')
     .setDescription('素数判定')
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1)
     .addIntegerOption(option =>
       option.setName('number')
         .setDescription('素数かどうかを判定したい数')

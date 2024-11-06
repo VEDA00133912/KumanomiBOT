@@ -7,6 +7,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('timer')
     .setDescription('指定した時間後に通知するタイマーを起動します。')
+    .setDMPermission(false)
     .addIntegerOption(option =>
       option.setName('minutes')
         .setDescription('分を指定してください。')

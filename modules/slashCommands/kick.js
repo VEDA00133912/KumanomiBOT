@@ -7,6 +7,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('kick')
         .setDescription('指定したユーザーをキックします')
+  　　  .setDMPermission(false)
         .addUserOption(option =>
             option.setName('user1').setDescription('キックするユーザー1').setRequired(true))
         .addUserOption(option => option.setName('user2').setDescription('キックするユーザー2'))

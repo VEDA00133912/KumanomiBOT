@@ -9,6 +9,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('rune')
     .setDescription('文字列をルーン文字に変換します。')
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1)
     .addStringOption(option =>
       option.setName('text')
         .setDescription('変換するテキストを入力してください(ひらがな、カタカナ、アルファベット対応)')

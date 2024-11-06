@@ -10,6 +10,7 @@ module.exports = {
         .setName('expand-settings')
         .setDescription('メッセージリンクの展開をオンまたはオフにします。')
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
+        .setDMPermission(false)
         .addStringOption(option =>
             option.setName('on-off')
                 .setDescription('オンかオフを選択')

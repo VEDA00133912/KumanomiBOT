@@ -7,6 +7,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('mcstatus')
         .setDescription('Minecraftサーバーのステータスを表示します')
+        .setContexts(0,1,2)
+        .setIntegrationTypes(0,1)
         .addStringOption(option => 
             option.setName('ip')
                 .setDescription('サーバーのIPアドレス')

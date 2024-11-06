@@ -8,6 +8,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('uuid')
         .setDescription('UUIDを生成します')
+        .setContexts(0,1,2)
+        .setIntegrationTypes(0,1)
         .addIntegerOption(option =>
             option.setName('count')
                 .setDescription('生成するUUIDの数')
@@ -16,10 +18,14 @@ module.exports = {
         ),
 
     async execute(interaction) {
+        const commandName = this.data.name;
+        const isCooldown = cooldown(commandName, interaction);
+        if (isCooldown) return;
+
         const count = interaction.options.getInteger('count');
         
         try {
-            await interaction.deferReply();
+            await interaction.deferReply({ ephemeral: true });
 
             const uuids = Array.from({ length: count }, () => generateUUID());
 

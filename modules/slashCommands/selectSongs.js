@@ -6,6 +6,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('select')
     .setDescription('曲を選択します。')
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1)
     .addSubcommand(subcommand =>
       subcommand
         .setName('taiko')

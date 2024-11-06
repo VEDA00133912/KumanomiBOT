@@ -7,6 +7,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('dice')
         .setDescription('多面ダイスを振ります')
+        .setContexts(0,1,2)
+        .setIntegrationTypes(0,1)
         .addIntegerOption(option =>
             option.setName('count')
                 .setDescription('振る個数を指定してください')

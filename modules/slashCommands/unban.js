@@ -7,6 +7,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('unban')
         .setDescription('指定したユーザーのBAN解除をします')
+        .setDMPermission(false)
         .addUserOption(option =>
             option.setName('user1').setDescription('解除するユーザー1').setRequired(true))
         .addUserOption(option => option.setName('user2').setDescription('解除するユーザー2'))

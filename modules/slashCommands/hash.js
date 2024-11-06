@@ -8,6 +8,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('hash')
     .setDescription('テキストをハッシュ化します。')
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1)
     .addStringOption(option =>
       option.setName('text')
         .setDescription('ハッシュ化したいテキスト')

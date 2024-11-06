@@ -8,6 +8,7 @@ module.exports = {
         .setName('slowmode')
         .setDescription('低速モードを設定します')
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
+        .setDMPermission(false)
         .addIntegerOption(option => 
             option.setName('時間')
                 .setDescription('低速の時間を選択してください')

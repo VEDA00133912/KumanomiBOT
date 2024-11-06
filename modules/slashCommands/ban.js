@@ -13,7 +13,9 @@ module.exports = {
         .addUserOption(option => option.setName('user3').setDescription('BANするユーザー3'))
         .addStringOption(option =>
             option.setName('reason').setDescription('理由（50文字以内）').setMinLength(1).setMaxLength(50))
-        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
+        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+        .setDMPermission(false),
+
 
     async execute(interaction) {
         const commandName = this.data.name;

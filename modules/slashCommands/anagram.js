@@ -9,13 +9,14 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('anagram')
     .setDescription('文字列をアナグラムに変換します。')
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1)
     .addStringOption(option =>
       option.setName('text')
         .setDescription('変換するテキストを入力してください。')
         .setRequired(true)
         .setMinLength(1)
-        .setMaxLength(400)
-    ),
+        .setMaxLength(400)),
 
   async execute(interaction) {
     try {

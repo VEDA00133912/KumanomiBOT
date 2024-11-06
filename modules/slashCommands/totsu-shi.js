@@ -8,6 +8,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('totsu-shi')
     .setDescription('突然の死ジェネレーターです')
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1)
     .addStringOption(option =>
       option.setName('content')
         .setDescription('生成する内容')

@@ -7,6 +7,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('5000choyen')
     .setDescription('5000兆円欲しい!!風の画像生成')
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1)
     .addStringOption(option =>
       option.setName('top')
         .setDescription('上部文字列')
@@ -18,8 +20,7 @@ module.exports = {
         .setDescription('下部文字列')
         .setMinLength(1)  
         .setMaxLength(30)
-        .setRequired(true))	
-    .setDMPermission(false),
+        .setRequired(true)),
 
   async execute(interaction) {
     try {

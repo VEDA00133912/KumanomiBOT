@@ -5,8 +5,9 @@ const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
        data: new SlashCommandBuilder()
-              .setName('help')
-              .setDescription('くまのみBOTのヘルプを表示します。'),
+             .setName('help')
+             .setDescription('くまのみBOTのヘルプを表示します。')
+             .setDMPermission(false),
 
        async execute(interaction) {
               const commandName = this.data.name;

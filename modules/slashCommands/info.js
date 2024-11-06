@@ -11,6 +11,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('info')
     .setDescription('情報を表示します')
+    .setDMPermission(false)
     .addSubcommand(subcommand =>
       subcommand
         .setName('user')

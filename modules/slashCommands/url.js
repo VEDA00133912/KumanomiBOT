@@ -6,13 +6,15 @@ const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
 const path = require('path');
 const { createEmbed } = require('../../lib/embed');
-const { isValidUrl, processVirusCheckResults } = require('../../lib/url');
+const { isValidUrl, processVirusCheckResults, invalidUrlMessage } = require('../../lib/url');
 config();
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('url')
         .setDescription('URL関連のコマンド')
+        .setContexts(0, 1, 2)
+        .setIntegrationTypes(0, 1)
         .addSubcommand(subcommand =>
             subcommand.setName('viruscheck')
                 .setDescription('URLの危険性を判断します')
@@ -55,7 +57,7 @@ module.exports = {
         const url = interaction.options.getString('url');
 
         if (!isValidUrl(url)) {
-            return interaction.reply('<:error:1302169165905526805> 無効なURLが入力されました。有効なURLを入力してください。');
+            return interaction.reply(invalidUrlMessage());
         }
 
         const apiKey = process.env.VIRUSTOTAL_API_KEY;
@@ -71,23 +73,32 @@ module.exports = {
 
         try {
             const encodedUrl = Buffer.from(url).toString('base64').replace(/=/g, '');
-            const { data } = await axios.get(`https://www.virustotal.com/api/v3/urls/${encodedUrl}`, {
+            const response = await axios.get(`https://www.virustotal.com/api/v3/urls/${encodedUrl}`, {
                 headers: { 'x-apikey': apiKey }
             });
 
-            const { detected, clean, unrated } = processVirusCheckResults(data); 
+            if (response.status !== 200) {
+                const errorEmbed = new EmbedBuilder()
+                    .setTitle('URL チェック結果')
+                    .setDescription(`<:error:1302169165905526805> このサイトは無効です。`)
+                    .setColor('Red');
+
+                return interaction.editReply({ embeds: [errorEmbed], ephemeral: true });
+            }
+
+            const { detected, clean, unrated } = processVirusCheckResults(response.data);
 
             let descriptionMessage = '';
-            let color = 'Green'; 
+            let color = 'Green';
 
             if (detected.length === 0) {
                 descriptionMessage = '<:check:1302169183110565958> このURLは安全です <:check:1302169183110565958>';
             } else if (detected.length <= 2) {
                 descriptionMessage = '<:warn:1302169126873206794> このURLは危険な可能性があります <:warn:1302169126873206794>';
-                color = 'Yellow'; 
+                color = 'Yellow';
             } else {
                 descriptionMessage = '<:danger:1302169143365341244> このURLは危険である可能性が非常に高いです <:danger:1302169143365341244>';
-                color = 'Red'; 
+                color = 'Red';
             }
 
             const embedResult = new EmbedBuilder()
@@ -102,9 +113,19 @@ module.exports = {
 
             await interaction.editReply({ embeds: [embedResult], ephemeral: true });
         } catch (error) {
+            if (error.response && error.response.status === 404) {
+                const notFoundEmbed = new EmbedBuilder()
+                    .setTitle('URL チェック結果')
+                    .setDescription('<:error:1302169165905526805> URLが見つかりませんでした。無効なURLの可能性があります。')
+                    .setColor('Red');
+                
+                return interaction.editReply({ embeds: [notFoundEmbed], ephemeral: true });
+            }
+
             slashCommandError(interaction.client, interaction, error);
         }
     },
+
     async extractUrls(interaction) {
         await interaction.deferReply({ ephemeral: true });
 
@@ -139,7 +160,7 @@ module.exports = {
         await interaction.deferReply({ ephemeral: true });
 
         if (!isValidUrl(urlToShorten)) {
-            return interaction.editReply('<:error:1302169165905526805> 無効なURLが入力されました。有効なURLを入力してください。');
+            return interaction.editReply(invalidUrlMessage());
         }
 
         try {
@@ -150,12 +171,18 @@ module.exports = {
                 const shortenedUrl = `<${Url}>`;
 
                 const embed = createEmbed(interaction)
-                    .setDescription(`<:check:1302169183110565958> **短縮に成功しました！**\n\n**短縮URL: ${shortenedUrl}**`);
-
-                await interaction.editReply({ embeds: [embed] });
+                    .setDescription(`<:check:1302169183110565958> 短縮されたURL: ${shortenedUrl}`)
+                    .setColor('Green');
+                await interaction.editReply({ embeds: [embed], ephemeral: true });
+            } else {
+                const errorEmbed = new EmbedBuilder()
+                    .setTitle('URL短縮エラー')
+                    .setDescription('<:error:1302169165905526805> 短縮に失敗しました。')
+                    .setColor('Red');
+                await interaction.editReply({ embeds: [errorEmbed], ephemeral: true });
             }
         } catch (error) {
-            slashCommandError(interaction.client, interaction, error); 
+            slashCommandError(interaction.client, interaction, error);
         }
     }
 };

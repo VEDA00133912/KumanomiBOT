@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 const path = require('path');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
@@ -8,7 +8,9 @@ const { createEmbed } = require('../../lib/embed');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('omikuji')
-    .setDescription('おみくじを引けます'),
+    .setDescription('おみくじを引けます')
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1),
 
   async execute(interaction) {
     const commandName = this.data.name;
@@ -29,16 +31,17 @@ module.exports = {
       await interaction.reply({ embeds: [omikujiembed] });
 
       const result = getRandomFortune(userId);
-
       const specialThumbnailPath = path.join(__dirname, '../../data/assets/special.png');
 
       const embed = createEmbed(interaction)
-        .setTitle('おみくじ結果')
+        .setTitle('<a:omikuji:1302169074083823646> おみくじ結果')
         .setDescription(`今日の<@${userId}>は **${result}** だよ！\nまた明日引いてね！`);
 
       if (result === specialFortune) {
         embed.setThumbnail('attachment://special.png');
       }
+
+      await new Promise(resolve => setTimeout(resolve, 2000));
 
       await interaction.editReply({
         embeds: [embed],

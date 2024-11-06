@@ -9,6 +9,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('search')
     .setDescription('情報を検索します')
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1)
     .addSubcommand(subcommand =>
       subcommand
         .setName('gif')

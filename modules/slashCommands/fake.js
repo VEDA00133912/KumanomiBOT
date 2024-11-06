@@ -8,6 +8,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('fake')
     .setDescription('フェイクNitroやトークンの生成')
+    .setDMPermission(false)
     .addSubcommand(subcommand =>
       subcommand
         .setName('nitro')

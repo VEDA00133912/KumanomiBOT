@@ -5,6 +5,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('hiroyuki')
     .setDescription('ひろゆきボイスのMP3に変換します')
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1)
     .addStringOption(option =>
       option.setName('text')
         .setDescription('ひろゆきに喋らせる内容')

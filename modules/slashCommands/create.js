@@ -8,6 +8,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('create')
         .setDescription('新規作成します。')
+        .setDMPermission(false)
         .addSubcommand(subcommand =>
             subcommand
                 .setName('role')

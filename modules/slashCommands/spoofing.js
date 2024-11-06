@@ -8,6 +8,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('spoofing')
     .setDescription('他のユーザーになりすましできるコマンド')
+    .setDMPermission(false)
     .addUserOption(option =>
       option.setName('target')
         .setDescription('メンションまたはユーザーIDでユーザーを指定します')

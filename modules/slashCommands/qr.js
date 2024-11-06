@@ -8,6 +8,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('qr')
     .setDescription('QRコードの生成を行います')
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1)
     .addStringOption(option =>
       option.setName('url')
         .setDescription('QRに変換したいURLを入力してください')

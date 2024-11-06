@@ -7,6 +7,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('icon')
     .setDescription('アイコン表示')
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1)
     .addUserOption(option =>
       option.setName('user')
         .setDescription('表示したいユーザー')
@@ -20,12 +22,11 @@ module.exports = {
 
     await interaction.deferReply();
 
-    const { options, user, guild } = interaction;
+    const { options, user } = interaction;
     const targetUser = options.getUser('user') || user;
 
     try {
-      const guildMember = await guild.members.fetch(targetUser.id);
-      const avatarURL = guildMember.displayAvatarURL({
+      const avatarURL = targetUser.displayAvatarURL({
         format: 'png',
         size: 1024,
       });
