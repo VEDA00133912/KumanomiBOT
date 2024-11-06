@@ -18,7 +18,8 @@ module.exports = {
         .setDescription('下部文字列')
         .setMinLength(1)  
         .setMaxLength(30)
-        .setRequired(true)),
+        .setRequired(true))	
+    .setDMPermission(false),
 
   async execute(interaction) {
     try {
