@@ -1,7 +1,7 @@
 {
-  "name": "Kumanomi",
-  "version": "2.0.0",
-  "description": "くまのみBOTのver.2.0.0です",
+  "name": "emubotv4",
+  "version": "4.0.0",
+  "description": "えむBOTのver.4.0です",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
