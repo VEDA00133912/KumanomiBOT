@@ -28,7 +28,8 @@ module.exports = {
     }
 
     await setActivity(client);
-
+    console.log(`join the ${guild.name}`);
+      
     const ownerEmbed = new EmbedBuilder()
       .setTitle('くまのみBOTの導入ありがとうございます！')
       .setDescription(`**${guild.name}** に導入されました`)
