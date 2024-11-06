@@ -11,7 +11,7 @@ module.exports = (client, interaction, error) => {
         .addFields(
             { name: 'Error', value: `\`\`\`${error.message}\`\`\`` },
             { name: 'Interaction Type', value: `${interaction.type}`, inline: true },
-            { name: 'Server', value: interaction.guild ? interaction.guild.name : 'N/A', inline: true },
+            { name: 'Location', value: interaction.guild ? interaction.guild.name : 'DM', inline: true },
             { name: 'Time', value: new Date().toLocaleString(), inline: true }
         )
         .setFooter({ text: `Kumanomi | ${interaction.commandName}`, iconURL: client.user.displayAvatarURL() });

@@ -5,7 +5,7 @@ const config = require('../../data/settings/config.json');
 module.exports = async function handletextCommandError(client, message, error, fileName) {
     try {
         const replyMessage = await message.reply({
-            content: '<:error:1299263288797827185> エラーが発生しました',
+            content: '<:error:1302169165905526805> エラーが発生しました',
             allowedMentions: { repliedUser: false } 
         });
 
