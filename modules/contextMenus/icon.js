@@ -1,11 +1,14 @@
-const { ContextMenuCommandBuilder, ApplicationCommandType, EmbedBuilder } = require('discord.js');
+const { ContextMenuCommandBuilder, ApplicationCommandType } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const contextMenuError = require('../errors/contextMenuError');
+const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
   data: new ContextMenuCommandBuilder()
     .setName('アイコン表示')
-    .setType(ApplicationCommandType.User),
+    .setType(ApplicationCommandType.User)
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1),
 
   async execute(interaction) {
     const commandName = this.data.name;
@@ -14,21 +17,17 @@ module.exports = {
 
     await interaction.deferReply();
 
-    const { targetUser, guild } = interaction; 
+    const targetUser = interaction.targetUser;
 
     try {
-      const guildMember = await guild.members.fetch(targetUser.id);
-      const avatarURL = guildMember.displayAvatarURL({
+      const avatarURL = targetUser.displayAvatarURL({
         format: 'png',
         size: 1024,
       });
 
-      const embed = new EmbedBuilder()
+      const embed = createEmbed(interaction)
         .setDescription(`<@${targetUser.id}>**[のアイコン](${avatarURL})**`)
-        .setImage(avatarURL)
-        .setTimestamp()
-        .setFooter({ text: 'Kumanomi | icon', iconURL: interaction.client.user.displayAvatarURL() })
-        .setColor('#febe69');
+        .setImage(avatarURL);
 
       await interaction.editReply({ embeds: [embed] });
     } catch (error) {

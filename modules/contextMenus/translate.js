@@ -2,11 +2,14 @@ const { ApplicationCommandType, EmbedBuilder, ContextMenuCommandBuilder } = requ
 const { translater } = require('../../lib/translate');  
 const { validateMessageContent } = require('../../lib/invalidContent'); 
 const contextMenuError = require('../errors/contextMenuError');
+const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
   data: new ContextMenuCommandBuilder()
     .setName('英語に翻訳')
-    .setType(ApplicationCommandType.Message),
+    .setType(ApplicationCommandType.Message)
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1),
 
   async execute(interaction) {
 
@@ -20,11 +23,8 @@ module.exports = {
       const targetLanguage = 'en';  
       const translatedText = await translater(text, 'ja', targetLanguage);  
 
-      const embed = new EmbedBuilder()
-        .setDescription('**翻訳しました！**' + '\n' + '```\n' + `${translatedText}` + '\n```')
-        .setTimestamp()
-        .setFooter({ text: 'Kumanomi | translate', iconURL: interaction.client.user.displayAvatarURL() })
-        .setColor('#febe69');
+      const embed = createEmbed(interaction)
+        .setDescription('**翻訳しました！**' + '\n' + '```\n' + `${translatedText}` + '\n```');
 
       await interaction.editReply({ embeds: [embed] });  
     } catch (error) {
