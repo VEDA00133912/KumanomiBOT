@@ -10,10 +10,10 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBit
 client.commands = new Collection();
 client.contextMenuCommands = new Collection();
 
-loadCommands(client, path.join(__dirname, 'modules/slashCommands'));
-loadCommands(client, path.join(__dirname, 'modules/contextMenus'));
-loadTextCommands(client, path.join(__dirname, 'modules/textCommands'));
-loadAdminCommands(client, path.join(__dirname, 'modules/adminCommands'));
+loadCommands(client, path.join(__dirname, 'modules/slashcommands'));
+loadCommands(client, path.join(__dirname, 'modules/contextmenus'));
+loadTextCommands(client, path.join(__dirname, 'modules/textcommands'));
+loadAdminCommands(client, path.join(__dirname, 'modules/admin'));
 loadEvents(client, path.join(__dirname, 'modules/events'));
 
 setupGlobalErrorHandling(client);
