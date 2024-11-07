@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const crypto = require('crypto');
 const cooldown = require('../events/cooldown');
-const slashCommandError = require('../errors/slashCommandError');
+const slashCommandError = require('../errors/slashcommandError');
 const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
@@ -20,8 +20,7 @@ module.exports = {
   async execute(interaction) {
     try {
       const commandName = this.data.name;
-      const isCooldown = cooldown(commandName, interaction);
-      if (isCooldown) return;
+      if (cooldown(commandName, interaction)) return;
 
       await interaction.deferReply({ ephemeral: true });
       const text = interaction.options.getString('text');
