@@ -106,9 +106,9 @@ module.exports = {
         const displayName = guild.members.cache.get(author.id)?.displayName || author.tag;
 
         const embed = new EmbedBuilder()
-          .setColor(0xf8b4cb)
+          .setColor('#febe69')
           .setTimestamp(createdTimestamp)
-          .setFooter({ text: 'Emubot | Expand', iconURL: message.client.user.displayAvatarURL() })
+          .setFooter({ text: 'Kumanomi | Expand', iconURL: message.client.user.displayAvatarURL() })
           .setAuthor({ name: displayName, iconURL: author.displayAvatarURL() });
 
         if (content) {
