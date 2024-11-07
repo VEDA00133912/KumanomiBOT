@@ -6,15 +6,15 @@ config();
 
 const commands = [];
 
-const slashCommandFiles = fs.readdirSync(path.join(__dirname, '..', 'slashCommands')).filter(file => file.endsWith('.js'));
+const slashCommandFiles = fs.readdirSync(path.join(__dirname, '..', 'slashcommands')).filter(file => file.endsWith('.js'));
 for (const file of slashCommandFiles) {
-    const command = require(path.join(__dirname, '..', 'slashCommands', file));
+    const command = require(path.join(__dirname, '..', 'slashcommands', file));
     commands.push(command.data.toJSON());
 }
 
-const contextMenuCommandFiles = fs.readdirSync(path.join(__dirname, '..', 'contextMenus')).filter(file => file.endsWith('.js'));
+const contextMenuCommandFiles = fs.readdirSync(path.join(__dirname, '..', 'contextmenus')).filter(file => file.endsWith('.js'));
 for (const file of contextMenuCommandFiles) {
-    const command = require(path.join(__dirname, '..', 'contextMenus', file));
+    const command = require(path.join(__dirname, '..', 'contextmenus', file));
     commands.push(command.data.toJSON());
 }
 
