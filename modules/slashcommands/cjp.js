@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('discord.js');
 const { convertText } = require('../../lib/convert');
 const { validateMessageContent } = require('../../lib/invalidContent');
 const cooldown = require('../events/cooldown');
-const slashCommandError = require('../errors/slashCommandError');
+const slashCommandError = require('../errors/slashcommandError');
 const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
