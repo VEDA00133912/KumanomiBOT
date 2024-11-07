@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits, ChannelType } = require('discord.js');
 const cooldown = require('../events/cooldown');
-const slashCommandError = require('../errors/slashCommandError');
+const slashCommandError = require('../errors/slashcommandError');
 const { createEmbed } = require('../../lib/embed');
 const createEmoji = require('../../lib/createEmoji'); 
 
