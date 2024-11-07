@@ -2,7 +2,7 @@ const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const cooldown = require('../events/cooldown');
-const slashCommandError = require('../errors/slashCommandError'); 
+const slashCommandError = require('../errors/slashcommandError'); 
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -12,9 +12,8 @@ module.exports = {
         .setIntegrationTypes(0,1),
 
     async execute(interaction) {
-        const commandName = this.data.name;
-        const isCooldown = cooldown(commandName, interaction);
-        if (isCooldown) return;
+      const commandName = this.data.name;
+      if (cooldown(commandName, interaction)) return;
 
       if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.EmbedLinks)) {
         return interaction.editReply('<:error:1299263288797827185> botに埋め込みリンクの送信権限がありません。');
