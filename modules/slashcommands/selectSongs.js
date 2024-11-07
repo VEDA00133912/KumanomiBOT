@@ -110,7 +110,7 @@ module.exports = {
 
   async execute(interaction) {
     const subcommand = interaction.options.getSubcommand();
-    const commandName = subcommand;
+    const commandName = `select ${subcommand};
     const isCooldown = cooldown(commandName, interaction);
     if (isCooldown) return;
 
