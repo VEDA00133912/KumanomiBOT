@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const cooldown = require('../events/cooldown');
-const slashCommandError = require('../errors/slashCommandError');
+const slashCommandError = require('../errors/slashcommandError');
 const generatePasswords = require('../../lib/password');
 const { createEmbed } = require('../../lib/embed');
 
@@ -24,9 +24,8 @@ module.exports = {
                 .setMaxValue(10)),
 
     async execute(interaction) {
-        const commandName = this.data.name;
-        const isCooldown = cooldown(commandName, interaction);
-        if (isCooldown) return;
+      const commandName = this.data.name;
+      if (cooldown(commandName, interaction)) return;
 
         try {
             const length = interaction.options.getInteger('length');
