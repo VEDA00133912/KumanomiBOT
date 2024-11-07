@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const SETTINGS_FILE = path.join(__dirname, '..', '..', 'data', 'settings', 'expand.json');
 const cooldown = require('../events/cooldown');
-const slashCommandError = require('../errors/slashCommandError');
+const slashCommandError = require('../errors/slashcommandError');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -21,9 +21,8 @@ module.exports = {
                 )),
     
     async execute(interaction) {
-        const commandName = this.data.name;
-        const isCooldown = cooldown(commandName, interaction);
-        if (isCooldown) return;
+      const commandName = this.data.name;
+      if (cooldown(commandName, interaction)) return;
 
         const status = interaction.options.getString('on-off') === 'true';
         let settings = {};
