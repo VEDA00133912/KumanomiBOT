@@ -110,9 +110,8 @@ module.exports = {
 
   async execute(interaction) {
     const subcommand = interaction.options.getSubcommand();
-    const commandName = `select ${subcommand};
-    const isCooldown = cooldown(commandName, interaction);
-    if (isCooldown) return;
+    const commandName = `select ${subcommand}`;
+      if (cooldown(commandName, interaction)) return;
 
     const option = interaction.options.getString('action');
     const count = interaction.options.getInteger('count');
