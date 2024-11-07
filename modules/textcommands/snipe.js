@@ -14,10 +14,10 @@ module.exports = {
                     const snipe = snipeData[channelId];
 
                     const embed = new EmbedBuilder()
-                        .setColor('#f8b4cb')
+                        .setColor('#febe69')
                         .setDescription(snipe.content || '内容はありません')
                         .setAuthor({ name: snipe.author.displayName, iconURL: snipe.author.avatarURL })
-                        .setFooter({ text: 'Emubot | snipe', iconURL: client.user.displayAvatarURL() })
+                        .setFooter({ text: 'Kumanomi | snipe', iconURL: client.user.displayAvatarURL() })
                         .setTimestamp(new Date(snipe.timestamp * 1000));
 
                     await message.reply({ 
