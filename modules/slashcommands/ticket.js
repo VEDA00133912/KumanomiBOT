@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, PermissionFlagsBits } = require('discord.js');
 const cooldown = require('../events/cooldown');
-const slashCommandError = require('../errors/slashCommandError');
+const slashCommandError = require('../errors/slashcommandError');
 const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
@@ -13,9 +13,8 @@ module.exports = {
   async execute(interaction) {
     try {
       const commandName = this.data.name;
-      const isCooldown = cooldown(commandName, interaction);
-      if (isCooldown) return;
-
+      if (cooldown(commandName, interaction)) return;
+      
       if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageChannels)) {
         return interaction.reply({ content: '<:error:1302169165905526805> BOTにチャンネル管理の権限がありません。', ephemeral: true });
     }
