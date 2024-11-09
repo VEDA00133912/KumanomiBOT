@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const cooldown = require('../events/cooldown');
-const slashCommandError = require('../errors/slashcommandError');
+const slashCommandError = require('../errors/slashCommandError');
 const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
@@ -12,23 +12,22 @@ module.exports = {
     .addUserOption(option =>
       option.setName('user')
         .setDescription('表示したいユーザー')
-        .setRequired(false)
+        .setRequired(true)
     ),
 
   async execute(interaction) {
-      const commandName = this.data.name;
-      if (cooldown(commandName, interaction)) return;
+    const commandName = this.data.name;
+    const isCooldown = cooldown(commandName, interaction);
+    if (isCooldown) return;
 
     await interaction.deferReply();
 
-    const { options, user } = interaction;
+    const { options, guild, user } = interaction;
     const targetUser = options.getUser('user') || user;
-
+    const member = await guild.members.fetch(targetUser.id);
+    
     try {
-      const avatarURL = targetUser.displayAvatarURL({
-        format: 'png',
-        size: 1024,
-      });
+      const avatarURL = member.avatarURL({ extension: 'png', size: 1024 }) || targetUser.displayAvatarURL({ extension: 'png', size: 1024 });
 
       const embed = createEmbed(interaction, 'icon')
         .setDescription(`<@${targetUser.id}>**[のアイコン](${avatarURL})**`)
