@@ -1,6 +1,6 @@
 const { ContextMenuCommandBuilder, ApplicationCommandType } = require('discord.js');
 const cooldown = require('../events/cooldown');
-const contextMenuError = require('../errors/contextmenuError');
+const contextMenuError = require('../errors/contextMenuError');
 const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
@@ -12,18 +12,16 @@ module.exports = {
 
   async execute(interaction) {
     const commandName = this.data.name;
-    if (cooldown(commandName, interaction)) return;
-
+    const isCooldown = cooldown(commandName, interaction);
+    if (isCooldown) return;
 
     await interaction.deferReply();
 
     const targetUser = interaction.targetUser;
+    const member = await interaction.guild.members.fetch(targetUser.id);
 
     try {
-      const avatarURL = targetUser.displayAvatarURL({
-        format: 'png',
-        size: 1024,
-      });
+      const avatarURL = member.avatarURL({ extension: 'png', size: 1024 }) || targetUser.displayAvatarURL({ extension: 'png', size: 1024 });
 
       const embed = createEmbed(interaction)
         .setDescription(`<@${targetUser.id}>**[のアイコン](${avatarURL})**`)
