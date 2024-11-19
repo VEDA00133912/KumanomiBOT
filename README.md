@@ -6,7 +6,7 @@
 コマンドはcommands.mdを見てください
 ## 導入
 - **[ここから導入してください
-](https://canary.discord.com/oauth2/authorize?client_id=1298829009907355730)**
+](https://discord.com/oauth2/authorize?client_id=1298829009907355730)**
 - **[サポートサーバー](https://discord.gg/Ftz4Tcs8tR)**
 ## サイト
 **https://veda00133912.github.io/kumanomi-site/**
