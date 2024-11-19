@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const { generateAudio, deleteAudioFile } = require('../../lib/hiroyuki');
 const cooldown = require('../events/cooldown');
 const { checkPermissions } = require('../../lib/permissions');
