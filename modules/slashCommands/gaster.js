@@ -8,6 +8,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('gaster')
     .setDescription('ガスター語に変換')
+    .setContexts(0,1,2)
+    .setIntegrationTypes(0,1)
     .addStringOption(option =>
       option
         .setName('text')
