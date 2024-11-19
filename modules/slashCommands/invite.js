@@ -5,8 +5,8 @@ const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('ping')
-        .setDescription('Ping値を測定します。')
+        .setName('invite')
+        .setDescription('BOTの招待リンクを表示します')
         .setContexts(0,1,2)
         .setIntegrationTypes(0,1),
 
@@ -17,13 +17,9 @@ module.exports = {
 
         try {
             const embed = createEmbed(interaction)
-                .setDescription('Pong！🏓')
-                .setFields(
-                    { name: 'WebSocket Ping', value: `${interaction.client.ws.ping}ms`, inline: true },
-                    { name: 'API-Endpoint Ping', value: `${Date.now() - interaction.createdTimestamp}ms`, inline: true }
-                );
+                .setDescription('**ここから導入できます**\n\n**[招待する！](https://discord.com/oauth2/authorize?client_id=1298829009907355730)**\n\n**[サポートサーバー](https://discord.gg/Ftz4Tcs8tR)**');
 
-            await interaction.reply({ embeds: [embed] });
+            await interaction.reply({ embeds: [embed], ephemeral: true });
         } catch (error) {
             slashCommandError(interaction.client, interaction, error);
         }
