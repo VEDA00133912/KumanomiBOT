@@ -6,6 +6,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('song')
         .setDescription('癖になる')
+        .setContexts(0,1,2)
+        .setIntegrationTypes(0,1)
         .addSubcommand(subcommand =>
             subcommand
                 .setName('kongyo')
