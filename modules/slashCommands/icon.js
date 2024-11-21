@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, userMention } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 const { createEmbed } = require('../../lib/embed');
@@ -31,8 +31,9 @@ module.exports = {
         ? member.displayAvatarURL({ size: 1024 }) 
         : targetUser.displayAvatarURL({ size: 1024 });
 
+      const user = userMention(targetUser.id);
       const embed = createEmbed(interaction, 'icon')
-        .setDescription(`<@${targetUser.id}>**[のアイコン](${avatarURL})**`)
+        .setDescription(`${user}**[のアイコン](${avatarURL})**`)
         .setImage(avatarURL);
 
       await interaction.editReply({ embeds: [embed] });
