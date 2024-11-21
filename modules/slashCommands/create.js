@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits, ChannelType } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits, ChannelType, roleMention, channelMention } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 const { createEmbed } = require('../../lib/embed');
@@ -102,12 +102,13 @@ module.exports = {
                     color: color ? color.toUpperCase() : null,
                 });
 
+                const role = roleMention(createdRole.id)
                 const completeEmbed = new EmbedBuilder()
                 .setColor(color ? color.toUpperCase() : '#99AAB5') 
                 .setTitle('<:done:1299263286361063454> 作成完了!')
                 .setTimestamp()
                 .setFooter({ text: 'Kumanomi | role create', iconURL: interaction.client.user.displayAvatarURL() })
-                .setDescription(`作成したロール: <@&${createdRole.id}>`);
+                .setDescription(`作成したロール: ${role}`);
 
                 await interaction.editReply({ embeds: [completeEmbed] });
 
@@ -132,9 +133,10 @@ module.exports = {
                     topic: description
                 });
 
+                const channel = channelMention(createdChannel.id)
                 const completeEmbed = createEmbed(interaction)
                     .setTitle('<:done:1299263286361063454> 作成完了!')
-                    .setDescription(`作成したチャンネル: <#${createdChannel.id}>`);
+                    .setDescription(`作成したチャンネル: ${channel}`);
 
                 await interaction.editReply({ embeds: [completeEmbed] });
             } else if (subcommand === 'emoji') {
