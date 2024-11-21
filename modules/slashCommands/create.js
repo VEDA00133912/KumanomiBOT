@@ -102,7 +102,7 @@ module.exports = {
                     color: color ? color.toUpperCase() : null,
                 });
 
-                const role = roleMention(createdRole.id)
+                const role = roleMention(createdRole.id);
                 const completeEmbed = new EmbedBuilder()
                 .setColor(color ? color.toUpperCase() : '#99AAB5') 
                 .setTitle('<:done:1299263286361063454> 作成完了!')
@@ -133,7 +133,7 @@ module.exports = {
                     topic: description
                 });
 
-                const channel = channelMention(createdChannel.id)
+                const channel = channelMention(createdChannel.id);
                 const completeEmbed = createEmbed(interaction)
                     .setTitle('<:done:1299263286361063454> 作成完了!')
                     .setDescription(`作成したチャンネル: ${channel}`);
