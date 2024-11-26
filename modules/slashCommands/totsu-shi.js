@@ -22,13 +22,14 @@ module.exports = {
     const commandName = this.data.name;
     const isCooldown = cooldown(commandName, interaction);
     if (isCooldown) return;
-
-    try {
-      await interaction.deferReply();
+      
       const input = interaction.options.getString('content');
 
       const hasError = await validateMessageContent(interaction, input);
       if (hasError) return; 
+      
+      try {
+      await interaction.deferReply();
 
       const generatedText = generateSuddenDeathText(input);
       await interaction.editReply(generatedText);
