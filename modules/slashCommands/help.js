@@ -26,7 +26,8 @@ module.exports = {
                      { name: 'helpの操作方法', value: 'ボタンを押すことでコマンド一覧等が見れます' },
                      { name: 'サイト', value: '[くまのみぼっと公式サイト](https://veda00133912.github.io/kumanomi-site/)' },
                      { name: 'サポート等', value: '<:twitter:1282701797353459799> [twitter](https://twitter.com/ryo_001339)  <:discord:1282701795000320082> [Discord](https://discord.gg/j2gM7d2Drp)  <:github:1282850416085827584> [Github](https://github.com/VEDA00133912/KumanomiBOT)' },
-                     { name: '制作者', value: '<@1095869643106828289> (ryo_001339)' }
+                     { name: '制作者', value: '<@1095869643106828289> (ryo_001339)' },
+                     { name: 'コマンドの無効化の方法', value: 'メンバーに使わせたくないコマンドがある場合は下の画像を参考に無効化できます'}
                    );
 
                const getCommandField = (name, description) => {
@@ -133,7 +134,7 @@ module.exports = {
                        getCommandField('cjp', '怪しい日本語変換コマンド'),
                        getCommandField('menhera', 'メンヘラ文変換コマンド'),
                        getCommandField('anagram', 'アナグラムコマンド'),
-                       getCommandField('gaster', 'ガスター語変換コマンド') 
+                       getCommandField('gaster', 'ガスター語変換コマンド'),
                        { name: '</search google:1303358550055194654>', value: 'Google検索コマンド' },                
                        { name: '</search gif:1303358550055194654>', value: 'GIF検索コマンド' }
                    );
@@ -147,7 +148,7 @@ module.exports = {
                        { name: '</canvas reversal:1306883285867298948>', value: '色反転' },
                        { name: '</canvas mono:1306883285867298948>', value: 'モノクロ化' },
                        { name: '</canvas mosaic:1306883285867298948>', value: 'モザイク加工' },
-                       { name: '</canvas meme:1306883285867298948>', value: '顔の良さでなんとかなると思っているジェネレータ' },
+                       { name: '</canvas meme:1306883285867298948>', value: '顔の良さでなんとかなると思っているジェネレータ' }
                    );
               
               const embed11 = new EmbedBuilder()
@@ -157,9 +158,9 @@ module.exports = {
                    .addFields(
                           { name: '</song sonshi:1307827625997111379>', value: '尊師マーチを送信します' },
                           { name: '</song kongyo:1307827625997111379>', value: 'コンギョを送信します' },
-                          { name: '**アイコン表示**', value: 'ユーザーのアイコンを表示するコマンド' },
-                          { name: '**英語に翻訳**', value: 'メッセージを英語に翻訳するコマンド' },
-                          { name: '**ひろゆき変換**', value: 'メッセージをひろゆきのmp3に変換するコマンド' }
+                          { name: '**アイコン表示**', value: 'ユーザーのアイコンを表示するコンテキストメニューコマンド' },
+                          { name: '**英語に翻訳**', value: 'メッセージを英語に翻訳するコンテキストメニューコマンド' },
+                          { name: '**ひろゆき変換**', value: 'メッセージをひろゆきのmp3に変換するコンテキストメニューコマンド' }
                 )
                 .setTimestamp()
                 .setColor('Green');
