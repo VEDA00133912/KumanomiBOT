@@ -19,14 +19,14 @@ module.exports = {
         .setLabel('埋め込みのタイトル(必須)')
         .setStyle(TextInputStyle.Short)
         .setRequired(true)
-        .setMaxLength(256); 
+        .setMaxLength(100); 
 
       const descriptionInput = new TextInputBuilder()
         .setCustomId('descriptionInput')
         .setLabel('埋め込みの内容(必須)')
         .setStyle(TextInputStyle.Paragraph)
         .setRequired(true)
-        .setMaxLength(2048); 
+        .setMaxLength(400); 
 
       const colorInput = new TextInputBuilder()
         .setCustomId('colorInput')
@@ -39,7 +39,7 @@ module.exports = {
         .setLabel('フッターの内容 (任意)')
         .setStyle(TextInputStyle.Short)
         .setRequired(false)
-        .setMaxLength(2048); 
+        .setMaxLength(100); 
 
       modal.addComponents(
         new ActionRowBuilder().addComponents(titleInput),
