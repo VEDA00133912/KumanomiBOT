@@ -7,7 +7,6 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('redirect')
         .setDescription('指定されたURLのリダイレクト情報を表示します。')
-        .setContexts(0,1,2)
         .setIntegrationTypes(0,1)
         .addStringOption(option =>
             option.setName('url')

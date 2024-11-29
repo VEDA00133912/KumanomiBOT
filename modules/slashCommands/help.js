@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, InteractionContextType } = require("discord.js");
 const cooldown = require('../events/cooldown');
 const buttonPages = require('../../lib/pagination');
 const { createEmbed } = require('../../lib/embed');
@@ -7,7 +7,8 @@ module.exports = {
        data: new SlashCommandBuilder()
              .setName('help')
              .setDescription('くまのみBOTのヘルプを表示します。')
-             .setDMPermission(false),
+             .setContexts(InteractionContextType.Guild)
+             .setIntegrationTypes(0),
 
        async execute(interaction) {
               const commandName = this.data.name;

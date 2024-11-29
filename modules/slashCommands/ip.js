@@ -8,10 +8,12 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('ip')
         .setDescription('IP情報の表示')
+        .setIntegrationTypes(0,1)
         .addStringOption(option =>
             option.setName('ip')
                 .setDescription('調べたいIP')
                 .setRequired(true)),
+
     async execute(interaction) {
 
         const commandName = this.data.name;

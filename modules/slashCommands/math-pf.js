@@ -8,7 +8,6 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('pf')
     .setDescription('指定された数の素因数分解を行います')
-    .setContexts(0,1,2)
     .setIntegrationTypes(0,1)
     .addIntegerOption(option =>
       option

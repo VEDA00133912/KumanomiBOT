@@ -7,7 +7,6 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('5000choyen')
     .setDescription('5000兆円欲しい!!風の画像生成')
-    .setContexts(0,1,2)
     .setIntegrationTypes(0,1)
     .addStringOption(option =>
       option.setName('top')

@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits, ChannelType, roleMention, channelMention } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits, ChannelType, roleMention, channelMention, InteractionContextType } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 const { createEmbed } = require('../../lib/embed');
@@ -9,7 +9,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('create')
         .setDescription('新規作成します。')
-        .setDMPermission(false)
+        .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(0)
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageRoles | PermissionFlagsBits.ManageChannels | PermissionFlagsBits.CreateGuildExpressions)
         .addSubcommand(subcommand =>
             subcommand

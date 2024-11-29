@@ -9,7 +9,6 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('anagram')
     .setDescription('文字列をアナグラムに変換します。')
-    .setContexts(0,1,2)
     .setIntegrationTypes(0,1)
     .addStringOption(option =>
       option.setName('text')

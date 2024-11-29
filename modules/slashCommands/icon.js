@@ -7,7 +7,6 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('icon')
     .setDescription('アイコン表示')
-    .setContexts(0,1,2)
     .setIntegrationTypes(0,1)
     .addUserOption(option =>
       option.setName('user')

@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, InteractionContextType } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 const { generateNitroLinks } = require('../../lib/gen-fakenitro'); 
@@ -8,7 +8,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('fake')
     .setDescription('フェイクNitroやトークンの生成')
-    .setDMPermission(false)
+    .setContexts(InteractionContextType.Guild)
+    .setIntegrationTypes(0)
     .addSubcommand(subcommand =>
       subcommand
         .setName('nitro')

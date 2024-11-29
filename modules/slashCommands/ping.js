@@ -7,7 +7,6 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('ping')
         .setDescription('Ping値を測定します。')
-        .setContexts(0,1,2)
         .setIntegrationTypes(0,1),
 
     async execute(interaction) {

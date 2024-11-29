@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, InteractionContextType } = require('discord.js');
 const axios = require('axios');
 const googleSearch = require('../../lib/google');
 const slashCommandError = require('../errors/slashCommandError');
@@ -9,8 +9,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('search')
     .setDescription('情報を検索します')
-    .setContexts(0,1,2)
-    .setIntegrationTypes(0,1)
+    .setContexts(InteractionContextType.Guild)
+    .setIntegrationTypes(0)
     .addSubcommand(subcommand =>
       subcommand
         .setName('gif')

@@ -9,7 +9,6 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('translate')
     .setDescription('日本語を他言語に翻訳します。')
-    .setContexts(0,1,2)
     .setIntegrationTypes(0,1)
     .addStringOption(option =>
       option.setName('text')

@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits, InteractionContextType } = require('discord.js');
 const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
 const { createEmbed } = require('../../lib/embed');
@@ -9,7 +9,8 @@ module.exports = {
         .setName('slowmode')
         .setDescription('低速モードを設定します')
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
-        .setDMPermission(false)
+        .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(0,1)
         .addIntegerOption(option => 
             option.setName('時間')
                 .setDescription('低速の時間を選択してください')

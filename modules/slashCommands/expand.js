@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, InteractionContextType, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 const SETTINGS_FILE = path.join(__dirname, '..', '..', 'data', 'settings', 'expand.json');
@@ -10,7 +10,8 @@ module.exports = {
         .setName('expand-settings')
         .setDescription('メッセージリンクの展開をオンまたはオフにします。')
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
-        .setDMPermission(false)
+        .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(0)
         .addStringOption(option =>
             option.setName('on-off')
                 .setDescription('オンかオフを選択')

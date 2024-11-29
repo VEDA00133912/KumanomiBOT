@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 const { createEmbed } = require('../../lib/embed');
@@ -7,7 +7,6 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('invite')
         .setDescription('BOTの招待リンクを表示します')
-        .setContexts(0,1,2)
         .setIntegrationTypes(0,1),
 
     async execute(interaction) {

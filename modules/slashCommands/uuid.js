@@ -8,7 +8,6 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('uuid')
         .setDescription('UUIDを生成します')
-        .setContexts(0,1,2)
         .setIntegrationTypes(0,1)
         .addIntegerOption(option =>
             option.setName('count')

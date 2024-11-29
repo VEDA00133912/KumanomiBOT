@@ -8,7 +8,6 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('password')
         .setDescription('指定した長さのパスワードを生成します。')
-        .setContexts(0,1,2)
         .setIntegrationTypes(0,1)
         .addIntegerOption(option =>
             option.setName('length')

@@ -9,7 +9,6 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('backword')
     .setDescription('文字列を逆読みします。')
-    .setContexts(0,1,2)
     .setIntegrationTypes(0,1)
     .addStringOption(option =>
       option.setName('text')

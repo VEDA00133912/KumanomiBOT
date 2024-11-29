@@ -5,7 +5,6 @@ module.exports = {
     data: new SlashCommandBuilder()
     .setName('embedbuilder')
     .setDescription('埋め込みメッセージを作成します')
-    .setContexts(0,1,2)
     .setIntegrationTypes(0,1),
 
   async execute(interaction) {

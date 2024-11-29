@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, InteractionContextType } = require('discord.js');
 const path = require('path');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
@@ -9,8 +9,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('omikuji')
     .setDescription('おみくじを引けます')
-    .setContexts(0,1,2)
-    .setIntegrationTypes(0,1),
+    .setContexts(InteractionContextType.Guild)
+    .setIntegrationTypes(0),
 
   async execute(interaction) {
     const commandName = this.data.name;

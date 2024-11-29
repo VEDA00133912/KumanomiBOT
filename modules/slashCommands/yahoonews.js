@@ -9,8 +9,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('yahoonews')
         .setDescription('Yahooニュースリンクを送信します')
-        .setContexts(0,1,2)
-        .setIntegrationTypes(0,1),
+        .setIntegrationTypes(0, 1),
 
     async execute(interaction) {
         const commandName = this.data.name;

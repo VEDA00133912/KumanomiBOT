@@ -8,7 +8,6 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('average')
     .setDescription('指定した数の平均を計算します')
-    .setContexts(0,1,2)
     .setIntegrationTypes(0,1)
     .addIntegerOption(option =>
       option.setName('number1').setDescription('1つ目の数').setRequired(true).setMinValue(1).setMaxValue(5000)

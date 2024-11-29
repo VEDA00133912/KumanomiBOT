@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, InteractionContextType } = require('discord.js');
 const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
 const { getUserData } = require('../../lib/infouser');
@@ -11,7 +11,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('info')
     .setDescription('情報を表示します')
-    .setDMPermission(false)
+    .setContexts(InteractionContextType.Guild)
+    .setIntegrationTypes(0)
     .addSubcommand(subcommand =>
       subcommand
         .setName('user')

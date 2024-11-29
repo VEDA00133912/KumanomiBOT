@@ -8,8 +8,7 @@ const { createEmbed } = require('../../lib/embed');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('rune')
-    .setDescription('文字列をルーン文字に変換します。')
-    .setContexts(0,1,2)
+    .setDescription('文字列をルーン文字に変換します')
     .setIntegrationTypes(0,1)
     .addStringOption(option =>
       option.setName('text')

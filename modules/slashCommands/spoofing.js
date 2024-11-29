@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ChannelType, PermissionFlagsBits } = require('discord.js');
+const { SlashCommandBuilder, ChannelType, InteractionContextType, PermissionFlagsBits } = require('discord.js');
 const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
 const { getWebhookClient } = require('../../lib/spoofing');
@@ -9,7 +9,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('spoofing')
     .setDescription('他のユーザーになりすましできるコマンド')
-    .setDMPermission(false)
+    .setContexts(InteractionContextType.Guild)
+    .setIntegrationTypes(0)
     .addUserOption(option =>
       option.setName('target')
         .setDescription('メンションまたはユーザーIDでユーザーを指定します')

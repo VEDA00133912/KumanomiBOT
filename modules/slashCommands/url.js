@@ -13,7 +13,6 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('url')
         .setDescription('URL関連のコマンド')
-        .setContexts(0, 1, 2)
         .setIntegrationTypes(0, 1)
         .addSubcommand(subcommand =>
             subcommand.setName('viruscheck')

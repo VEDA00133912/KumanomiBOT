@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits, InteractionContextType } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const moderateUsers = require('../../lib/moderate');
 const slashCommandError = require('../errors/slashCommandError');
@@ -8,7 +8,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('unban')
         .setDescription('指定したユーザーのBAN解除をします')
-        .setDMPermission(false)
+        .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(0)
         .addUserOption(option =>
             option.setName('user1').setDescription('解除するユーザー1').setRequired(true))
         .addUserOption(option => option.setName('user2').setDescription('解除するユーザー2'))

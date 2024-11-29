@@ -9,10 +9,12 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('whois')
         .setDescription('WHOIS情報の表示')
+        .setIntegrationTypes(0, 1)
         .addStringOption(option =>
             option.setName('domain')
                 .setDescription('調べたいドメイン')
                 .setRequired(true)),
+
     async execute(interaction) {
         const commandName = this.data.name;
         if (cooldown(commandName, interaction)) return;

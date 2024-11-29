@@ -9,7 +9,6 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('canvas')
     .setDescription('画像加工を行います')
-    .setContexts(0,1,2)
     .setIntegrationTypes(0,1)
     .addSubcommand(subcommand =>
       subcommand

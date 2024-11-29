@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, InteractionContextType } = require('discord.js');
 const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
 const { saveTimer, startTimer, validateTime } = require('../../lib/timer');
@@ -7,7 +7,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('timer')
     .setDescription('指定した時間後に通知するタイマーを起動します。')
-    .setDMPermission(false)
+    .setContexts(InteractionContextType.Guild)
+    .setIntegrationTypes(0)
     .addIntegerOption(option =>
       option.setName('minutes')
         .setDescription('分を指定してください。')
