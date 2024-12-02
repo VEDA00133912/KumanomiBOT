@@ -38,6 +38,7 @@ module.exports = {
               { name: '全曲', value: 'all' },
               { name: 'オリジナルのみ', value: 'maimai' },
               { name: '宴譜面のみ', value: 'utage' },
+              { name: 'Re:MASTERのみ', value: 'remaster' },
             ))
         .addIntegerOption(option =>
           option.setName('count')
