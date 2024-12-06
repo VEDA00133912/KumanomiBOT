@@ -61,7 +61,6 @@ module.exports = {
 
       const message = interaction.options.getString('message');
       const attachment = interaction.options.getAttachment('attachment');
-      const member = interaction.guild.members.cache.get(targetUser.id);
 
       const hasError = await validateMessageContent(interaction, message, commandName);
       if (hasError) return;
