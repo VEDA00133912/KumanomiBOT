@@ -32,20 +32,19 @@ module.exports = {
 
   async execute(interaction) {
     try {
-      await interaction.deferReply({ ephemeral:true });
       const commandName = this.data.name;
       const isCooldown = cooldown(commandName, interaction);
       if (isCooldown) return;
 
       if (interaction.channel.type === ChannelType.PublicThread || interaction.channel.type === ChannelType.PrivateThread) {
-        return interaction.editReply({ content: '<:error:1302169165905526805> スレッドではこのコマンドを実行できません。', ephemeral: true });
+        return interaction.reply({ content: '<:error:1302169165905526805> スレッドではこのコマンドを実行できません。', ephemeral: true });
       }
 
       const requiredPermissions = [PermissionFlagsBits.ManageWebhooks];
       const isMissingPermissions = await checkPermissions(interaction, requiredPermissions);
       if (isMissingPermissions) return;
 
-      await interaction.editReply({ content: '<a:loading:1302169108888162334> メッセージ送信準備中...', ephemeral: true });
+      await interaction.reply({ content: '<a:loading:1302169108888162334> メッセージ送信準備中...', ephemeral: true });
 
       const targetUser = interaction.options.getUser('target');
       const member = interaction.guild.members.cache.get(targetUser.id);
@@ -57,7 +56,7 @@ module.exports = {
       );
 
       if (hasForbiddenWords) {
-        return interaction.editReply({ content: '<:error:1302169165905526805> ニックネームに使用できない単語が含まれています。', ephemeral: true });
+        return interaction.editReply({ content: '<:error:1302169165905526805> ニックネームに使用できない単語が含まれています。' });
       }
 
       const message = interaction.options.getString('message');
