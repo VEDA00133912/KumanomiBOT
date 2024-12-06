@@ -2,7 +2,7 @@ const { SlashCommandBuilder, ChannelType, InteractionContextType, PermissionFlag
 const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
 const { getWebhookClient } = require('../../lib/spoofing');
-const { validateMessageContent } = require('../../lib/invalidContent'); 
+const { validateMessageContent } = require('../../lib/invalidContent');
 const { checkPermissions } = require('../../lib/permissions');
 
 module.exports = {
@@ -32,29 +32,42 @@ module.exports = {
 
   async execute(interaction) {
     try {
+      await interaction.deferReply({ ephemeral:true });
       const commandName = this.data.name;
       const isCooldown = cooldown(commandName, interaction);
       if (isCooldown) return;
 
       if (interaction.channel.type === ChannelType.PublicThread || interaction.channel.type === ChannelType.PrivateThread) {
-        return interaction.reply({ content: '<:error:1302169165905526805> スレッドではこのコマンドを実行できません。', ephemeral: true });
+        return interaction.editReply({ content: '<:error:1302169165905526805> スレッドではこのコマンドを実行できません。', ephemeral: true });
       }
-        const requiredPermissions = [ PermissionFlagsBits.ManageWebhooks ];
-        const isMissingPermissions = await checkPermissions(interaction, requiredPermissions);
-        if (isMissingPermissions) return;
-        
-      await interaction.reply({ content: '<a:loading:1302169108888162334> メッセージ送信準備中...', ephemeral: true });
+
+      const requiredPermissions = [PermissionFlagsBits.ManageWebhooks];
+      const isMissingPermissions = await checkPermissions(interaction, requiredPermissions);
+      if (isMissingPermissions) return;
+
+      await interaction.editReply({ content: '<a:loading:1302169108888162334> メッセージ送信準備中...', ephemeral: true });
+
       const targetUser = interaction.options.getUser('target');
+      const member = interaction.guild.members.cache.get(targetUser.id);
+      const nickname = interaction.options.getString('nickname');
+      const forbiddenWords = ['clyde', 'discord'];
+      const displayName = nickname || (member?.nickname || targetUser.username);
+      const hasForbiddenWords = forbiddenWords.some(word =>
+        displayName.toLowerCase().includes(word)
+      );
+
+      if (hasForbiddenWords) {
+        return interaction.editReply({ content: '<:error:1302169165905526805> ニックネームに使用できない単語が含まれています。', ephemeral: true });
+      }
+
       const message = interaction.options.getString('message');
       const attachment = interaction.options.getAttachment('attachment');
-      const nickname = interaction.options.getString('nickname');
-      const member = interaction.guild.members.cache.get(targetUser.id); 
+      const member = interaction.guild.members.cache.get(targetUser.id);
+
       const hasError = await validateMessageContent(interaction, message, commandName);
       if (hasError) return;
 
       const webhookClient = await getWebhookClient(interaction.channel, targetUser);
-      
-      const displayName = nickname || (member?.nickname || targetUser.displayName);
       const avatarURL = targetUser.displayAvatarURL({ format: null, size: 1024 });
 
       const options = {
