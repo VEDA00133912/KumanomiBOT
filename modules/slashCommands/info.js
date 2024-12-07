@@ -75,7 +75,8 @@ module.exports = {
           throw new Error('サーバー情報の取得に失敗しました');
         }
 
-        const { textChannelsCount, voiceChannelsCount, categoryCount, memberCount, bannedCount, emojiCount, bannerURL, roleCount, userCount, botCount, onlineCount, dndCount, idleCount, offlineCount, createdAt } = serverInfo;
+    //  const { textChannelsCount, voiceChannelsCount, categoryCount, memberCount, bannedCount, emojiCount, bannerURL, roleCount, userCount, botCount, onlineCount, dndCount, idleCount, offlineCount, createdAt } = serverInfo;
+        const { textChannelsCount, voiceChannelsCount, categoryCount, memberCount, bannedCount, emojiCount, bannerURL, roleCount, userCount, botCount, createdAt } = serverInfo;
         const totalChannelsCount = textChannelsCount + voiceChannelsCount + categoryCount; 
         const boostLevel = getBoostLevel(guild.premiumSubscriptionCount);
 
@@ -87,7 +88,8 @@ module.exports = {
             { name: '<:booster:1302168973172805642> ブースト', value: `${guild.premiumSubscriptionCount} Boosts (Level ${boostLevel})` },
             { name: '🚫 BANユーザー数', value: `${bannedCount} Users` },
             { name: '<:discord:1302168903857737760> チャンネル数', value: `Total: ${totalChannelsCount}\n<:text:1302169026470084711> Text: ${textChannelsCount} | <:vc:1302169041334571038> Voice: ${voiceChannelsCount} | <:category:1302169054735241236> Categories: ${categoryCount}`, inline: false },
-            { name: '<:user:1302192406715961354> メンバー情報', value: `Total: ${memberCount} (User: ${userCount} | BOT: ${botCount})\n<:online:1302168826972078131> : ${onlineCount} | <:dnd:1302168871037435914> : ${dndCount} | <:idle:1302168854541373450> : ${idleCount} | <:offline:1302168842981740617> : ${offlineCount}`, inline: false },
+            { name: '<:user:1302192406715961354> メンバー情報', value: `Total: ${memberCount} (User: ${userCount} | BOT: ${botCount})` },
+         // { name: '<:user:1302192406715961354> メンバー情報', value: `Total: ${memberCount} (User: ${userCount} | BOT: ${botCount})\n<:online:1302168826972078131> : ${onlineCount} | <:dnd:1302168871037435914> : ${dndCount} | <:idle:1302168854541373450> : ${idleCount} | <:offline:1302168842981740617> : ${offlineCount}`, inline: false },
             { name: '🔗 ロール数', value: `${roleCount} Roles`, inline: true },
             { name: '😎 絵文字数', value: `${emojiCount} Emojis`, inline: true },
             { name: '⚙ 作成日', value: `${createdAt} <t:${Math.floor(guild.createdTimestamp / 1000)}:R>`, inline: true }
