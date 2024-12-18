@@ -7,16 +7,12 @@ const { createEmbed } = require('../../lib/embed');
 
 module.exports = {
     data: new ContextMenuCommandBuilder()
-        .setName('Make it a Quote')
+        .setName('Make it a Quote(カラー)')
         .setType(ApplicationCommandType.Message)
         .setContexts(0, 1, 2)
         .setIntegrationTypes(0, 1),
 
     async execute(interaction) {
-        /*
-        await interaction.reply({ content: '<:error:1302169165905526805> 現在Make it a Quoteは使用できません。', ephemeral: true });
-        return;
-        */
         
         const commandName = this.data.name;
         const isCooldown = cooldown(commandName, interaction);
@@ -38,7 +34,7 @@ module.exports = {
                 displayName,
                 text,
                 avatar,
-                color: false,
+                color: true,
             });
 
             const embed = createEmbed(interaction).setImage(resultImageUrl);
