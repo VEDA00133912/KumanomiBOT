@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder,  InteractionContextType } = require('discord.js');
 const { checkRedirect } = require('../../lib/redirect');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
@@ -7,7 +7,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('redirect')
         .setDescription('指定されたURLのリダイレクト情報を表示します。')
-        .setIntegrationTypes(0,1)
+        .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(0)
         .addStringOption(option =>
             option.setName('url')
                 .setDescription('リダイレクトをチェックするURL')
