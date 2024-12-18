@@ -6,7 +6,7 @@ const slashCommandError = require('../errors/slashCommandError');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('redirect')
-        .setDescription('指定されたURLのリダイレクト情報を表示します。')
+        .setDescription('指定されたURLのリダイレクト情報を表示します')
         .setContexts(InteractionContextType.Guild)
         .setIntegrationTypes(0)
         .addStringOption(option =>
