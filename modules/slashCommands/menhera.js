@@ -8,11 +8,11 @@ const { createEmbed } = require('../../lib/embed');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('menhera')
-    .setDescription('文字列をメンヘラ文に変換します。')
-    .setIntegrationTypes(0,1)
+    .setDescription('文字列をメンヘラ文に変換します')
+    .setIntegrationTypes(0)
     .addStringOption(option =>
       option.setName('text')
-        .setDescription('変換するテキストを入力してください。')
+        .setDescription('変換するテキストを入力してください')
         .setRequired(true)
         .setMinLength(1)
         .setMaxLength(400)

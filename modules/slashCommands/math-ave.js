@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, InteractionContextType } = require('discord.js');
 const { createEmbed } = require('../../lib/embed');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
@@ -8,7 +8,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('average')
     .setDescription('指定した数の平均を計算します')
-    .setIntegrationTypes(0,1)
+    .setContexts(InteractionContextType.Guild)
+    .setIntegrationTypes(0)
     .addIntegerOption(option =>
       option.setName('number1').setDescription('1つ目の数').setRequired(true).setMinValue(1).setMaxValue(5000)
     )

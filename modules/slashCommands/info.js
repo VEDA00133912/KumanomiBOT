@@ -3,7 +3,6 @@ const slashCommandError = require('../errors/slashCommandError');
 const cooldown = require('../events/cooldown');
 const { getUserData } = require('../../lib/infouser');
 const { getServerInfo } = require('../../lib/infoserver');
-const { getBoostLevel } = require('../../lib/boost');
 const { getSystemInfo } = require('../../lib/infosystem');
 const { createEmbed } = require('../../lib/embed'); 
 
@@ -39,7 +38,7 @@ module.exports = {
           await interaction.deferReply();
           const targetUser = interaction.options.getUser('target');
           const userData = await getUserData(interaction, targetUser);
-          const { user, avatarURL, joinedAtFormatted, createdAt, displayName, isBoosting, roleCount, nameColor, status, bannerURL, userBadges } = userData;
+          const { user, avatarURL, joinedAtFormatted, createdAt, displayName, isBoosting, roleCount, nameColor, /*status,*/ bannerURL, userBadges } = userData;
 
           const embed = createEmbed(interaction)
               .setAuthor({ name: displayName, iconURL: avatarURL })
@@ -48,7 +47,7 @@ module.exports = {
               .addFields(
                   { name: '🔥 名前', value: user.tag, inline: true },
                   { name: '🆔 ID', value: `${user.id}`, inline: true },
-                  { name: 'ステータス', value: status, inline: true },
+                  // { name: 'ステータス', value: status, inline: true },
                   { name: '<:user:1292675664368898049> 作成日', value: createdAt, inline: true },
                   { name: '<:join:1302169007130153001> 参加日', value: joinedAtFormatted, inline: true },
                   { name: '<:booster:1302168973172805642> ブースト', value: isBoosting, inline: true },
@@ -75,11 +74,11 @@ module.exports = {
           throw new Error('サーバー情報の取得に失敗しました');
         }
 
-    //  const { textChannelsCount, voiceChannelsCount, categoryCount, memberCount, bannedCount, emojiCount, bannerURL, roleCount, userCount, botCount, onlineCount, dndCount, idleCount, offlineCount, createdAt } = serverInfo;
+   // const { textChannelsCount, voiceChannelsCount, categoryCount, memberCount, bannedCount, emojiCount, bannerURL, roleCount, userCount, botCount, onlineCount, dndCount, idleCount, offlineCount, createdAt } = serverInfo;
         const { textChannelsCount, voiceChannelsCount, categoryCount, memberCount, bannedCount, emojiCount, bannerURL, roleCount, userCount, botCount, createdAt } = serverInfo;
         const totalChannelsCount = textChannelsCount + voiceChannelsCount + categoryCount; 
-        const boostLevel = getBoostLevel(guild.premiumSubscriptionCount);
-
+        const boostLevel = guild.premiumTier
+        
         const embed = createEmbed(interaction)
           .setDescription(`**${guild.name} (${guild.id})**`)
           .setThumbnail(thumbnailUrl)
@@ -88,8 +87,8 @@ module.exports = {
             { name: '<:booster:1302168973172805642> ブースト', value: `${guild.premiumSubscriptionCount} Boosts (Level ${boostLevel})` },
             { name: '🚫 BANユーザー数', value: `${bannedCount} Users` },
             { name: '<:discord:1302168903857737760> チャンネル数', value: `Total: ${totalChannelsCount}\n<:text:1302169026470084711> Text: ${textChannelsCount} | <:vc:1302169041334571038> Voice: ${voiceChannelsCount} | <:category:1302169054735241236> Categories: ${categoryCount}`, inline: false },
-            { name: '<:user:1302192406715961354> メンバー情報', value: `Total: ${memberCount} (User: ${userCount} | BOT: ${botCount})` },
-         // { name: '<:user:1302192406715961354> メンバー情報', value: `Total: ${memberCount} (User: ${userCount} | BOT: ${botCount})\n<:online:1302168826972078131> : ${onlineCount} | <:dnd:1302168871037435914> : ${dndCount} | <:idle:1302168854541373450> : ${idleCount} | <:offline:1302168842981740617> : ${offlineCount}`, inline: false },
+           { name: '<:user:1302192406715961354> メンバー情報', value: `Total: ${memberCount} (User: ${userCount} | BOT: ${botCount})` },
+          // { name: '<:user:1302192406715961354> メンバー情報', value: `Total: ${memberCount} (User: ${userCount} | BOT: ${botCount})\n<:online:1302168826972078131> : ${onlineCount} | <:dnd:1302168871037435914> : ${dndCount} | <:idle:1302168854541373450> : ${idleCount} | <:offline:1302168842981740617> : ${offlineCount}`, inline: false },
             { name: '🔗 ロール数', value: `${roleCount} Roles`, inline: true },
             { name: '😎 絵文字数', value: `${emojiCount} Emojis`, inline: true },
             { name: '⚙ 作成日', value: `${createdAt} <t:${Math.floor(guild.createdTimestamp / 1000)}:R>`, inline: true }

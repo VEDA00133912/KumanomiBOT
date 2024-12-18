@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, InteractionContextType } = require('discord.js');
 const axios = require('axios');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
@@ -8,7 +8,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('ip')
         .setDescription('IP情報の表示')
-        .setIntegrationTypes(0,1)
+        .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(0)
         .addStringOption(option =>
             option.setName('ip')
                 .setDescription('調べたいIP')
@@ -47,7 +48,7 @@ module.exports = {
             );
         } catch (error) {
             if (error.response && [400, 404, 401].includes(error.response.status)) {
-                await interaction.editReply('<:error:1282141871539490816> 無効なIPです。正しい形式のIPアドレスを入力してください。');
+                await interaction.editReply('<:error:1282141871539490816> 無効なIPです。正しい形式のIPアドレスを入力してください');
             } else {
                 slashCommandError(interaction.client, interaction, error);
             }

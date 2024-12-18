@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, AttachmentBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, AttachmentBuilder, EmbedBuilder, InteractionContextType } = require('discord.js');
 const { config } = require('dotenv');
 const axios = require('axios');
 const fs = require('fs');
@@ -13,7 +13,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('url')
         .setDescription('URL関連のコマンド')
-        .setIntegrationTypes(0, 1)
+        .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(0)
         .addSubcommand(subcommand =>
             subcommand.setName('viruscheck')
                 .setDescription('URLの危険性を判断します')

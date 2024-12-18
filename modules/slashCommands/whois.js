@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, InteractionContextType } = require('discord.js');
 const axios = require('axios');
 const cleanDomainURL = require('../../lib/whois');
 const cooldown = require('../events/cooldown');
@@ -9,7 +9,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('whois')
         .setDescription('WHOIS情報の表示')
-        .setIntegrationTypes(0, 1)
+        .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(0)
         .addStringOption(option =>
             option.setName('domain')
                 .setDescription('調べたいドメイン')

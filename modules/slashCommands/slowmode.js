@@ -10,7 +10,7 @@ module.exports = {
         .setDescription('低速モードを設定します')
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
         .setContexts(InteractionContextType.Guild)
-        .setIntegrationTypes(0,1)
+        .setIntegrationTypes(0)
         .addIntegerOption(option => 
             option.setName('時間')
                 .setDescription('低速の時間を選択してください')

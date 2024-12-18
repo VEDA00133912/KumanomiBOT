@@ -8,11 +8,11 @@ const { createEmbed } = require('../../lib/embed');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('translate')
-    .setDescription('日本語を他言語に翻訳します。')
+    .setDescription('他言語への翻訳をします')
     .setIntegrationTypes(0,1)
     .addStringOption(option =>
       option.setName('text')
-        .setDescription('翻訳したいテキストを入力してください。')
+        .setDescription('翻訳したいテキストを入力してください')
         .setRequired(true)
         .setMinLength(1)  
         .setMaxLength(200) 

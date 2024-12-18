@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, InteractionContextType } = require('discord.js');
 const crypto = require('crypto');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
@@ -7,8 +7,9 @@ const { createEmbed } = require('../../lib/embed');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('hash')
-    .setDescription('テキストをハッシュ化します。')
-    .setIntegrationTypes(0,1)
+    .setDescription('テキストをハッシュ化します')
+    .setContexts(InteractionContextType.Guild)
+    .setIntegrationTypes(0)
     .addStringOption(option =>
       option.setName('text')
         .setDescription('ハッシュ化したいテキスト')

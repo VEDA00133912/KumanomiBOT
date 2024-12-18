@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, InteractionContextType } = require('discord.js');
 const { generateMeme } = require('../../lib/canvas');
 const { loadCanvasImage, applyMosaic, flipImage, applyMonochrome, invertColors, createCanvasWithSize, createSquareCanvas, clipCircle } = require('../../lib/canvases');
 const cooldown = require('../events/cooldown');
@@ -9,7 +9,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('canvas')
     .setDescription('画像加工を行います')
-    .setIntegrationTypes(0,1)
+    .setContexts(InteractionContextType.Guild)
+    .setIntegrationTypes(0)
     .addSubcommand(subcommand =>
       subcommand
         .setName('mosaic')
@@ -63,7 +64,7 @@ module.exports = {
     .addSubcommand(subcommand =>
       subcommand
         .setName('round')
-        .setDescription('画像を丸く切り抜きます。')
+        .setDescription('画像を丸く切り抜きます')
         .addAttachmentOption(option =>
           option.setName('image')
             .setDescription('丸く切り抜きたい画像をアップロードしてください')

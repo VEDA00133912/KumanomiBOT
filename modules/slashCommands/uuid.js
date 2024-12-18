@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, InteractionContextType } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 const { createEmbed } = require('../../lib/embed');
@@ -8,7 +8,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('uuid')
         .setDescription('UUIDを生成します')
-        .setIntegrationTypes(0,1)
+        .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(0)
         .addIntegerOption(option =>
             option.setName('count')
                 .setDescription('生成するUUIDの数')

@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, InteractionContextType } = require('discord.js');
 const { convertText } = require('../../lib/convert');
 const { validateMessageContent } = require('../../lib/invalidContent');
 const cooldown = require('../events/cooldown');
@@ -8,11 +8,12 @@ const { createEmbed } = require('../../lib/embed');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('backword')
-    .setDescription('文字列を逆読みします。')
-    .setIntegrationTypes(0,1)
+    .setDescription('文字列を逆読みします')
+    .setContexts(InteractionContextType.Guild)
+    .setIntegrationTypes(0)
     .addStringOption(option =>
       option.setName('text')
-        .setDescription('変換するテキストを入力してください。')
+        .setDescription('変換するテキストを入力してください')
         .setRequired(true)
         .setMinLength(1)
         .setMaxLength(400)

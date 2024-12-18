@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, InteractionContextType } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 const { getPackageInfo } = require('../../lib/npm');
@@ -8,8 +8,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('npm')
     .setDescription('指定されたnpmパッケージの情報を取得します')
-    .setContexts(0,1,2)
-    .setIntegrationTypes(0,1)
+    .setContexts(InteractionContextType.Guild)
+    .setIntegrationTypes(0)
     .addStringOption(option =>
       option.setName('package')
         .setDescription('情報を取得するパッケージ名')

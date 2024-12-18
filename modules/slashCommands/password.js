@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, InteractionContextType } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 const generatePasswords = require('../../lib/password');
@@ -7,8 +7,9 @@ const { createEmbed } = require('../../lib/embed');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('password')
-        .setDescription('指定した長さのパスワードを生成します。')
-        .setIntegrationTypes(0,1)
+        .setDescription('指定した長さのパスワードを生成します')
+        .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(0)
         .addIntegerOption(option =>
             option.setName('length')
                 .setDescription('パスワードの長さを1から64の範囲で指定')

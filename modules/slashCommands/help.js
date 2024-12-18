@@ -27,7 +27,7 @@ module.exports = {
                      { name: 'helpの操作方法', value: 'ボタンを押すことでコマンド一覧等が見れます' },
                      { name: 'サイト', value: '[くまのみぼっと公式サイト](https://veda00133912.github.io/kumanomi-site/)' },
                      { name: 'サポート等', value: '<:twitter:1282701797353459799> [twitter](https://twitter.com/ryo_001339)  <:discord:1282701795000320082> [Discord](https://discord.gg/j2gM7d2Drp)  <:github:1282850416085827584> [Github](https://github.com/VEDA00133912/KumanomiBOT)' },
-                     { name: '制作者', value: '<@1095869643106828289> (ryo_001339)' },
+                     { name: '制作者', value: '<@1271811656007028796> (sala_0908_sub2)' },
                      { name: 'コマンドの無効化の方法', value: 'メンバーに使わせたくないコマンドがある場合は下の画像を参考に無効化できます'}
                    );
 
