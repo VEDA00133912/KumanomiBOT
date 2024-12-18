@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, InteractionContextType } = require('discord.js');
 const cooldown = require('../events/cooldown');
 const slashCommandError = require('../errors/slashCommandError');
 
@@ -6,8 +6,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('song')
         .setDescription('癖になる')
-        .setContexts(0,1,2)
-        .setIntegrationTypes(0,1)
+        .setContexts(InteractionContextType.Guild)
+        .setIntegrationTypes(0)
         .addSubcommand(subcommand =>
             subcommand
                 .setName('kongyo')
