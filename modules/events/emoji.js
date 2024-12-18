@@ -25,27 +25,22 @@ module.exports = {
             console.error(`Failed to delete message: ${error}`);
           }
         }, deleteDelay);
-        return; // 文字列が含まれていれば処理を終了
+        return; 
       }
 
-      // サーバー絵文字（カスタム絵文字）の検出
       const serverEmojiRegex = /(<a?)?:\w+:(\d{18}>)?/g;
       const serverEmojis = contentWithoutEmoji.match(serverEmojiRegex);
 
       if (serverEmojis && serverEmojis.length > 0) {
-        // サーバー絵文字が含まれている場合は削除対象外
-        return; // サーバー絵文字やアニメーション絵文字のみの場合は削除しない
+        return; 
       }
 
-      // メッセージからUnicode絵文字を検出
       const mathEmojis = contentWithoutEmoji.match(twemojiRegex);
 
-      // Unicode絵文字のみで構成されている場合も削除対象外
       if (mathEmojis && contentWithoutEmoji === mathEmojis.join('')) {
-        return; // Unicode絵文字のみの場合は削除しない
+        return;
       }
 
-      // その他の場合は削除対象
       setTimeout(async () => {
         try {
           await message.delete();
